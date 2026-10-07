@@ -19,7 +19,7 @@ export function DepartmentCard({
   description,
   image,
   programs = [],
-  href = "#",
+  href = "/academics#courses",
   icon,
   duration,
   className = "",

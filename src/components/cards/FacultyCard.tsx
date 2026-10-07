@@ -9,7 +9,7 @@ export type FacultyCardProps = {
   href?: string;
 };
 
-export function FacultyCard({ name, role, image, href = "#" }: FacultyCardProps) {
+export function FacultyCard({ name, role, image, href = "/about" }: FacultyCardProps) {
   return (
     <Link href={href} className="group block">
       <Card hover padding="none" className="overflow-hidden">

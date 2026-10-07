@@ -156,20 +156,22 @@ function useCountUp(target: number, duration: number, started: boolean): number 
 
 function StatBlock({
   value,
+  headline,
   suffix,
   label,
   icon,
   started,
   showDivider,
 }: {
-  value: number;
+  value?: number;
+  headline?: string;
   suffix?: string;
   label: string;
   icon: NavIconName;
   started: boolean;
   showDivider?: boolean;
 }) {
-  const count = useCountUp(value, 2000, started);
+  const count = useCountUp(value ?? 0, 2000, started && value !== undefined);
 
   return (
     <div className="group relative flex h-full flex-col items-center px-4 py-6 text-center sm:py-4">
@@ -180,10 +182,16 @@ function StatBlock({
         />
       )}
       <IconBadge icon={icon} size="lg" />
-      <p className="mt-5 text-4xl font-bold leading-none tracking-tight text-primary lg:text-[2.75rem]">
-        {count.toLocaleString()}
-        <span className="text-accent">{suffix}</span>
-      </p>
+      {headline ? (
+        <p className="mt-5 font-heading text-2xl font-bold leading-none tracking-tight text-primary lg:text-3xl">
+          {headline}
+        </p>
+      ) : (
+        <p className="mt-5 text-4xl font-bold leading-none tracking-tight text-primary lg:text-[2.75rem]">
+          {count.toLocaleString()}
+          <span className="text-accent">{suffix}</span>
+        </p>
+      )}
       <p className="mt-3 max-w-[9rem] text-xs font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
       <AccentBar className="mt-4" />
     </div>
@@ -220,19 +228,6 @@ function AcademicsSidebar() {
             })}
           </ul>
         </nav>
-        <div className="group relative aspect-[4/3] overflow-hidden border-t border-border">
-          <Image
-            src={sidebar.image}
-            alt="Students in an engineering lecture at SBIST"
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="280px"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <p className="absolute bottom-4 left-4 text-xs font-semibold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Academic Life
-          </p>
-        </div>
       </SectionCard>
     </aside>
   );
@@ -276,7 +271,7 @@ export function AcademicsIntroSection() {
               <SectionCard>
                 <CardHeaderStrip
                   eyebrow={intro.eyebrow}
-                  subtitle="Programs, labs, and pathways to engineering careers"
+                  subtitle="Programs, labs and pathways to engineering careers"
                   align="left"
                 />
                 <div className="px-6 py-8 lg:px-8 lg:py-10">
@@ -303,7 +298,7 @@ export function AcademicsIntroSection() {
               <SectionCard>
                 <CardHeaderStrip
                   eyebrow="Academics at a Glance"
-                  subtitle="Key numbers across our engineering programs"
+                  subtitle="What defines our approach to education"
                 />
                 <StaggerContainer
                   className="relative grid divide-y divide-border sm:grid-cols-2 lg:grid-cols-4 sm:divide-x sm:divide-y-0"
@@ -313,6 +308,7 @@ export function AcademicsIntroSection() {
                     <StaggerItem key={stat.label}>
                       <StatBlock
                         value={stat.value}
+                        headline={stat.headline}
                         suffix={stat.suffix}
                         label={stat.label}
                         icon={stat.icon}
@@ -352,7 +348,7 @@ export function CourseCatalogueSection() {
 
         <StaggerContainer className="mt-8 grid items-stretch gap-6 sm:grid-cols-2 lg:gap-8" stagger={0.06}>
           {courses.programs.map((program) => (
-            <StaggerItem key={program.href} className="h-full">
+            <StaggerItem key={program.title} className="h-full">
               <div className="motion-lift h-full">
                 <DepartmentCard
                   title={program.title}
@@ -448,10 +444,14 @@ export function AlumniSection() {
             <StaggerItem key={stat.label}>
               <SectionCard className="text-center">
                 <div className="px-6 py-8">
-                  <p className="text-4xl font-bold text-primary lg:text-5xl">
-                    {stat.value.toLocaleString()}
-                    <span className="text-accent">{stat.suffix}</span>
-                  </p>
+                  {stat.headline ? (
+                    <p className="font-heading text-2xl font-bold text-primary lg:text-3xl">{stat.headline}</p>
+                  ) : (
+                    <p className="text-4xl font-bold text-primary lg:text-5xl">
+                      {stat.value?.toLocaleString()}
+                      <span className="text-accent">{stat.suffix}</span>
+                    </p>
+                  )}
                   <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted">{stat.label}</p>
                 </div>
               </SectionCard>
@@ -475,7 +475,6 @@ export function AlumniSection() {
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-semibold text-primary">{story.name}</p>
                       <p className="text-xs text-muted">{story.role}</p>
-                      <p className="mt-0.5 text-xs font-medium text-accent">{story.batch}</p>
                     </div>
                   </footer>
                 </div>
@@ -540,7 +539,16 @@ export function AdmissionsSection() {
                       key={notice.ref}
                       className="rounded-xl border border-border bg-surface/40 px-4 py-4 transition-colors hover:border-primary/20 hover:bg-white"
                     >
-                      <p className="text-sm font-semibold text-foreground">{notice.title}</p>
+                      {"href" in notice && notice.href ? (
+                        <Link
+                          href={notice.href}
+                          className="text-sm font-semibold text-foreground transition-colors hover:text-primary"
+                        >
+                          {notice.title}
+                        </Link>
+                      ) : (
+                        <p className="text-sm font-semibold text-foreground">{notice.title}</p>
+                      )}
                       <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
                         <span>{notice.date}</span>
                         <span className="hidden sm:inline">·</span>

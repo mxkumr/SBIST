@@ -1,24 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getSocialEntries, SocialIcon, socialLabels } from "@/components/layout/SocialIcons";
 import { siteConfig } from "@/lib/navigation";
 
 const campusLinks = [
+  { label: "Home", href: "/" },
   { label: "About SBIST", href: "/about" },
-  { label: "Alumni Network", href: "/alumni" },
-  { label: "Library", href: "/libraries" },
+  { label: "Academics", href: "/academics" },
   { label: "Campus Life", href: "/campus-life" },
 ];
 
 const usefulLinks = [
+  { label: "SBIOL Online", href: "/sbiol" },
+  { label: "SBSB", href: "/sbsb" },
   { label: "Careers", href: "/careers" },
-  { label: "Faculty Areas", href: "/faculty" },
-  { label: "Graduate Programs", href: "/programs" },
-  { label: "Campus Events", href: "/events" },
-  { label: "How to Apply", href: "/apply" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const socialEntries = getSocialEntries();
 
   return (
     <footer className="bg-footer-bg text-white">
@@ -71,10 +72,10 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {campusLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-white/70 transition-all duration-300 hover:scale-105 hover:text-accent"
                   >
                     {link.label}
                   </Link>
@@ -90,10 +91,10 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {usefulLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-white/70 transition-all duration-300 hover:scale-105 hover:text-accent"
                   >
                     {link.label}
                   </Link>
@@ -110,9 +111,10 @@ export function Footer() {
             <p className="mb-4 text-sm text-white/70">
               Stay updated with campus news and events.
             </p>
-            <form className="flex flex-col gap-3" action="#" method="post">
+            <form className="flex flex-col gap-3" action="/contact" method="get">
               <input
                 type="email"
+                name="email"
                 placeholder="Your email address"
                 className="rounded-md border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/50 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 aria-label="Email for newsletter"
@@ -132,17 +134,17 @@ export function Footer() {
           <p className="text-sm text-white/60">
             © {year} {siteConfig.name}. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-4">
-            {Object.entries(siteConfig.social).map(([key, url]) => (
+          <div className="flex items-center gap-3">
+            {socialEntries.map(([key, url]) => (
               <a
                 key={key}
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-xs font-semibold capitalize text-white/70 transition-colors hover:border-accent hover:text-accent"
-                aria-label={key}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-accent hover:text-accent"
+                aria-label={socialLabels[key]}
               >
-                {key[0].toUpperCase()}
+                <SocialIcon name={key} />
               </a>
             ))}
           </div>

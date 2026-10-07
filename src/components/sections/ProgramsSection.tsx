@@ -4,12 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ScrollReveal, StaggerContainer, StaggerItem, premiumTransitionFast } from "@/components/motion/ScrollAnimations";
+import {
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+  premiumTransitionFast,
+} from "@/components/motion/ScrollAnimations";
 import { departments, notices } from "@/lib/home-content";
+import { sbiolPageContent } from "@/lib/sbiol-content";
 
-type TabId = "faculty" | "programs" | "research";
+type TabId = "faculty" | "programs" | "sbiol";
 
 type Department = (typeof departments)[number];
+type SbiolCourse = (typeof sbiolPageContent.courses.items)[number];
 
 const tabs: { id: TabId; label: string; icon: ReactNode }[] = [
   {
@@ -34,48 +41,37 @@ const tabs: { id: TabId; label: string; icon: ReactNode }[] = [
     ),
   },
   {
-    id: "research",
-    label: "Research",
+    id: "sbiol",
+    label: "SBIOL Online",
     icon: (
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path strokeLinecap="round" d="M9 3h6v7l5 9H4l5-9V3z" />
-        <path strokeLinecap="round" d="M9 3h6" />
+        <rect x="3" y="4" width="18" height="12" rx="1.5" />
+        <path strokeLinecap="round" d="M8 20h8M12 16v4" />
       </svg>
     ),
   },
 ];
 
-const studentAvatars = [
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop",
-  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop",
-  "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop",
-  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop",
-];
-
-const bentoGridClass =
-  "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:auto-rows-[minmax(170px,1fr)]";
-
-function BentoCell({
-  className = "",
-  children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) {
-  return <div className={`h-full min-h-[170px] ${className}`}>{children}</div>;
-}
-
 function MortarboardIcon() {
   return (
     <svg className="h-5 w-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3L2 8l10 5 10-5-10-5zM4 10v5c0 2.5 3.5 4.5 8 4.5s8-2 8-4.5v-5" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3L2 8l10 5 10-5-10-5zM4 10v5c0 2.5 3.5 4.5 8 4.5s8-2 8-4.5v-5"
+      />
       <path strokeLinecap="round" strokeLinejoin="round" d="M22 10l-10 5" />
     </svg>
   );
 }
 
-/* ─── Academic Programs grid ─── */
+function categoryLabel(category: Department["category"]) {
+  if (category === "engineering") return "Engineering";
+  if (category === "management") return "Management";
+  return "Computer Applications";
+}
+
+/* ─── Academic Programs tab ─── */
 
 function DepartmentCard({
   title,
@@ -95,8 +91,9 @@ function DepartmentCard({
         src={image}
         alt={title}
         fill
+        quality={100}
         className="object-cover transition-transform duration-500 group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, 400px"
+        sizes="(max-width: 768px) 100vw, 33vw"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/30 to-transparent" />
       <h3 className="absolute bottom-0 left-0 right-0 p-5 text-lg leading-snug text-white lg:text-xl">
@@ -116,23 +113,16 @@ function ApplyCard() {
         </svg>
       </div>
 
-      <div className="mt-5 flex -space-x-2">
-        {studentAvatars.map((src) => (
-          <div
-            key={src}
-            className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-primary-dark"
-          >
-            <Image src={src} alt="" fill className="object-cover" sizes="36px" />
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-4 text-2xl font-semibold">1,500+</p>
-      <p className="text-sm text-white/75">Students Enrolled</p>
+      <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">Our Programs</p>
+      <h3 className="mt-2 text-xl font-semibold leading-snug">Courses designed for real careers</h3>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-white/75">
+        Industry-aligned curriculum, experienced faculty and hands-on labs across engineering, management and computer
+        applications.
+      </p>
 
       <Link
-        href="/apply"
-        className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold uppercase tracking-wide text-primary-dark transition-colors hover:bg-accent-hover"
+        href="/contact"
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold uppercase tracking-wide text-primary-dark transition-colors hover:bg-accent-hover"
       >
         Apply Now
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -153,32 +143,22 @@ function NoticeCard() {
 
       <ul className="mt-4 flex flex-1 flex-col justify-between gap-3">
         {notices.map((notice) => (
-          <li
-            key={notice.ref}
-            className="flex items-start justify-between gap-3 border-b border-border pb-3 last:border-0 last:pb-0"
-          >
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold leading-snug text-foreground">
+          <li key={notice.ref} className="border-b border-border pb-3 last:border-0 last:pb-0">
+            {"href" in notice && notice.href ? (
+              <Link href={notice.href} className="text-sm font-semibold leading-snug text-foreground hover:text-accent">
                 {notice.title}
-              </p>
-              <div className="mt-1.5 flex items-center gap-1.5 text-xs text-muted">
-                <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <rect x="3" y="4" width="18" height="18" rx="2" />
-                  <path strokeLinecap="round" d="M16 2v4M8 2v4M3 10h18" />
-                </svg>
-                {notice.date}
-              </div>
-              <p className="mt-1 font-mono text-[10px] text-muted/80">{notice.ref}</p>
-            </div>
-            <button
-              type="button"
-              className="shrink-0 rounded-full p-2 text-muted transition-colors hover:bg-surface hover:text-primary"
-              aria-label={`Download notice: ${notice.title}`}
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+              </Link>
+            ) : (
+              <p className="text-sm font-semibold leading-snug text-foreground">{notice.title}</p>
+            )}
+            <div className="mt-1.5 flex items-center gap-1.5 text-xs text-muted">
+              <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path strokeLinecap="round" d="M16 2v4M8 2v4M3 10h18" />
               </svg>
-            </button>
+              {notice.date}
+            </div>
+            <p className="mt-1 font-mono text-[10px] text-muted/80">{notice.ref}</p>
           </li>
         ))}
       </ul>
@@ -229,149 +209,194 @@ function FacultyGrid() {
   );
 }
 
-/* ─── All Programs (bento grid only) ─── */
+/* ─── All Programs tab — all 8 programs ─── */
 
-function ProgramBentoCard({
-  dept,
-  featured = false,
-}: {
-  dept: Department;
-  featured?: boolean;
-}) {
-  const categoryLabel =
-    dept.category === "engineering"
-      ? "Engineering"
-      : dept.category === "management"
-        ? "Management"
-        : "Commerce";
-
+function ProgramCatalogCard({ dept }: { dept: Department }) {
   return (
     <Link
       href={dept.href}
-      className="group relative flex h-full min-h-[170px] flex-col justify-between overflow-hidden rounded-2xl border border-white/15 bg-primary-dark/60 p-6 transition-all hover:border-accent/40 hover:bg-primary-dark/80"
+      className="group relative flex min-h-[260px] flex-col overflow-hidden border border-white/10 bg-primary-dark transition-colors hover:border-accent/45 sm:min-h-[280px]"
     >
-      {featured && (
-        <>
-          <Image
-            src={dept.image}
-            alt=""
-            fill
-            className="object-cover opacity-25 transition-opacity group-hover:opacity-35"
-            sizes="600px"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary-dark/90 to-primary-dark/70" />
-        </>
-      )}
-      <div className="relative">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">
-          {categoryLabel}
-        </span>
-        <h3 className={`mt-2 leading-snug text-white ${featured ? "text-2xl" : "text-lg"}`}>
+      <Image
+        src={dept.image}
+        alt={dept.title}
+        fill
+        quality={100}
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/55 to-primary-dark/15" />
+      <div className="absolute inset-0 bg-primary/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+      <div className="relative mt-auto flex flex-1 flex-col justify-end p-5 sm:p-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
+            {categoryLabel(dept.category)}
+          </span>
+          <span className="text-[10px] font-medium uppercase tracking-wide text-white/55">
+            {dept.duration}
+          </span>
+        </div>
+        <h3 className="mt-2 font-serif text-lg font-semibold leading-snug text-white lg:text-xl">
           {dept.title}
         </h3>
+        <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-white/75 sm:text-sm">
+          {dept.description}
+        </p>
+        <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+          Explore program
+          <svg
+            className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </span>
       </div>
-      <p className={`relative mt-3 leading-relaxed text-white/70 ${featured ? "text-sm" : "text-xs line-clamp-3"}`}>
-        {dept.description}
-      </p>
-      <span className="relative mt-4 inline-flex items-center gap-1 text-xs font-semibold text-accent">
-        Explore program
-        <svg className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </span>
     </Link>
   );
 }
 
-function ProgramsBento() {
-  const [featured, second, third, fourth] = departments;
-
+function ProgramsCatalog() {
   return (
-    <StaggerContainer className={bentoGridClass} stagger={0.06}>
-      {featured && (
-        <StaggerItem className="sm:col-span-2 lg:col-span-4 lg:row-span-2">
-          <BentoCell>
-            <ProgramBentoCard dept={featured} featured />
-          </BentoCell>
-        </StaggerItem>
-      )}
+    <div>
+      <div className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+        <p className="max-w-xl text-sm leading-relaxed text-white/70">
+          Eight programs across engineering, management and computer applications — built for careers that start on
+          campus.
+        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+          {departments.length} programs
+        </p>
+      </div>
 
-      {second && (
-        <StaggerItem className="lg:col-span-2">
-          <BentoCell>
-            <ProgramBentoCard dept={second} />
-          </BentoCell>
-        </StaggerItem>
-      )}
+      <StaggerContainer
+        className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4"
+        stagger={0.045}
+      >
+        {departments.map((dept) => (
+          <StaggerItem key={dept.title} className="h-full">
+            <ProgramCatalogCard dept={dept} />
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
 
-      <StaggerItem className="lg:col-span-2">
-        <BentoCell>
-          <div className="flex h-full flex-col justify-center rounded-2xl border border-white/15 bg-white/5 p-6 text-white">
-            <p className="text-3xl font-semibold text-accent">8</p>
-            <p className="mt-1 text-sm font-medium">Programs Offered</p>
-            <p className="mt-2 text-xs leading-relaxed text-white/60">
-              Six B.E. engineering programs plus BBA and BCA.
-            </p>
-          </div>
-        </BentoCell>
-      </StaggerItem>
-
-      {third && (
-        <StaggerItem className="lg:col-span-2">
-          <BentoCell>
-            <ProgramBentoCard dept={third} />
-          </BentoCell>
-        </StaggerItem>
-      )}
-
-      {fourth && (
-        <StaggerItem className="lg:col-span-3">
-          <BentoCell>
-            <ProgramBentoCard dept={fourth} />
-          </BentoCell>
-        </StaggerItem>
-      )}
-
-      <StaggerItem className="lg:col-span-1">
-        <BentoCell>
-          <Link
-            href="/academics"
-            className="flex h-full min-h-[170px] flex-col items-center justify-center rounded-2xl border border-dashed border-accent/50 bg-accent/10 p-4 text-center motion-premium hover:border-accent hover:bg-accent/20"
-          >
-            <span className="text-2xl text-accent">→</span>
-            <span className="mt-2 text-xs font-semibold text-accent">View all programs</span>
-          </Link>
-        </BentoCell>
-      </StaggerItem>
-    </StaggerContainer>
+      <div className="mt-6 flex justify-end sm:mt-8">
+        <Link
+          href="/academics#courses"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-accent"
+        >
+          View full academics
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </Link>
+      </div>
+    </div>
   );
 }
 
-/* ─── Research (simple panel) ─── */
+/* ─── SBIOL Online tab ─── */
 
-function ResearchPanel() {
+function SbiolCourseCard({ course }: { course: SbiolCourse }) {
   return (
-    <div className="flex min-h-[280px] flex-col justify-center rounded-2xl border border-white/15 bg-primary-dark/50 p-8 text-center lg:p-12">
-      <p className="text-lg text-white lg:text-xl">Research & Innovation at SBIST</p>
-      <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/70">
-        Setting clearly defined short and long term research goals with timelines,
-        evaluate the progress and ensure that all relevant infrastructural and
-        human resource support is available to achieve the goals.
-      </p>
-      <Link
-        href="/research"
-        className="mt-8 inline-flex justify-center text-sm font-semibold text-accent hover:text-accent-hover"
-      >
-        Explore research →
-      </Link>
+    <Link
+      href="/sbiol#courses"
+      className="group relative flex min-h-[280px] flex-col overflow-hidden border border-white/10 bg-primary-dark transition-colors hover:border-accent/45 sm:min-h-[320px]"
+    >
+      <Image
+        src={course.image}
+        alt={course.title}
+        fill
+        quality={100}
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/55 to-primary-dark/15" />
+      <div className="absolute inset-0 bg-primary/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+      <div className="relative mt-auto flex flex-1 flex-col justify-end p-5 sm:p-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
+            {course.category}
+          </span>
+          <span className="text-[10px] font-medium uppercase tracking-wide text-white/55">{course.duration}</span>
+        </div>
+        <h3 className="mt-2 font-heading text-xl font-semibold leading-snug text-white lg:text-2xl">
+          {course.shortTitle}
+        </h3>
+        <p className="mt-1 text-sm font-medium text-white/85">{course.title}</p>
+        <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-white/75 sm:text-sm">{course.focus}</p>
+        <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+          Explore online
+          <svg
+            className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+function SbiolOnlinePanel() {
+  const { courses, motto, brochureHref } = sbiolPageContent;
+
+  return (
+    <div>
+      <div className="mb-6 flex flex-col gap-4 sm:mb-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{motto}</p>
+          <p className="mt-2 text-sm leading-relaxed text-white/70">{courses.description}</p>
+        </div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+          {courses.items.length} online degrees
+        </p>
+      </div>
+
+      <StaggerContainer className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3" stagger={0.05}>
+        {courses.items.map((course) => (
+          <StaggerItem key={course.id} className="h-full">
+            <SbiolCourseCard course={course} />
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
+
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4 sm:mt-8">
+        <a
+          href={brochureHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-semibold text-white/80 transition-colors hover:text-accent"
+        >
+          Download brochure
+        </a>
+        <Link
+          href="/sbiol"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-accent"
+        >
+          Explore SBIOL
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </Link>
+      </div>
     </div>
   );
 }
 
 function TabPanel({ activeTab }: { activeTab: TabId }) {
-  if (activeTab === "faculty") return <FacultyGrid />;
-  if (activeTab === "programs") return <ProgramsBento />;
-  return <ResearchPanel />;
+  if (activeTab === "programs") return <ProgramsCatalog />;
+  if (activeTab === "sbiol") return <SbiolOnlinePanel />;
+  return <FacultyGrid />;
 }
 
 export function ProgramsSection() {

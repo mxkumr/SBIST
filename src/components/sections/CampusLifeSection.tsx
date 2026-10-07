@@ -38,9 +38,10 @@ function MortarboardIcon() {
 type CampusBentoTileProps = {
   tile: CampusLifeTile;
   size?: "featured" | "tall" | "default" | "wide";
+  priority?: boolean;
 };
 
-function CampusBentoTile({ tile, size = "default" }: CampusBentoTileProps) {
+function CampusBentoTile({ tile, size = "default", priority = false }: CampusBentoTileProps) {
   const titleClass =
     size === "featured"
       ? "text-2xl sm:text-3xl lg:text-[2rem]"
@@ -57,18 +58,25 @@ function CampusBentoTile({ tile, size = "default" }: CampusBentoTileProps) {
 
   return (
     <Link
-      href={tile.href ?? "/campus-life"}
+      href={tile.href ?? "/about"}
       className="group relative flex h-full min-h-[190px] overflow-hidden rounded-2xl border border-border bg-primary shadow-sm motion-lift transition-shadow hover:shadow-lg"
     >
       <Image
         src={tile.image}
         alt={tile.title}
         fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        priority={priority}
+        quality={100}
+        className={[
+          "object-cover transition-transform duration-500 group-hover:scale-105",
+          size === "wide" ? "object-center lg:object-[center_28%]" : "",
+        ].join(" ")}
         sizes={
           size === "featured"
-            ? "(max-width: 1024px) 100vw, 50vw"
-            : "(max-width: 1024px) 50vw, 25vw"
+            ? "(max-width: 1024px) 100vw, 60vw"
+            : size === "wide"
+              ? "100vw"
+              : "(max-width: 1024px) 50vw, 33vw"
         }
       />
       <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary/50 to-primary/15" />
@@ -102,39 +110,40 @@ function CampusBentoTile({ tile, size = "default" }: CampusBentoTileProps) {
 
 function CampusLifeStatTile() {
   return (
-    <div className="flex h-full min-h-[190px] flex-col justify-between rounded-2xl border border-border bg-white p-6 shadow-sm motion-lift lg:p-7">
+    <Link
+      href={campusLifeContent.viewAllHref}
+      className="group flex h-full min-h-[190px] flex-col justify-between rounded-2xl border border-border bg-white p-6 shadow-sm motion-lift transition-shadow hover:shadow-lg lg:p-7"
+    >
       <div>
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-          Student Life
+          Campus Life
         </span>
-        <p className="mt-3 font-serif text-4xl font-semibold text-primary">15+</p>
-        <p className="mt-1 text-sm font-medium text-foreground">Clubs & Activities</p>
+        <h3 className="mt-4 text-xl font-semibold leading-snug text-primary lg:text-2xl">
+          Dance, Arts &amp; Cultural
+        </h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted">
+          From dance and arts clubs to cultural events, SBIST offers a vibrant campus experience beyond academics.
+        </p>
       </div>
-      <p className="text-sm leading-relaxed text-muted">
-        From technical societies to cultural events, SBIST offers a vibrant campus experience beyond academics.
-      </p>
-      <Link
-        href={campusLifeContent.viewAllHref}
-        className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-accent"
-      >
-        View all campus life
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors group-hover:text-accent">
+        Learn more
+        <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
-      </Link>
-    </div>
+      </span>
+    </Link>
   );
 }
 
 export function CampusLifeSection() {
-  const { eyebrow, title, viewAllHref, tiles } = campusLifeContent;
+  const { eyebrow, title, tiles } = campusLifeContent;
   const [campus, library, lecture, lab, graduation, sports] = tiles;
 
   return (
     <section className="bg-background py-20 lg:py-28" id="campus-life">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal>
-          <div className="mb-10 flex flex-col gap-6 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mb-10 sm:mb-12">
             <div>
               <div className="flex items-center gap-2.5">
                 <MortarboardIcon />
@@ -146,24 +155,13 @@ export function CampusLifeSection() {
                 {title}
               </h2>
             </div>
-            <Link
-              href={viewAllHref}
-              className="inline-flex shrink-0 items-center gap-3 self-start rounded-full border border-border bg-white px-5 py-2.5 text-sm font-semibold text-foreground shadow-sm transition-all hover:border-primary/20 hover:shadow-md sm:self-auto"
-            >
-              View Gallery
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white">
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
-            </Link>
           </div>
         </ScrollReveal>
 
         <StaggerContainer className={bentoGridClass} stagger={0.07}>
           <StaggerItem className="sm:col-span-2 lg:col-span-7 lg:row-span-2">
             <BentoCell className="h-full">
-              <CampusBentoTile tile={campus} size="featured" />
+              <CampusBentoTile tile={campus} size="featured" priority />
             </BentoCell>
           </StaggerItem>
 

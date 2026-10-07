@@ -26,15 +26,21 @@ export { FoundersNoteSection } from "./sections/FoundersNoteSection";
 export { InsideCampusSection } from "./sections/InsideCampusSection";
 export { HomeClosingSections } from "./sections/HomeClosingSections";
 export { CampusLifeSection } from "./sections/CampusLifeSection";
+export { HomeGallerySection } from "./sections/HomeGallerySection";
+export { SbiolHomeSection } from "./sections/SbiolHomeSection";
 export { CTA } from "./sections/CTA";
 export type { CTAProps } from "./sections/CTA";
 export {
   AboutMainSection,
-  AboutVisionSection,
   AboutCampusTourSection,
   AboutTestimonialsSection,
   AboutGallerySection,
 } from "./sections/about/AboutPageSections";
+export {
+  LeadershipIntroSection,
+  LeadershipInstitutionsSection,
+  LeadershipNarrativeSection,
+} from "./sections/about/LeadershipPageSections";
 export {
   AcademicsIntroSection,
   CourseCatalogueSection,
@@ -47,9 +53,22 @@ export {
   CareersApplySection,
 } from "./sections/careers/CareersPageSections";
 export {
+  CampusLifeIntroSection,
+} from "./sections/campus-life/CampusLifePageSections";
+export {
+  SbsbIntroSection,
+  SbsbVisionMissionSection,
+  SbsbPillarsSection,
+  SbsbLeadershipSection,
+  SbsbClubGroupsSection,
+  SbsbClubsSection,
+  SbsbEventsSection,
+} from "./sections/sbsb/SbsbPageSections";
+export {
   ContactMainSection,
   ContactDepartmentsSection,
 } from "./sections/contact/ContactPageSections";
+export { SbiolMainSection } from "./sections/sbiol/SbiolPageSections";
 
 // UI
 export { SectionHeader } from "./ui/SectionHeader";

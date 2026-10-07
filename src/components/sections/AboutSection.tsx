@@ -52,15 +52,29 @@ function CheckIcon() {
   );
 }
 
-function AboutImage({ src, alt }: { src: string; alt: string }) {
+function AboutImage({
+  src,
+  alt,
+  priority = false,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+  className?: string;
+}) {
   return (
-    <div className="group relative min-h-[200px] flex-1 overflow-hidden rounded-2xl border border-border bg-white shadow-sm motion-lift">
+    <div
+      className={`group relative min-h-[200px] flex-1 overflow-hidden rounded-2xl border border-border bg-white shadow-sm motion-lift ${className}`}
+    >
       <Image
         src={src}
         alt={alt}
         fill
+        priority={priority}
+        quality={100}
         className="object-cover transition-transform duration-500 group-hover:scale-105"
-        sizes="(max-width: 1024px) 100vw, 480px"
+        sizes="(max-width: 1024px) 100vw, 50vw"
       />
     </div>
   );
@@ -74,8 +88,17 @@ export function AboutSection() {
           {/* Images */}
           <ScrollReveal direction="left" className="h-full">
             <div className="flex h-full flex-col gap-4">
-              <AboutImage src={aboutContent.images.primary} alt="Students learning at SBIST" />
-              <AboutImage src={aboutContent.images.secondary} alt="Graduates celebrating at SBIST" />
+              <AboutImage
+                src={aboutContent.images.primary}
+                alt="SBIST auditorium"
+                priority
+                className="hidden lg:block"
+              />
+              <AboutImage
+                src={aboutContent.images.secondary}
+                alt="Computer lab at SBIST"
+                priority
+              />
             </div>
           </ScrollReveal>
 
@@ -122,9 +145,11 @@ export function AboutSection() {
                       {aboutContent.stat.value}
                     </p>
                     <p className="mt-1 text-sm font-semibold">{aboutContent.stat.label}</p>
-                    <p className="mt-2 text-xs leading-relaxed text-white/75">
-                      {aboutContent.stat.description}
-                    </p>
+                    {aboutContent.stat.description ? (
+                      <p className="mt-2 text-xs leading-relaxed text-white/75">
+                        {aboutContent.stat.description}
+                      </p>
+                    ) : null}
                   </div>
                 </aside>
               </div>

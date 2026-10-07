@@ -7,6 +7,7 @@ import { Gallery } from "@/components/blocks/Gallery";
 import { NavIcon } from "@/components/layout/NavIcons";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion/ScrollAnimations";
 import { aboutPageContent } from "@/lib/about-content";
+import { aboutLeaderPreview } from "@/lib/leadership-content";
 import type { NavIconName } from "@/lib/navigation";
 
 function MortarboardIcon({ className = "h-5 w-5 shrink-0 text-accent" }: { className?: string }) {
@@ -173,20 +174,22 @@ function useCountUp(target: number, duration: number, started: boolean): number 
 
 function StatBlock({
   value,
+  headline,
   suffix,
   label,
   icon,
   started,
   showDivider,
 }: {
-  value: number;
+  value?: number;
+  headline?: string;
   suffix?: string;
   label: string;
   icon: NavIconName;
   started: boolean;
   showDivider?: boolean;
 }) {
-  const count = useCountUp(value, 2000, started);
+  const count = useCountUp(value ?? 0, 2000, started && value !== undefined);
 
   return (
     <div className="group relative flex h-full flex-col items-center px-4 py-6 text-center sm:py-4">
@@ -197,10 +200,16 @@ function StatBlock({
         />
       )}
       <IconBadge icon={icon} size="lg" />
-      <p className="mt-5 text-4xl font-bold leading-none tracking-tight text-primary lg:text-[2.75rem]">
-        {count.toLocaleString()}
-        <span className="text-accent">{suffix}</span>
-      </p>
+      {headline ? (
+        <p className="mt-5 font-heading text-2xl font-bold leading-none tracking-tight text-primary lg:text-3xl">
+          {headline}
+        </p>
+      ) : (
+        <p className="mt-5 text-4xl font-bold leading-none tracking-tight text-primary lg:text-[2.75rem]">
+          {count.toLocaleString()}
+          <span className="text-accent">{suffix}</span>
+        </p>
+      )}
       <p className="mt-3 max-w-[9rem] text-xs font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
       <AccentBar className="mt-4" />
     </div>
@@ -211,7 +220,7 @@ function AboutSidebar() {
   const { sidebar } = aboutPageContent;
 
   return (
-    <aside className="lg:sticky lg:top-28 lg:self-start">
+    <aside className="hidden lg:sticky lg:top-28 lg:block lg:self-start">
       <SectionCard>
         <CardHeaderStrip eyebrow={sidebar.title} subtitle="Explore SBIST" align="left" />
         <nav aria-label="About navigation">
@@ -237,21 +246,125 @@ function AboutSidebar() {
             })}
           </ul>
         </nav>
-        <div className="group relative aspect-[4/3] overflow-hidden border-t border-border">
-          <Image
-            src={sidebar.image}
-            alt="Students on the SBIST campus"
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="280px"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <p className="absolute bottom-4 left-4 text-xs font-semibold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Campus Life
-          </p>
-        </div>
       </SectionCard>
     </aside>
+  );
+}
+
+function BalajiHighlightDescription({ text }: { text: string }) {
+  const parts = text.split("Balaji");
+
+  return (
+    <p className="mt-5 text-base leading-relaxed text-muted">
+      {parts.map((part, index) => (
+        <span key={index}>
+          {part}
+          {index < parts.length - 1 && (
+            <span className="font-heading font-semibold tracking-wide text-primary">Balaji</span>
+          )}
+        </span>
+      ))}
+    </p>
+  );
+}
+
+function PillarsGrid({ pillars }: { pillars: typeof aboutPageContent.vision.pillars }) {
+  return (
+    <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.06}>
+      {pillars.map((pillar) => (
+        <StaggerItem key={pillar.title}>
+          <SectionCard className="group motion-lift h-full">
+            <div className="px-5 py-6 lg:px-6 lg:py-7">
+              <IconBadge icon={pillar.icon} size="md" />
+              <h3 className="mt-4 text-lg text-foreground">{pillar.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{pillar.description}</p>
+              <AccentBar className="mt-5" />
+            </div>
+          </SectionCard>
+        </StaggerItem>
+      ))}
+    </StaggerContainer>
+  );
+}
+
+function VisionMissionCard() {
+  const { vision, mission } = aboutPageContent;
+
+  return (
+    <div className="space-y-6">
+      <SectionCard>
+        <CardHeaderStrip eyebrow="Our Purpose" subtitle="Vision and mission that guide SBIST" align="left" />
+        <div className="grid items-stretch lg:grid-cols-2">
+          <div className="group px-6 py-8 lg:px-8 lg:py-10">
+            <div className="flex items-center gap-3">
+              <IconBadge icon="mission" size="md" />
+              <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{vision.title}</h2>
+            </div>
+            <BalajiHighlightDescription text={vision.description} />
+            <AccentBar className="mt-6" />
+          </div>
+          <div className="group border-t border-border px-6 py-8 lg:border-l lg:border-t-0 lg:px-8 lg:py-10">
+            <div className="flex items-center gap-3">
+              <IconBadge icon="programs" size="md" />
+              <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{mission.title}</h2>
+            </div>
+            <p className="mt-5 text-base leading-relaxed text-muted">{mission.description}</p>
+            <AccentBar className="mt-6" />
+          </div>
+        </div>
+      </SectionCard>
+
+      <PillarsGrid pillars={mission.pillars} />
+    </div>
+  );
+}
+
+function LeaderPreviewCard() {
+  const leader = aboutLeaderPreview;
+
+  return (
+    <SectionCard>
+      <div className="grid items-stretch lg:grid-cols-2">
+        <div className="flex flex-col">
+          <CardHeaderStrip eyebrow={leader.eyebrow} subtitle={leader.tagline} align="left" />
+          <div className="flex flex-1 flex-col justify-center px-6 py-8 lg:px-8 lg:py-10">
+            <h2 className="font-heading text-3xl leading-tight text-foreground lg:text-[2.25rem]">
+              {leader.title}
+            </h2>
+            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+              {leader.role}
+            </p>
+            <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
+              {leader.paragraphs.map((paragraph) => (
+                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="mt-8">
+              <ArrowPillLink href={leader.readMoreHref}>{leader.readMoreLabel}</ArrowPillLink>
+            </div>
+          </div>
+        </div>
+
+        <div className="group relative min-h-[280px] overflow-hidden border-t border-border lg:min-h-full lg:border-l lg:border-t-0">
+          <Image
+            src={leader.image}
+            alt={leader.imageAlt}
+            fill
+            quality={100}
+            priority
+            className="object-cover object-[60%_center] transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 50vw, 800px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-primary/25 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-primary/40 px-5 py-4 backdrop-blur-sm">
+            <p className="font-heading text-base font-semibold text-white">{leader.title}</p>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+              {leader.role}
+            </p>
+          </div>
+        </div>
+      </div>
+    </SectionCard>
   );
 }
 
@@ -282,14 +395,26 @@ export function AboutMainSection() {
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:gap-14 xl:gap-16">
-          <ScrollReveal direction="left">
+          <ScrollReveal direction="left" className="hidden lg:block">
             <AboutSidebar />
           </ScrollReveal>
 
           <div className="min-w-0 space-y-8">
             <ScrollReveal direction="right">
+              <LeaderPreviewCard />
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.04}>
+              <PillarsGrid pillars={aboutPageContent.vision.pillars} />
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.05}>
+              <VisionMissionCard />
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.08} direction="right">
               <SectionCard>
-                <CardHeaderStrip eyebrow={main.eyebrow} subtitle="Our story, mission, and community" align="left" />
+                <CardHeaderStrip eyebrow={main.eyebrow} subtitle="Our story, mission and community" align="left" />
                 <div className="px-6 py-8 lg:px-8 lg:py-10">
                   <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{main.title}</h2>
                   <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-muted">
@@ -302,8 +427,9 @@ export function AboutMainSection() {
                     <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border">
                       <Image
                         src={main.images.primary}
-                        alt="SBIST campus"
+                        alt="Modern computer laboratory at SBIST"
                         fill
+                        quality={100}
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, 320px"
                       />
@@ -311,8 +437,9 @@ export function AboutMainSection() {
                     <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border">
                       <Image
                         src={main.images.secondary}
-                        alt="Students at SBIST"
+                        alt="Entrepreneur Summit at SBIST"
                         fill
+                        quality={100}
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, 320px"
                       />
@@ -324,10 +451,6 @@ export function AboutMainSection() {
                     <p className="mt-4 font-serif text-base italic leading-relaxed text-foreground">
                       &ldquo;{main.quote.text}&rdquo;
                     </p>
-                    <footer className="mt-4 border-t border-border pt-4">
-                      <p className="text-sm font-semibold text-primary">{main.quote.author}</p>
-                      <p className="text-xs text-muted">{main.quote.role}</p>
-                    </footer>
                   </blockquote>
 
                   <p className="mt-6 text-[15px] leading-relaxed text-muted">{main.closingParagraph}</p>
@@ -338,7 +461,7 @@ export function AboutMainSection() {
 
             <div ref={statsRef}>
               <SectionCard>
-                <CardHeaderStrip eyebrow="SBIST at a Glance" subtitle="Numbers that reflect our growing community" />
+                <CardHeaderStrip eyebrow="SBIST at a Glance" subtitle="What defines our approach to education" />
                 <StaggerContainer
                   className="relative grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0"
                   stagger={0.08}
@@ -347,6 +470,7 @@ export function AboutMainSection() {
                     <StaggerItem key={stat.label}>
                       <StatBlock
                         value={stat.value}
+                        headline={stat.headline}
                         suffix={stat.suffix}
                         label={stat.label}
                         icon={stat.icon}
@@ -360,42 +484,6 @@ export function AboutMainSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-export function AboutVisionSection() {
-  const { vision } = aboutPageContent;
-
-  return (
-    <section className="bg-surface py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <ScrollReveal>
-          <SectionCard>
-            <CardHeaderStrip eyebrow="Our Purpose" subtitle="What drives us forward" />
-            <div className="px-6 py-8 text-center lg:px-8 lg:py-10">
-              <h2 className="text-3xl leading-tight text-foreground lg:text-4xl">{vision.title}</h2>
-              <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-muted">{vision.description}</p>
-              <AccentBar className="group mx-auto mt-6" />
-            </div>
-          </SectionCard>
-        </ScrollReveal>
-
-        <StaggerContainer className="mt-8 grid gap-6 sm:grid-cols-3 lg:gap-8" stagger={0.06}>
-          {vision.pillars.map((pillar) => (
-            <StaggerItem key={pillar.title}>
-              <SectionCard className="group motion-lift h-full">
-                <div className="px-6 py-8 lg:px-8 lg:py-10">
-                  <IconBadge icon={pillar.icon} size="md" />
-                  <h3 className="mt-5 text-xl text-foreground">{pillar.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{pillar.description}</p>
-                  <AccentBar className="mt-6" />
-                </div>
-              </SectionCard>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
       </div>
     </section>
   );
@@ -415,7 +503,7 @@ export function AboutCampusTourSection() {
                 <h2 className="text-3xl leading-tight text-foreground lg:text-4xl">{campusTour.title}</h2>
                 <p className="mt-5 text-base leading-relaxed text-muted">{campusTour.description}</p>
                 <div className="mt-8">
-                  <ArrowPillLink href={campusTour.videoHref}>Take a Campus Tour</ArrowPillLink>
+                  <ArrowPillLink href={campusTour.videoHref}>Explore Campus Life</ArrowPillLink>
                 </div>
               </div>
             </ScrollReveal>
@@ -450,7 +538,7 @@ export function AboutTestimonialsSection() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal>
           <SectionCard>
-            <CardHeaderStrip eyebrow="Student Voices" subtitle={testimonials.description} />
+            <CardHeaderStrip eyebrow="Professional Opinions" subtitle={testimonials.description} />
             <div className="px-6 py-8 lg:px-8">
               <h2 className="text-3xl leading-tight text-foreground lg:text-4xl">{testimonials.title}</h2>
               <AccentBar className="group mt-4" />

@@ -21,7 +21,7 @@ export function NewsCard({
   image,
   author,
   authorImage,
-  href = "#",
+  href = "/sbsb#events",
 }: NewsCardProps) {
   return (
     <Link href={href} className="group block h-full">

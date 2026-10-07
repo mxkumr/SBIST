@@ -6,21 +6,20 @@ export const contactPageContent = {
   header: {
     title: "Contact SBIST",
     description:
-      "Reach our admissions and administration teams for enquiries about programs, campus visits, and student services at our Chrompet campus in Chennai.",
+      "Reach our admissions and administration teams for enquiries about programs, campus visits and student services at our Chrompet campus in Chennai.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Contact", href: "/contact" },
     ],
-    backgroundImage: stockImages.campus,
+    backgroundImage: "/images/main-academic-block.png",
   },
   sidebar: {
     title: "Get in Touch",
     links: [
       { label: "Contact Us", href: "/contact", icon: "about" as NavIconName },
-      { label: "Admissions", href: "/apply", icon: "apply" as NavIconName },
       { label: "Academics", href: "/academics", icon: "programs" as NavIconName },
-      { label: "Campus Map", href: "/about/campus-map", icon: "map" as NavIconName },
-      { label: "FAQ", href: "/faq", icon: "faq" as NavIconName },
+      { label: "About SBIST", href: "/about", icon: "mission" as NavIconName },
+      { label: "Careers", href: "/careers", icon: "faculty" as NavIconName },
     ],
     image: stockImages.students,
   },
@@ -28,7 +27,7 @@ export const contactPageContent = {
     eyebrow: "Contact Information",
     title: "We Are Here to Help You",
     description:
-      "Whether you are a prospective student, parent, or partner institution, our team at Sree Balaji Institute of Science and Technology is ready to assist with your enquiries.",
+      "Whether you are a prospective student, parent or partner institution, our team at Sree Balaji Institute of Science and Technology is ready to assist with your enquiries.",
   },
   details: [
     {
@@ -83,23 +82,29 @@ export const contactPageContent = {
     items: [
       {
         title: "Admissions Office",
-        description: "Applications, eligibility, and enrollment support.",
-        href: "/apply",
+        description: "Applications, eligibility and enrollment support.",
+        href: "/contact",
         icon: "apply" as NavIconName,
       },
       {
         title: "Academic Affairs",
-        description: "Programs, departments, and curriculum enquiries.",
+        description: "Programs, departments and curriculum enquiries.",
         href: "/academics",
         icon: "programs" as NavIconName,
       },
       {
-        title: "Student Services",
-        description: "Campus life, events, and student support.",
-        href: "/campus-life",
-        icon: "campus" as NavIconName,
+        title: "Careers",
+        description: "Faculty recruitment and employment enquiries.",
+        href: "/careers",
+        icon: "faculty" as NavIconName,
       },
     ],
+  },
+  social: {
+    eyebrow: "Connect With Us",
+    title: "Follow SBIST on Social Media",
+    description:
+      "Stay close to campus life — events, announcements and community moments across our official channels.",
   },
   cta: {
     image: stockImages.students,

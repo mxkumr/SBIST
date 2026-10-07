@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollReveal, ScaleReveal, StaggerContainer, StaggerItem } from "@/components/motion/ScrollAnimations";
-import { foundersNoteContent, heroContent, upcomingEventsContent } from "@/lib/home-content";
+import { foundersNoteContent, upcomingEventsContent } from "@/lib/home-content";
 
 function MortarboardIcon() {
   return (
@@ -48,14 +48,6 @@ function PinIcon() {
   );
 }
 
-function PlayIcon() {
-  return (
-    <svg className="h-5 w-5 translate-x-0.5 text-primary" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M8 5v14l11-7L8 5z" />
-    </svg>
-  );
-}
-
 function DotsIcon() {
   return (
     <span className="grid grid-cols-2 gap-0.5" aria-hidden>
@@ -63,26 +55,6 @@ function DotsIcon() {
         <span key={dot} className="h-1 w-1 rounded-full bg-primary" />
       ))}
     </span>
-  );
-}
-
-function Signature() {
-  return (
-    <svg className="h-10 w-28 text-white/90 sm:h-12 sm:w-32" viewBox="0 0 140 36" fill="none" aria-hidden>
-      <path
-        d="M8 24c12-8 22-10 34-6 8 3 14 2 20-2M52 18c6 8 14 12 24 10 10-2 18-8 26-16"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-      <path
-        d="M18 28c10-2 18-6 28-4 8 2 14 0 22-6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        opacity="0.7"
-      />
-    </svg>
   );
 }
 
@@ -112,8 +84,9 @@ function EventCard({ event }: { event: EventItem }) {
           src={event.image}
           alt=""
           fill
+          quality={100}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="128px"
+          sizes="256px"
         />
       </div>
 
@@ -176,9 +149,9 @@ function UpcomingEvents() {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid gap-5 sm:grid-cols-2 lg:gap-6" stagger={0.06}>
+        <StaggerContainer className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6" stagger={0.06}>
           {events.map((event) => (
-            <StaggerItem key={event.href}>
+            <StaggerItem key={event.title}>
               <EventCard event={event} />
             </StaggerItem>
           ))}
@@ -189,56 +162,28 @@ function UpcomingEvents() {
 }
 
 function FoundersNoteCard() {
-  const { quote, name, title, videoHref, readMoreHref } = foundersNoteContent;
+  const { quote, name, title, readMoreHref } = foundersNoteContent;
 
   return (
     <div className="overflow-hidden rounded-3xl bg-primary shadow-2xl">
-      <div className="grid items-center gap-6 p-5 sm:gap-8 sm:p-6 lg:grid-cols-[minmax(0,240px)_1fr] lg:gap-10 lg:p-8">
-        <div className="mx-auto w-full max-w-[220px] lg:mx-0 lg:max-w-none">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-primary-light/25 ring-1 ring-white/10">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white/5">
-                <svg className="h-8 w-8 text-white/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden>
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M5 20c0-4 3.5-7 7-7s7 3 7 7" />
-                </svg>
-              </div>
-            </div>
-            <Link
-              href={videoHref}
-              className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-              aria-label="Play founder's message video"
-            >
-              <span className="absolute inset-0 -m-1.5 rounded-full border-2 border-white/35" />
-              <PlayIcon />
-            </Link>
-          </div>
+      <div className="flex flex-col gap-6 p-5 sm:gap-8 sm:p-6 lg:p-8">
+        <blockquote className="text-sm italic leading-relaxed text-white/88 sm:text-base sm:leading-7 lg:text-lg">
+          &ldquo;{quote}&rdquo;
+        </blockquote>
+
+        <div>
+          <p className="font-serif text-xl font-semibold text-white sm:text-2xl">{name}</p>
+          <p className="mt-0.5 text-sm text-white/65">{title}</p>
         </div>
 
-        <div className="flex flex-col gap-6 lg:gap-7">
-          <blockquote className="text-sm italic leading-relaxed text-white/88 sm:text-base sm:leading-7">
-            &ldquo;{quote}&rdquo;
-          </blockquote>
-
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="font-serif text-xl font-semibold text-white sm:text-2xl">
-                {name}
-              </p>
-              <p className="mt-0.5 text-sm text-white/65">{title}</p>
-            </div>
-            <Signature />
-          </div>
-
-          <div className="flex justify-end">
-            <Link
-              href={readMoreHref}
-              className="inline-flex items-center gap-3 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-primary shadow-sm transition-all hover:bg-accent-hover hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-            >
-              Read More
-              <DotsIcon />
-            </Link>
-          </div>
+        <div className="flex justify-end">
+          <Link
+            href={readMoreHref}
+            className="inline-flex items-center gap-3 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-primary shadow-sm transition-all hover:bg-accent-hover hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+          >
+            Read More
+            <DotsIcon />
+          </Link>
         </div>
       </div>
     </div>
@@ -253,13 +198,12 @@ export function FoundersNoteSection() {
       <div className="relative overflow-hidden bg-background">
         <div className="absolute inset-x-0 bottom-0 top-24 sm:top-32 lg:top-40">
           <Image
-            src={heroContent.buildingImage}
+            src="/images/main-building-side.JPG"
             alt=""
             fill
             className="object-cover object-center"
             sizes="100vw"
             quality={100}
-            unoptimized
           />
           <div className="absolute inset-0 bg-primary/45" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/25 to-primary/70" />

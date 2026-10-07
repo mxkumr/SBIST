@@ -1,0 +1,104 @@
+SBIST — cPanel deployment guide
+================================
+
+Package: SBIST-cpanel.zip
+Stack:   Next.js 16 (Node.js app — not static HTML)
+
+Requirements
+------------
+- cPanel hosting with "Setup Node.js App" (Node 20.x or 22.x LTS)
+- Enough disk space for npm install (~200–400 MB after install)
+- Domain or subdomain pointed at your hosting account
+
+What is in the zip
+------------------
+- src/              Application source
+- public/           Images and static assets
+- .next/            Pre-built production output (optional — rebuild on server recommended)
+- package.json      Dependencies and scripts
+- next.config.ts    Next.js configuration
+- CPANEL-SETUP.txt  This file
+
+NOT included (install/build on server): node_modules, .git, dev tooling
+
+
+Step 1 — Upload the zip
+-----------------------
+1. Log in to cPanel.
+2. Open File Manager.
+3. Go to the folder where the site should live:
+   - Main domain: often public_html/
+   - Subdomain: e.g. public_html/sbist/ or the subdomain root folder
+4. Click Upload, choose SBIST-cpanel.zip, wait for upload to finish.
+5. Select the zip → Extract → confirm.
+6. Delete SBIST-cpanel.zip from the server after extraction (optional, saves space).
+
+If files extract into a nested "SBIST" folder, either:
+  - Move all contents up one level into public_html, OR
+  - Set the Node.js app root to that nested folder.
+
+
+Step 2 — Create the Node.js application
+---------------------------------------
+1. In cPanel, open "Setup Node.js App" (or "Application Manager").
+2. Click "Create Application".
+3. Settings:
+   - Node.js version: 20.x or latest LTS
+   - Application mode: Production
+   - Application root: folder where you extracted (must contain package.json)
+   - Application URL: your domain (e.g. sbist.in or www.sbist.in)
+   - Application startup file: server.js (if cPanel auto-generates one) OR leave default
+4. Save / Create.
+
+Environment variables (add in the Node.js app panel if available):
+   NODE_ENV=production
+
+
+Step 3 — Install dependencies and build
+---------------------------------------
+In cPanel Node.js App panel, click "Run NPM Install" if available.
+
+Otherwise open Terminal (SSH) and run:
+
+   cd /home/USERNAME/path/to/your/app
+   npm install
+   npm run build
+
+Replace the path with your actual application root.
+
+
+Step 4 — Start the application
+------------------------------
+In the Node.js App panel:
+   - Startup command: npm start
+   - Click "Start App" or "Restart"
+
+Default port is assigned by cPanel (often shown in the app settings).
+cPanel usually proxies your domain to that port automatically.
+
+
+Step 5 — Verify
+---------------
+Visit your domain and check:
+   /           Home
+   /about      About
+   /academics  Academics
+   /careers    Careers
+   /contact    Contact
+
+Browser tab should show the SREE Balaji logo favicon.
+
+
+Troubleshooting
+---------------
+- 503 / app not running → Restart the Node.js app in cPanel.
+- Build fails on server → Confirm Node 20+ and run npm install again.
+- Missing images → Ensure public/images/ was uploaded (hero-campus.jpg, sbist-logo.jpg).
+- Old content after update → Re-upload zip, npm run build, restart app.
+- Contact form → Uses mailto:office@sbist.in (no server-side email in this build).
+
+
+Support contacts (site content)
+-------------------------------
+Email:   office@sbist.in
+Address: No. 7 Works Road, Chrompet, Chennai - 600 044

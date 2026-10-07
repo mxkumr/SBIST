@@ -44,12 +44,12 @@ function MarqueeItem({ label, variant }: MarqueeItemProps) {
 }
 
 const items: MarqueeItemProps[] = [
-  { label: "Best 10 University Awards", variant: "primary" },
-  { label: "Best 10 University Awards", variant: "accent" },
-  { label: "Best 10 University Awards", variant: "primary" },
-  { label: "Best 10 University Awards", variant: "accent" },
-  { label: "Best 10 University Awards", variant: "primary" },
-  { label: "Best 10 University Awards", variant: "accent" },
+  { label: "Admission open for 2026", variant: "primary" },
+  { label: "Admission open for 2026", variant: "accent" },
+  { label: "Admission open for 2026", variant: "primary" },
+  { label: "Admission open for 2026", variant: "accent" },
+  { label: "Admission open for 2026", variant: "primary" },
+  { label: "Admission open for 2026", variant: "accent" },
 ];
 
 export function AwardsMarquee() {
@@ -58,7 +58,7 @@ export function AwardsMarquee() {
   return (
     <section
       className="overflow-hidden border-y border-border bg-[#f3f1eb] py-5"
-      aria-label="Awards and recognition"
+      aria-label="Admissions announcement"
     >
       <div className="marquee-track flex w-max items-center">
         {track.map((item, index) => (

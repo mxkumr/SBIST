@@ -63,6 +63,7 @@ export function Gallery({
                 src={image.src}
                 alt={image.alt}
                 fill
+                quality={100}
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
@@ -126,6 +127,7 @@ export function Gallery({
               src={images[lightboxIndex].src}
               alt={images[lightboxIndex].alt}
               fill
+              quality={100}
               className="object-contain"
               sizes="90vw"
             />

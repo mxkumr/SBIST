@@ -42,6 +42,8 @@ export type MegaMenuColumn = {
 export type NavItem = {
   label: string;
   href?: string;
+  /** Compact dropdown with a few links (icon, title, description) */
+  dropdown?: NavLink[];
   megaMenu?: MegaMenuColumn[];
   featured?: {
     title: string;
@@ -54,237 +56,16 @@ export type NavItem = {
   };
 };
 
+/** Only routes with live pages */
 export const mainNavigation: NavItem[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "About",
-    megaMenu: [
-      {
-        title: "Institute",
-        links: [
-          {
-            label: "About SBIST",
-            href: "/about",
-            description: "Vision, mission & overview",
-            icon: "about",
-          },
-          {
-            label: "History",
-            href: "/about/history",
-            description: "Our journey",
-            icon: "history",
-          },
-          {
-            label: "Administration",
-            href: "/about/administration",
-            description: "Leadership & governance",
-            icon: "administration",
-          },
-          {
-            label: "Mission & Values",
-            href: "/about/mission",
-            description: "What we stand for",
-            icon: "mission",
-          },
-          {
-            label: "Campus Map",
-            href: "/about/campus-map",
-            description: "Chrompet campus",
-            icon: "map",
-          },
-          {
-            label: "Founder's Message",
-            href: "/about/founders-message",
-            description: "From the chairman",
-            icon: "founder",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Academics",
-    href: "/academics",
-    megaMenu: [
-      {
-        title: "Programs",
-        links: [
-          {
-            label: "Academics Overview",
-            href: "/academics",
-            description: "Programs, labs & alumni",
-            icon: "programs",
-          },
-          {
-            label: "Computer Science Engineering",
-            href: "/programs/cse",
-            description: "Software & computing",
-            icon: "cse",
-          },
-          {
-            label: "Information & Communication Technology",
-            href: "/programs/ict",
-            description: "Networks & IT systems",
-            icon: "ict",
-          },
-          {
-            label: "Electrical & Communication Engineering",
-            href: "/programs/ece",
-            description: "Power & communication",
-            icon: "ece",
-          },
-          {
-            label: "Civil Engineering",
-            href: "/programs/civil",
-            description: "Infrastructure",
-            icon: "civil",
-          },
-          {
-            label: "Mechanical Engineering",
-            href: "/programs/mechanical",
-            description: "Manufacturing & design",
-            icon: "mechanical",
-          },
-          {
-            label: "Biomedical Engineering",
-            href: "/programs/biomedical",
-            description: "Healthcare technology",
-            icon: "biomedical",
-          },
-          {
-            label: "BBA",
-            href: "/programs/bba",
-            description: "Business administration",
-            icon: "bba",
-          },
-          {
-            label: "BCA",
-            href: "/programs/bca",
-            description: "Computer applications",
-            icon: "bca",
-          },
-          {
-            label: "All Programs",
-            href: "/programs",
-            description: "Browse all programs",
-            icon: "programs",
-          },
-        ],
-      },
-      {
-        title: "Admissions",
-        links: [
-          {
-            label: "How to Apply",
-            href: "/apply",
-            description: "Start application",
-            icon: "apply",
-          },
-          {
-            label: "Requirements",
-            href: "/apply/requirements",
-            description: "Eligibility & docs",
-            icon: "requirements",
-          },
-          {
-            label: "Tuition & Fees",
-            href: "/tuition",
-            description: "Fee structure",
-            icon: "tuition",
-          },
-          {
-            label: "Scholarships",
-            href: "/scholarships",
-            description: "Financial aid",
-            icon: "scholarship",
-          },
-        ],
-      },
-      {
-        title: "Faculty & Research",
-        links: [
-          {
-            label: "Faculty Members",
-            href: "/faculty/members",
-            description: "Teaching staff",
-            icon: "faculty",
-          },
-          {
-            label: "Research",
-            href: "/research",
-            description: "Labs & innovation",
-            icon: "research",
-          },
-        ],
-      },
-    ],
-    featured: {
-      title: "Join SBIST Now",
-      description: "Highly qualified faculty will guide you for career growth.",
-      stat: "1.5K+",
-      statLabel: "Students Enrolled",
-      image: "/images/hero-campus.jpg",
-      ctaLabel: "Apply Now",
-      ctaHref: "/apply",
-    },
-  },
-  {
-    label: "Campus",
-    megaMenu: [
-      {
-        title: "Student Life",
-        links: [
-          {
-            label: "Campus Life",
-            href: "/campus-life",
-            description: "Clubs & community",
-            icon: "campus",
-          },
-          {
-            label: "Events",
-            href: "/events",
-            description: "Symposiums & activities",
-            icon: "events",
-          },
-          {
-            label: "Library",
-            href: "/libraries",
-            description: "Study resources",
-            icon: "library",
-          },
-          {
-            label: "Gallery",
-            href: "/gallery",
-            description: "Campus photos",
-            icon: "gallery",
-          },
-          {
-            label: "Alumni",
-            href: "/alumni",
-            description: "Graduate network",
-            icon: "alumni",
-          },
-          {
-            label: "FAQ",
-            href: "/faq",
-            description: "Common questions",
-            icon: "faq",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Careers",
-    href: "/careers",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-  },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Academics", href: "/academics" },
+  { label: "SBIOL", href: "/sbiol" },
+  { label: "Campus Life", href: "/campus-life" },
+  { label: "SBSB", href: "/sbsb" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const siteConfig = {
@@ -295,9 +76,9 @@ export const siteConfig = {
   phone: "",
   address: "No. 7 Works Road, Chrompet, Chennai - 600 044",
   social: {
-    facebook: "https://facebook.com",
-    twitter: "https://twitter.com",
-    linkedin: "https://linkedin.com",
-    youtube: "https://youtube.com",
+    facebook: "https://www.facebook.com/profile.php?id=61592126405933",
+    instagram: "https://www.instagram.com/sbist__",
+    linkedin: "https://www.linkedin.com/company/142907523",
+    youtube: "https://www.youtube.com/@SreeBalajiInstituteofScience",
   },
 };

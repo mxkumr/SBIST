@@ -1,11 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { NavIcon } from "@/components/layout/NavIcons";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion/ScrollAnimations";
+import {
+  getSocialEntries,
+  SocialIcon,
+  socialDescriptions,
+  socialLabels,
+} from "@/components/layout/SocialIcons";
 import { contactPageContent } from "@/lib/contact-content";
 import type { NavIconName } from "@/lib/navigation";
 
@@ -121,19 +126,6 @@ function ContactSidebar() {
             })}
           </ul>
         </nav>
-        <div className="group relative aspect-[4/3] overflow-hidden border-t border-border">
-          <Image
-            src={sidebar.image}
-            alt="Students at SBIST campus"
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="280px"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <p className="absolute bottom-4 left-4 text-xs font-semibold uppercase tracking-[0.12em] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Chrompet Campus
-          </p>
-        </div>
       </SectionCard>
     </aside>
   );
@@ -270,7 +262,8 @@ function ContactMapCard() {
 }
 
 export function ContactMainSection() {
-  const { intro, details, officeHours } = contactPageContent;
+  const { intro, details, officeHours, social } = contactPageContent;
+  const socialEntries = getSocialEntries();
 
   return (
     <section className="bg-background py-20 lg:py-28">
@@ -336,6 +329,51 @@ export function ContactMainSection() {
                       </li>
                     ))}
                   </ul>
+                </div>
+              </SectionCard>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.12}>
+              <SectionCard>
+                <CardHeaderStrip eyebrow={social.eyebrow} subtitle={social.description} align="left" />
+                <div className="px-6 py-8 lg:px-8">
+                  <h2 className="text-2xl leading-tight text-foreground lg:text-3xl">{social.title}</h2>
+                  <AccentBar className="group mt-4" />
+                  <StaggerContainer className="mt-8 grid gap-4 sm:grid-cols-2" stagger={0.06}>
+                    {socialEntries.map(([platform, url]) => (
+                      <StaggerItem key={platform}>
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group motion-lift flex h-full flex-col rounded-xl border border-border bg-surface/60 p-5 transition-colors hover:border-primary/25 hover:bg-white"
+                          aria-label={`Visit SBIST on ${socialLabels[platform]}`}
+                        >
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/5 text-primary ring-1 ring-primary/10 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:ring-primary/20 group-hover:shadow-md">
+                            <SocialIcon name={platform} className="h-5 w-5" />
+                          </span>
+                          <h3 className="mt-4 text-lg font-semibold text-foreground group-hover:text-primary">
+                            {socialLabels[platform]}
+                          </h3>
+                          <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+                            {socialDescriptions[platform]}
+                          </p>
+                          <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                            Follow us
+                            <svg
+                              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                          </span>
+                        </a>
+                      </StaggerItem>
+                    ))}
+                  </StaggerContainer>
                 </div>
               </SectionCard>
             </ScrollReveal>

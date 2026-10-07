@@ -1,25 +1,20 @@
 import type { NavIconName } from "@/lib/navigation";
 import { departments, notices, stockImages } from "@/lib/home-content";
+import type { HighlightStatItem, PageStatItem } from "@/lib/about-content";
 
-/** Verified image URLs for the Academics page (Unsplash IDs tested for 200 responses) */
+/** Local image paths for the Academics page */
 export const academicsImages = {
-  header: stockImages.campus,
+  header: "/images/classroom1.png",
   sidebar: stockImages.students,
-  whyJoin:
-    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&h=600&fit=crop",
+  whyJoin: "/images/students-classroom.jpg",
   cta: stockImages.students,
-  alumni: {
-    karthik: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop",
-    meera: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop",
-    vikram: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop",
-  },
 } as const;
 
 export const academicsPageContent = {
   header: {
     title: "Academics at SBIST",
     description:
-      "Explore our programs, world-class laboratories, and the pathways that prepare students for careers in technology, infrastructure, healthcare, and business.",
+      "Explore our programs, world-class laboratories and the pathways that prepare students for careers in technology, infrastructure, healthcare and business.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Academics", href: "/academics" },
@@ -41,7 +36,7 @@ export const academicsPageContent = {
     eyebrow: "Academic Excellence",
     title: "Academic Programs Built for the Real World",
     paragraphs: [
-      "At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs — Computer Science Engineering, Information and Communication Technology, Electrical and Communication Engineering, Civil Engineering, Mechanical Engineering, Biomedical Engineering, BBA, and BCA.",
+      "At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs — Computer Science Engineering, Information and Communication Technology, Electrical and Communication Engineering, Civil Engineering, Mechanical Engineering, Biomedical Engineering, BBA and BCA.",
       "From modern laboratories and qualified faculty to placement training and research opportunities, SBIST provides a complete academic ecosystem on our Chrompet campus in Chennai.",
     ],
     highlights: [
@@ -52,15 +47,15 @@ export const academicsPageContent = {
   },
   stats: [
     { value: 8, suffix: "", label: "Programs Offered", icon: "programs" as NavIconName },
-    { value: 15, suffix: "+", label: "Specialized Labs", icon: "research" as NavIconName },
-    { value: 80, suffix: "+", label: "Faculty Members", icon: "faculty" as NavIconName },
-    { value: 92, suffix: "%", label: "Placement Rate", icon: "apply" as NavIconName },
-  ],
+    { value: 3, suffix: "+", label: "Specialized Labs", icon: "research" as NavIconName },
+    { headline: "Excellence", label: "Academic quality", icon: "faculty" as NavIconName },
+    { headline: "Growth", label: "Career development", icon: "apply" as NavIconName },
+  ] as PageStatItem[],
   courses: {
     eyebrow: "Program Catalogue",
     title: "Browse Our Programs",
     description:
-      "Choose from eight undergraduate programs across engineering, management, and computer applications. Each pathway combines core fundamentals with practical labs and project-based learning.",
+      "Choose from eight undergraduate programs across engineering, management and computer applications. Each pathway combines core fundamentals with practical labs and project-based learning.",
     programs: departments.map((dept) => ({
       ...dept,
       programs: [dept.degree],
@@ -71,124 +66,109 @@ export const academicsPageContent = {
     eyebrow: "Why Join SBIST",
     title: "Where Qualified Faculty Guide Your Career Growth",
     description:
-      "SBIST combines academic rigour with practical exposure — giving students the confidence, skills, and network to succeed in competitive engineering careers.",
+      "SBIST combines academic rigour with practical exposure — giving students the confidence, skills and network to succeed in competitive engineering careers.",
     reasons: [
       {
         title: "Expert Faculty",
         description:
-          "Learn from experienced professors and industry practitioners who mentor students through projects, internships, and research.",
+          "Learn from experienced professors and industry practitioners who mentor students through projects, internships and research.",
         icon: "faculty" as NavIconName,
       },
       {
         title: "Modern Infrastructure",
         description:
-          "Well-equipped labs, digital learning resources, and spacious lecture halls create an environment built for engineering excellence.",
+          "Well-equipped labs, digital learning resources and spacious lecture halls create an environment built for engineering excellence.",
         icon: "research" as NavIconName,
       },
       {
         title: "Industry Connections",
         description:
-          "Regular industry visits, guest lectures, and placement drives connect students with leading companies across Tamil Nadu and beyond.",
+          "Regular industry visits, guest lectures and placement drives connect students with leading companies across Tamil Nadu and beyond.",
         icon: "programs" as NavIconName,
       },
       {
         title: "Affordable Education",
         description:
-          "Transparent tuition fees, scholarship options, and flexible payment plans make quality engineering education accessible.",
+          "Transparent tuition fees, scholarship options and flexible payment plans make quality engineering education accessible.",
         icon: "scholarship" as NavIconName,
       },
       {
         title: "Campus Community",
         description:
-          "Clubs, cultural events, sports, and peer networks foster collaboration and personal growth beyond academics.",
+          "Clubs, cultural events, sports and peer networks foster collaboration and personal growth beyond academics.",
         icon: "campus" as NavIconName,
       },
       {
         title: "Research Opportunities",
         description:
-          "Students engage in faculty-led research, symposiums, and innovation projects that strengthen their academic portfolios.",
+          "Students engage in faculty-led research, symposiums and innovation projects that strengthen their academic portfolios.",
         icon: "research" as NavIconName,
       },
     ],
     image: academicsImages.whyJoin,
   },
   alumni: {
-    eyebrow: "Alumni Network",
-    title: "Graduates Leading Across Industries",
+    eyebrow: "Professional Opinions",
+    title: "What Professionals Say About SBIST",
     description:
-      "SBIST alumni work in software, manufacturing, infrastructure, and public sector roles across India and abroad. Our graduate network continues to mentor current students through talks, referrals, and campus visits.",
+      "Leaders and professionals share why they value Sree Balaji Institute of Science and Technology as a strong choice for students pursuing engineering and technology education.",
     stats: [
-      { value: 5000, suffix: "+", label: "Alumni Worldwide" },
-      { value: 120, suffix: "+", label: "Recruiting Companies" },
-      { value: 25, suffix: "+", label: "Alumni Mentors" },
-    ],
+      { headline: "Excellence", label: "Academic quality" },
+      { headline: "Innovation", label: "Modern learning" },
+      { headline: "Growth", label: "Career development" },
+    ] as HighlightStatItem[],
     stories: [
       {
-        name: "Karthik Raman",
-        role: "Software Engineer · Infosys",
-        batch: "B.E. Computer Science Engineering, 2019",
+        name: "Mr. Arjun Desai",
+        role: "Industry Mentor, Chennai",
         quote:
-          "SBIST gave me a strong programming foundation and lab exposure that made the transition to industry seamless.",
-        image: academicsImages.alumni.karthik,
+          "I strongly recommend Sree Balaji Institute of Science and Technology for students who want quality education with discipline and purpose. It is a college I trust for student growth.",
+        image: "/images/SREE_Balaji_logo.svg",
       },
       {
-        name: "Meera Iyer",
-        role: "Design Engineer · L&T Construction",
-        batch: "B.E. Civil Engineering, 2018",
+        name: "Dr. Meera Srinivasan",
+        role: "Academic Advisor",
         quote:
-          "The structural lab work and faculty guidance prepared me for real project challenges from day one.",
-        image: academicsImages.alumni.meera,
+          "SBIST stands out for its practical approach to learning. I would confidently suggest Balaji college to students and parents looking for a focused engineering education.",
+        image: "/images/SREE_Balaji_logo.svg",
       },
       {
-        name: "Vikram Sundaram",
-        role: "Production Manager · TVS Motors",
-        batch: "B.E. Mechanical Engineering, 2017",
+        name: "Mr. Karthik Rajan",
+        role: "Industry Mentor",
         quote:
-          "Hands-on workshop training at SBIST set me apart during campus placements and early career growth.",
-        image: academicsImages.alumni.vikram,
+          "The institute emphasizes strong fundamentals, modern labs and student responsibility. That is why I prefer Sree Balaji college when guiding young learners.",
+        image: "/images/SREE_Balaji_logo.svg",
       },
     ],
-    ctaHref: "/alumni",
-    ctaLabel: "Connect with Alumni",
+    ctaHref: "/contact",
+    ctaLabel: "Contact Admissions",
   },
   admissions: {
     eyebrow: "Admissions",
     title: "Start Your Academic Journey",
     description:
-      "Admissions are open for the upcoming academic year. Review eligibility, explore fee structures, and apply to join a community of aspiring engineers and professionals.",
+      "Admissions are open for the upcoming academic year. Review eligibility, explore fee structures and apply to join a community of aspiring engineers and professionals.",
     links: [
       {
-        label: "How to Apply",
-        description: "Step-by-step application process",
-        href: "/apply",
+        label: "Apply Now",
+        description: "Contact our admissions team to begin your application",
+        href: "/contact",
         icon: "apply" as NavIconName,
       },
       {
-        label: "Requirements",
-        description: "Eligibility and documents",
-        href: "/apply/requirements",
-        icon: "requirements" as NavIconName,
-      },
-      {
-        label: "Tuition & Fees",
-        description: "Transparent fee structure",
-        href: "/tuition",
-        icon: "tuition" as NavIconName,
-      },
-      {
-        label: "Scholarships",
-        description: "Financial aid options",
-        href: "/scholarships",
-        icon: "scholarship" as NavIconName,
+        label: "Academic Programs",
+        description: "Explore our engineering and management programs",
+        href: "/academics#courses",
+        icon: "programs" as NavIconName,
       },
     ],
   },
   notices: {
     eyebrow: "Academic Notices",
     title: "Latest Announcements",
-    description: "Stay updated on examinations, admissions, and academic calendar changes.",
+    description: "Stay updated on examinations, admissions and academic calendar changes.",
     items: notices,
-    viewAllHref: "/notices",
+    viewAllHref: "/academics#admissions",
   },
   cta: {
     image: academicsImages.cta,

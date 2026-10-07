@@ -62,7 +62,7 @@ function FeaturedBentoCard({
           className="object-cover opacity-90"
           sizes="220px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-primary to-transparent" />
       </div>
       <div className="flex flex-col p-3 text-white">
         <p className="text-xl font-semibold leading-none">{featured.stat}</p>
@@ -73,7 +73,7 @@ function FeaturedBentoCard({
         <Link
           href={featured.ctaHref}
           onClick={onClose}
-          className="mt-3 inline-flex w-fit items-center gap-1 rounded-md bg-accent px-2.5 py-1.5 text-[10px] font-semibold text-primary motion-premium hover:bg-accent-hover"
+          className="mt-3 inline-flex w-fit items-center gap-1 rounded-md bg-accent px-2.5 py-1.5 text-[10px] font-semibold text-white motion-premium hover:bg-accent-hover"
         >
           {featured.ctaLabel}
           <ArrowIcon />
@@ -115,15 +115,16 @@ export function MegaMenu({ item, isOpen, onClose }: MegaMenuProps) {
   return (
     <div
       ref={menuRef}
-      className="absolute inset-x-0 top-full z-50 w-full border-t border-border bg-white shadow-xl animate-fade-in-up"
+      className="absolute inset-x-0 top-full z-50 w-full border-t border-border/80 bg-white/98 shadow-[0_22px_48px_-18px_rgba(15,39,68,0.35)] backdrop-blur-md animate-fade-in-up"
       role="menu"
       aria-label={`${item.label} submenu`}
     >
+      <div className="h-0.5 w-full bg-linear-to-r from-primary via-accent to-accent-bright" />
       <div className="mx-auto max-w-7xl px-4 py-4 lg:px-8 lg:py-5">
         <div className="mb-3 flex items-center gap-2 border-b border-border pb-2.5">
           <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-accent">Explore</p>
           <span className="text-border">·</span>
-          <p className="font-serif text-sm text-foreground">{item.label}</p>
+          <p className="font-heading text-sm text-primary">{item.label}</p>
         </div>
 
         <div className="flex flex-col gap-4 lg:flex-row lg:gap-5">

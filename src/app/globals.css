@@ -7,6 +7,7 @@
   --primary-dark: #081624;
   --primary-light: #355070;
   --accent: #b68c3a;
+  --accent-bright: #e5b942;
   --accent-hover: #9a7632;
   --muted: #5c6b7a;
   --border: #dde3ea;
@@ -21,6 +22,7 @@
   --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
   --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
   --color-accent-hover: var(--accent-hover);
   --color-muted: var(--muted);
   --color-border: var(--border);

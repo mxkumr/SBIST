@@ -7,7 +7,6 @@ import {
   AboutGallerySection,
   AboutMainSection,
   AboutTestimonialsSection,
-  AboutVisionSection,
 } from "@/components/sections/about/AboutPageSections";
 import { CTA } from "@/components/sections/CTA";
 import { aboutPageContent } from "@/lib/about-content";
@@ -34,7 +33,6 @@ export default function AboutPage() {
 
       <main>
         <AboutMainSection />
-        <AboutVisionSection />
         <AboutCampusTourSection />
         <AboutTestimonialsSection />
         <AboutGallerySection />
@@ -42,7 +40,7 @@ export default function AboutPage() {
           title="Ready to Join SBIST?"
           description="Take the first step toward an engineering career at our Chrompet campus. Apply now or explore our academic programs."
           primaryLabel="Apply Now"
-          primaryHref="/apply"
+          primaryHref="/contact"
           secondaryLabel="Explore Academics"
           secondaryHref="/academics"
           image={stockImages.students}

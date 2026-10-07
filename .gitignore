@@ -19,6 +19,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -32,6 +33,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -40,5 +42,70 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# caches
+.cache/
+.turbo/
+.swc/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.cache
+node_modules/.cache/
+
+# system — macOS
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# system — Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+[Dd]esktop.ini
+*.lnk
+
+# system — Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# editors / IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*.swn
+*.bak
+
 # cursor
 .cursor/
+.cursorignore
+.cursorrules
+*.cursor
+.agent/
+agent-transcripts/
+
+# local archives / deploy packs (optional large artifacts)
+*.zip
+SBIST-cpanel.zip

@@ -8,7 +8,8 @@ import {
 } from "@/components/motion/ScrollAnimations";
 
 export type CounterItem = {
-  value: number;
+  value?: number;
+  headline?: string;
   suffix?: string;
   prefix?: string;
   label: string;
@@ -58,7 +59,16 @@ function CounterBlock({
   duration: number;
   started: boolean;
 }) {
-  const count = useCountUp(item.value, duration, started);
+  const count = useCountUp(item.value ?? 0, duration, started && item.value !== undefined);
+
+  if (item.headline) {
+    return (
+      <div className="text-center">
+        <p className="font-heading text-2xl font-bold text-white lg:text-3xl">{item.headline}</p>
+        <p className="mt-2 text-sm text-white/80">{item.label}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="text-center">

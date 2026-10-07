@@ -6,7 +6,7 @@ export function InsideCampusSection() {
     <Counters
       items={counterItems}
       subtitle="Inside SBIST"
-      title="A Campus Built for Engineering Excellence"
+      title="Where Ambition Meets Opportunity"
     />
   );
 }

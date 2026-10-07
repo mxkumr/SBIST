@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import SiteUnderConstructionPage from "./site-under-construction/page";
 
 export default function NotFound() {
-  redirect("/site-under-construction");
+  return <SiteUnderConstructionPage />;
 }
