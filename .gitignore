@@ -98,12 +98,17 @@ $RECYCLE.BIN/
 *.swn
 *.bak
 
-# cursor
+# cursor / agent tooling
 .cursor/
 .cursorignore
 .cursorrules
 *.cursor
 .agent/
+.agents/
+.claude/
+CLAUDE.md
+AGENTS.md
+AGENT.md
 agent-transcripts/
 
 # local archives / deploy packs (optional large artifacts)
