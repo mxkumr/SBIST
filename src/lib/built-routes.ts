@@ -9,6 +9,7 @@ export const BUILT_ROUTES = new Set([
   "/campus-life",
   "/sbsb",
   "/sbiol",
+  "/launch",
   "/under-construction",
   "/site-under-construction",
 ]);
