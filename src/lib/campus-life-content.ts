@@ -95,7 +95,7 @@ export const campusFacilitiesContent = {
         "Designed for engagement",
       ],
       images: [
-        { src: "/images/classroom2.jpg", alt: "Modern technology-enabled lecture hall" },
+        { src: "/images/Classroom2.JPG", alt: "Modern technology-enabled lecture hall" },
         { src: "/images/classroom1.jpg", alt: "Students learning in a contemporary classroom" },
       ],
     },
