@@ -32,7 +32,7 @@ export const sbsbPageContent = {
   header: {
     title: "SBSB",
     description:
-      "Sree Balaji Students Board — Empowering Students. Building Leaders.",
+      "Sree Balaji Students Board - Empowering Students. Building Leaders.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "SBSB", href: "/sbsb" },
@@ -129,7 +129,7 @@ export const sbsbPageContent = {
       {
         title: "Sports Meet",
         detail: "Campus-wide athletics, team spirit and competitive excellence.",
-        image: "/images/campus-sports.png",
+        image: "/images/campus-sports.jpg",
       },
       {
         title: "Freshers’ Day",
@@ -159,7 +159,7 @@ export const sbsbPageContent = {
     eyebrow: "Student Clubs",
     title: "Explore Our Clubs",
     subtitle:
-      "From fashion and music to coding, robotics, sports and service — find your community under the SBSB ecosystem at SBIST.",
+      "From fashion and music to coding, robotics, sports and service - find your community under the SBSB ecosystem at SBIST.",
     items: [
           {
             id: "sports",
@@ -242,7 +242,7 @@ export const sbsbPageContent = {
           {
             id: "photography",
             name: "Photography Club",
-            description: "Campus stories through the lens — events, portraits and creative shoots.",
+            description: "Campus stories through the lens - events, portraits and creative shoots.",
             icon: "photography",
           },
           {

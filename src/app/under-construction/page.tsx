@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { stockImages } from "@/lib/home-content";
-import { siteConfig } from "@/lib/navigation";
 
-export const metadata: Metadata = {
-  title: `Site Under Construction | ${siteConfig.shortName}`,
+export const metadata: Metadata = createPageMetadata({
+  title: "Under Construction",
   description: "This section of the SBIST website is currently under construction.",
-};
+  path: "/under-construction",
+  noIndex: true,
+});
 
 type UnderConstructionPageProps = {
   searchParams: Promise<{ from?: string }>;

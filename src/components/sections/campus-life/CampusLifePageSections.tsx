@@ -61,7 +61,7 @@ export function CampusLifeIntroSection() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                quality={100}
+                quality={90}
               />
             </div>
           </ScrollReveal>

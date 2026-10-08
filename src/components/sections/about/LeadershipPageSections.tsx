@@ -119,7 +119,7 @@ export function LeadershipIntroSection() {
                   src={intro.image}
                   alt={intro.imageAlt}
                   fill
-                  quality={100}
+                  quality={90}
                   priority
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 50vw, 800px"

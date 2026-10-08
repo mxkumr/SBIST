@@ -66,7 +66,7 @@ function CampusBentoTile({ tile, size = "default", priority = false }: CampusBen
         alt={tile.title}
         fill
         priority={priority}
-        quality={100}
+        quality={90}
         className={[
           "object-cover transition-transform duration-500 group-hover:scale-105",
           size === "wide" ? "object-center lg:object-[center_28%]" : "",

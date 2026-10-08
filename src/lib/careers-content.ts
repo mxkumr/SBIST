@@ -25,13 +25,13 @@ export const careersPageContent = {
   announcement: {
     eyebrow: "Now Hiring",
     title: "Applications Invited for Faculty Recruitment",
-    description: `SBIST welcomes qualified academicians to join our Chrompet campus. Applicants may email their résumé directly to ${applicationEmail} to apply for faculty positions.`,
+    description: `SBIST welcomes qualified academicians to join our Chromepet campus. Applicants may email their résumé directly to ${applicationEmail} to apply for faculty positions.`,
   },
   engineeringRoles: {
     eyebrow: "Engineering & Management",
     title: "Professors · Associate Professors · Assistant Professors",
     departments: ["BME", "ICT", "CSE", "ECE", "MECH", "CIVIL", "BBA", "BCA"],
-    qualifications: "Ph.D / M.E / M.Tech / MBA / MCA — First Class with Teaching Experience",
+    qualifications: "Ph.D / M.E / M.Tech / MBA / MCA - First Class with Teaching Experience",
     roles: ["Professor", "Associate Professor", "Assistant Professor"],
   },
   scienceRoles: {

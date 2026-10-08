@@ -1,4 +1,4 @@
-/** Routes with implemented pages — update when new pages are added */
+/** Routes with implemented pages - update when new pages are added */
 export const BUILT_ROUTES = new Set([
   "/",
   "/about",

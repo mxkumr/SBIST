@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { HashScroll } from "@/components/layout/HashScroll";
 import { Navbar } from "@/components/layout/Navbar";
 import { CTA } from "@/components/sections/CTA";
 import { SbiolMainSection } from "@/components/sections/sbiol/SbiolPageSections";
 import { sbiolPageContent } from "@/lib/sbiol-content";
-import { siteConfig } from "@/lib/navigation";
 
-export const metadata: Metadata = {
-  title: `SBIOL — Online Learning | ${siteConfig.shortName}`,
+export const metadata: Metadata = createPageMetadata({
+  title: "SBIOL - Online Learning",
   description: sbiolPageContent.header.description,
-};
+  path: "/sbiol",
+});
 
 export default function SbiolPage() {
   const { cta } = sbiolPageContent;

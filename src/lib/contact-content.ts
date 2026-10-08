@@ -6,12 +6,12 @@ export const contactPageContent = {
   header: {
     title: "Contact SBIST",
     description:
-      "Reach our admissions and administration teams for enquiries about programs, campus visits and student services at our Chrompet campus in Chennai.",
+      "Reach our admissions and administration teams for enquiries about programs, campus visits and student services at our Chromepet campus in Chennai.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Contact", href: "/contact" },
     ],
-    backgroundImage: "/images/main-academic-block.png",
+    backgroundImage: "/images/main-academic-block.jpg",
   },
   sidebar: {
     title: "Get in Touch",
@@ -33,7 +33,7 @@ export const contactPageContent = {
     {
       label: "Location",
       value: contactContent.address,
-      href: "https://maps.google.com/?q=No.+7+Works+Road,+Chrompet,+Chennai+600044",
+      href: "https://www.google.com/maps?q=Sree+Balaji+Institute+of+Science+and+Technology@12.954555,80.137863",
       icon: "map" as NavIconName,
     },
     {
@@ -52,10 +52,10 @@ export const contactPageContent = {
     ],
   },
   form: {
-    eyebrow: "Send a Message",
-    title: "Write to Us",
+    eyebrow: "Admission Enquiry",
+    title: "Admission Enquiry",
     description:
-      "Fill out the form below and our team will respond to your enquiry as soon as possible during office hours.",
+      "Fill out the form below and our admissions team will respond to your enquiry as soon as possible during office hours.",
     subjects: [
       "General Enquiry",
       "Admissions",
@@ -63,18 +63,18 @@ export const contactPageContent = {
       "Campus Visit",
       "Other",
     ],
-    submitLabel: "Send Message",
+    submitLabel: "Submit Enquiry",
     successMessage:
-      "Thank you for contacting SBIST. We have received your message and will get back to you shortly.",
+      "Thank you for your admission enquiry. We have received your message and will get back to you shortly.",
   },
   map: {
     title: "Find Us on the Map",
     description:
-      "SBIST is located on Works Road in Chrompet, Chennai — easily accessible by road and public transport from across the city.",
+      "SBIST is located on Works Road in Chromepet, Chennai - easily accessible by road and public transport from across the city.",
     embedUrl:
-      "https://maps.google.com/maps?q=No.+7+Works+Road,+Chrompet,+Chennai+600044&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=12.954555,80.137863+(Sree+Balaji+Institute+of+Science+and+Technology)&ll=12.954555,80.137863&z=17&ie=UTF8&output=embed",
     directionsHref:
-      "https://maps.google.com/?q=No.+7+Works+Road,+Chrompet,+Chennai+600044",
+      "https://www.google.com/maps/dir/?api=1&destination=12.954555,80.137863+(Sree+Balaji+Institute+of+Science+and+Technology)",
   },
   departments: {
     eyebrow: "Department Contacts",
@@ -104,7 +104,7 @@ export const contactPageContent = {
     eyebrow: "Connect With Us",
     title: "Follow SBIST on Social Media",
     description:
-      "Stay close to campus life — events, announcements and community moments across our official channels.",
+      "Stay close to campus life - events, announcements and community moments across our official channels.",
   },
   cta: {
     image: stockImages.students,

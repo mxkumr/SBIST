@@ -4,7 +4,7 @@ import type { HighlightStatItem, PageStatItem } from "@/lib/about-content";
 
 /** Local image paths for the Academics page */
 export const academicsImages = {
-  header: "/images/classroom1.png",
+  header: "/images/classroom1.jpg",
   sidebar: stockImages.students,
   whyJoin: "/images/students-classroom.jpg",
   cta: stockImages.students,
@@ -36,18 +36,18 @@ export const academicsPageContent = {
     eyebrow: "Academic Excellence",
     title: "Academic Programs Built for the Real World",
     paragraphs: [
-      "At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs — Computer Science Engineering, Information and Communication Technology, Electrical and Communication Engineering, Civil Engineering, Mechanical Engineering, Biomedical Engineering, BBA and BCA.",
-      "From modern laboratories and qualified faculty to placement training and research opportunities, SBIST provides a complete academic ecosystem on our Chrompet campus in Chennai.",
+      "At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs - Computer Science Engineering, Information and Communication Technology, Electronics and Communication Engineering, Civil Engineering, Mechanical Engineering, Biomedical Engineering, BBA and BCA.",
+      "From modern laboratories and qualified faculty to placement training and research opportunities, SBIST provides a complete academic ecosystem on our Chromepet campus in Chennai.",
     ],
     highlights: [
-      "Anna University–affiliated B.E. engineering programs",
+      "BIHER-affiliated B.Tech engineering programs",
       "BBA and BCA pathways in management and computer applications",
       "Dedicated placement and career guidance cell",
     ],
   },
   stats: [
     { value: 8, suffix: "", label: "Programs Offered", icon: "programs" as NavIconName },
-    { value: 3, suffix: "+", label: "Specialized Labs", icon: "research" as NavIconName },
+    { value: 5, suffix: "+", label: "Specialized Labs", icon: "research" as NavIconName },
     { headline: "Excellence", label: "Academic quality", icon: "faculty" as NavIconName },
     { headline: "Growth", label: "Career development", icon: "apply" as NavIconName },
   ] as PageStatItem[],
@@ -66,7 +66,7 @@ export const academicsPageContent = {
     eyebrow: "Why Join SBIST",
     title: "Where Qualified Faculty Guide Your Career Growth",
     description:
-      "SBIST combines academic rigour with practical exposure — giving students the confidence, skills and network to succeed in competitive engineering careers.",
+      "SBIST combines academic rigour with practical exposure - giving students the confidence, skills and network to succeed in competitive engineering and professional careers.",
     reasons: [
       {
         title: "Expert Faculty",

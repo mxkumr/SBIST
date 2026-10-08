@@ -82,9 +82,9 @@ function EventCard({ event }: { event: EventItem }) {
       <div className="relative h-24 w-28 shrink-0 overflow-hidden rounded-xl sm:h-28 sm:w-32">
         <Image
           src={event.image}
-          alt=""
+          alt={event.title}
           fill
-          quality={100}
+          quality={90}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="256px"
         />
@@ -199,11 +199,11 @@ export function FoundersNoteSection() {
         <div className="absolute inset-x-0 bottom-0 top-24 sm:top-32 lg:top-40">
           <Image
             src="/images/main-building-side.JPG"
-            alt=""
+            alt="SBIST main academic block"
             fill
             className="object-cover object-center"
             sizes="100vw"
-            quality={100}
+            quality={90}
           />
           <div className="absolute inset-0 bg-primary/45" />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/25 to-primary/70" />

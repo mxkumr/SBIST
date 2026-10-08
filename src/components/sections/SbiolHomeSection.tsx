@@ -38,7 +38,7 @@ export function SbiolHomeSection() {
                 src={content.image}
                 alt={content.imageAlt}
                 fill
-                quality={100}
+                quality={90}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

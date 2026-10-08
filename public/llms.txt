@@ -1,0 +1,22 @@
+# Sree Balaji Institute of Science and Technology (SBIST)
+
+> AICTE-approved college in Chromepet, Chennai offering undergraduate programmes in engineering, management and computer applications.
+
+## Site
+- Home: https://www.sbist.in/
+- About: https://www.sbist.in/about
+- Leadership: https://www.sbist.in/about/leadership
+- Academics: https://www.sbist.in/academics
+- Campus Life: https://www.sbist.in/campus-life
+- SBIOL Online Learning: https://www.sbist.in/sbiol
+- SBSB Students Board: https://www.sbist.in/sbsb
+- Careers: https://www.sbist.in/careers
+- Contact / Admission Enquiry: https://www.sbist.in/contact
+
+## Contact
+- Address: No. 7 Works Road, Chromepet, Chennai - 600 044
+- Email: office@sbist.in
+- Map: 12.954555, 80.137863
+
+## Optional
+- Sitemap: https://www.sbist.in/sitemap.xml

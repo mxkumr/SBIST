@@ -50,7 +50,7 @@ export const aboutPageContent = {
       text: "Our diverse community welcomes students from across the region, fostering cultural exchange and mutual understanding. Through industry collaborations, research initiatives and innovation hubs, we provide opportunities for students to engage with real-world challenges and contribute to sustainable solutions.",
     },
     closingParagraph:
-      "At the heart of SBIST lies a commitment to excellence and inclusivity — helping students gain the skills, confidence and perspective to lead in an ever-changing world.",
+      "At the heart of SBIST lies a commitment to excellence and inclusivity - helping students gain the skills, confidence and perspective to lead in an ever-changing world.",
     images: {
       primary: "/images/computer-lab.JPG",
       secondary: "/images/entrepreneur-summit.jpg",
@@ -118,7 +118,7 @@ export const aboutPageContent = {
   campusTour: {
     title: "Our Campus Tour",
     description:
-      "Explore our Chrompet campus — from modern lecture halls and engineering laboratories to the central library and sports grounds. See where SBIST students learn, research and grow.",
+      "Explore our Chromepet campus - from modern lecture halls and engineering laboratories to the central library and sports grounds. See where SBIST students learn, research and grow.",
     videoHref: "/campus-life",
     image: "/images/interior3.JPG",
   },
@@ -171,7 +171,7 @@ export const aboutPageContent = {
         caption: "Academic block",
       },
       {
-        src: "/images/Library_AI.png",
+        src: "/images/Library_AI.jpg",
         alt: "Central Library",
         caption: "Study spaces & resources",
       },

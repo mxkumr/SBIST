@@ -91,7 +91,7 @@ function DepartmentCard({
         src={image}
         alt={title}
         fill
-        quality={100}
+        quality={90}
         className="object-cover transition-transform duration-500 group-hover:scale-105"
         sizes="(max-width: 768px) 100vw, 33vw"
       />
@@ -209,7 +209,7 @@ function FacultyGrid() {
   );
 }
 
-/* ─── All Programs tab — all 8 programs ─── */
+/* ─── All Programs tab - all 8 programs ─── */
 
 function ProgramCatalogCard({ dept }: { dept: Department }) {
   return (
@@ -221,7 +221,7 @@ function ProgramCatalogCard({ dept }: { dept: Department }) {
         src={dept.image}
         alt={dept.title}
         fill
-        quality={100}
+        quality={90}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
       />
@@ -265,7 +265,7 @@ function ProgramsCatalog() {
     <div>
       <div className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <p className="max-w-xl text-sm leading-relaxed text-white/70">
-          Eight programs across engineering, management and computer applications — built for careers that start on
+          Eight programs across engineering, management and computer applications - built for careers that start on
           campus.
         </p>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
@@ -311,7 +311,7 @@ function SbiolCourseCard({ course }: { course: SbiolCourse }) {
         src={course.image}
         alt={course.title}
         fill
-        quality={100}
+        quality={90}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       />

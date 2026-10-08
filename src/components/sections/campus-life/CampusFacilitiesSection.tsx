@@ -75,7 +75,7 @@ function ParallaxImage({
           src={src}
           alt={alt}
           fill
-          quality={100}
+          quality={90}
           priority={priority}
           className="object-cover"
           sizes={sizes}
