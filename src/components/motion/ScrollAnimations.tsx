@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
-/** Shared easing — smooth deceleration for premium feel */
+/** Shared easing - smooth deceleration for premium feel */
 export const premiumEase = [0.22, 1, 0.36, 1] as const;
 
 export const premiumTransition: Transition = {

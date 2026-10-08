@@ -71,10 +71,11 @@ export const mainNavigation: NavItem[] = [
 export const siteConfig = {
   name: "Sree Balaji Institute of Science and Technology",
   shortName: "SBIST",
+  url: "https://www.sbist.in",
   logo: "/images/sbist-logo.jpg",
   email: "office@sbist.in",
   phone: "",
-  address: "No. 7 Works Road, Chrompet, Chennai - 600 044",
+  address: "No. 7 Works Road, Chromepet, Chennai - 600 044",
   social: {
     facebook: "https://www.facebook.com/profile.php?id=61592126405933",
     instagram: "https://www.instagram.com/sbist__",

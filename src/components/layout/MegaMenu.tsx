@@ -57,7 +57,7 @@ function FeaturedBentoCard({
       <div className="relative h-20 shrink-0">
         <Image
           src={featured.image}
-          alt=""
+          alt={featured.title}
           fill
           className="object-cover opacity-90"
           sizes="220px"

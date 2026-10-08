@@ -38,7 +38,7 @@ export const timelineEvents: TimelineEvent[] = [
   {
     year: "2001",
     title: "Institute Founded",
-    description: "Sree Balaji Institute of Science and Technology established in Chrompet, Chennai.",
+    description: "Sree Balaji Institute of Science and Technology established in Chromepet, Chennai.",
   },
   {
     year: "2010",

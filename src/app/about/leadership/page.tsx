@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -10,12 +11,12 @@ import {
 import { CTA } from "@/components/sections/CTA";
 import { leadershipPageContent } from "@/lib/leadership-content";
 import { stockImages } from "@/lib/home-content";
-import { siteConfig } from "@/lib/navigation";
 
-export const metadata: Metadata = {
-  title: `Our Leader | ${siteConfig.shortName}`,
+export const metadata: Metadata = createPageMetadata({
+  title: "Our Leader",
   description: leadershipPageContent.header.description,
-};
+  path: "/about/leadership",
+});
 
 export default function LeadershipPage() {
   const { header } = leadershipPageContent;
@@ -36,7 +37,7 @@ export default function LeadershipPage() {
         <LeadershipNarrativeSection />
         <CTA
           title="Ready to Join SBIST?"
-          description="Take the first step toward an engineering career at our Chrompet campus. Apply now or explore our academic programs."
+          description="Take the first step toward an engineering career at our Chromepet campus. Apply now or explore our academic programs."
           primaryLabel="Apply Now"
           primaryHref="/contact"
           secondaryLabel="Explore Academics"

@@ -1,8 +1,8 @@
-SBIST — cPanel deployment guide
+SBIST - cPanel deployment guide
 ================================
 
 Package: SBIST-cpanel.zip
-Stack:   Next.js 16 (Node.js app — not static HTML)
+Stack:   Next.js 16 (Node.js app - not static HTML)
 
 Requirements
 ------------
@@ -14,7 +14,7 @@ What is in the zip
 ------------------
 - src/              Application source
 - public/           Images and static assets
-- .next/            Pre-built production output (optional — rebuild on server recommended)
+- .next/            Pre-built production output (optional - rebuild on server recommended)
 - package.json      Dependencies and scripts
 - next.config.ts    Next.js configuration
 - CPANEL-SETUP.txt  This file
@@ -22,7 +22,7 @@ What is in the zip
 NOT included (install/build on server): node_modules, .git, dev tooling
 
 
-Step 1 — Upload the zip
+Step 1 - Upload the zip
 -----------------------
 1. Log in to cPanel.
 2. Open File Manager.
@@ -38,7 +38,7 @@ If files extract into a nested "SBIST" folder, either:
   - Set the Node.js app root to that nested folder.
 
 
-Step 2 — Create the Node.js application
+Step 2 - Create the Node.js application
 ---------------------------------------
 1. In cPanel, open "Setup Node.js App" (or "Application Manager").
 2. Click "Create Application".
@@ -54,7 +54,7 @@ Environment variables (add in the Node.js app panel if available):
    NODE_ENV=production
 
 
-Step 3 — Install dependencies and build
+Step 3 - Install dependencies and build
 ---------------------------------------
 In cPanel Node.js App panel, click "Run NPM Install" if available.
 
@@ -67,7 +67,7 @@ Otherwise open Terminal (SSH) and run:
 Replace the path with your actual application root.
 
 
-Step 4 — Start the application
+Step 4 - Start the application
 ------------------------------
 In the Node.js App panel:
    - Startup command: npm start
@@ -77,7 +77,7 @@ Default port is assigned by cPanel (often shown in the app settings).
 cPanel usually proxies your domain to that port automatically.
 
 
-Step 5 — Verify
+Step 5 - Verify
 ---------------
 Visit your domain and check:
    /           Home
@@ -101,4 +101,4 @@ Troubleshooting
 Support contacts (site content)
 -------------------------------
 Email:   office@sbist.in
-Address: No. 7 Works Road, Chrompet, Chennai - 600 044
+Address: No. 7 Works Road, Chromepet, Chennai - 600 044

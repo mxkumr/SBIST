@@ -3,7 +3,7 @@ import type { NavIconName } from "@/lib/navigation";
 export const sbiolPageContent = {
   header: {
     title: "SBIOL",
-    description: "Sree Balaji Institute of Online Learning — UGC-recognized degrees, fully online.",
+    description: "Sree Balaji Institute of Online Learning - UGC-recognized degrees, fully online.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "SBIOL", href: "/sbiol" },
@@ -15,7 +15,7 @@ export const sbiolPageContent = {
   intro: {
     eyebrow: "Online Education",
     title: "Earn a UGC-recognized degree without pausing your career",
-    lead: "SBIOL delivers BIHER online programmes through SBIST Chromepet — flexible LMS access, AI-proctored exams and career-focused business degrees.",
+    lead: "SBIOL delivers BIHER online programmes through SBIST Chromepet - flexible LMS access, AI-proctored exams and career-focused business degrees.",
     stats: [
       { value: "40+", label: "Years of BIHER trust" },
       { value: "100K+", label: "Alumni network" },
@@ -30,7 +30,7 @@ export const sbiolPageContent = {
     },
     {
       title: "Exam from home",
-      description: "Secure AI-proctored semester exams — no centre travel.",
+      description: "Secure AI-proctored semester exams - no centre travel.",
     },
     {
       title: "Career-ready",
@@ -41,7 +41,7 @@ export const sbiolPageContent = {
     eyebrow: "Online Programs",
     title: "Two pathways. Three degrees.",
     description:
-      "Postgraduate MBA (2 years) and undergraduate B.Com or BBA (3 years) — all fully online.",
+      "Postgraduate MBA (2 years) and undergraduate B.Com or BBA (3 years) - all fully online.",
     items: [
       {
         id: "mba",
@@ -69,7 +69,7 @@ export const sbiolPageContent = {
         ],
         eligibility:
           "Bachelor’s degree (minimum 3 years) from a UGC-recognized university with at least 50% aggregate marks.",
-        image: "/images/students-library.png",
+        image: "/images/students-library.jpg",
       },
       {
         id: "bcom",
@@ -130,7 +130,7 @@ export const sbiolPageContent = {
   learning: {
     eyebrow: "How You Learn",
     title: "UGC 4-Quadrant model",
-    description: "Explore each learning quadrant — click a tile or step through the model.",
+    description: "Explore each learning quadrant - click a tile or step through the model.",
     items: [
       {
         number: "01",
@@ -156,8 +156,8 @@ export const sbiolPageContent = {
         short: "Forums",
         detail: "Mentor-monitored peer forums",
         description:
-          "Peer discussion forums monitored by mentors — share insights, debate cases and stay connected with your cohort.",
-        tip: "Post thoughtfully and reply often — engagement strengthens understanding and networking.",
+          "Peer discussion forums monitored by mentors - share insights, debate cases and stay connected with your cohort.",
+        tip: "Post thoughtfully and reply often - engagement strengthens understanding and networking.",
       },
       {
         number: "04",
@@ -166,21 +166,21 @@ export const sbiolPageContent = {
         detail: "Quizzes, cases & instant feedback",
         description:
           "Continuous assessment through quizzes, case submissions and prompt feedback so you know where you stand before end-semester exams.",
-        tip: "Treat formative quizzes as practice runs — they prepare you for AI-proctored finals.",
+        tip: "Treat formative quizzes as practice runs - they prepare you for AI-proctored finals.",
       },
     ],
   },
   enrollment: {
     eyebrow: "Enrollment Guide",
     title: "How admissions work",
-    description: "Slide through each step — from registration to LMS activation.",
+    description: "Slide through each step - from registration to LMS activation.",
     steps: [
       {
         number: "01",
         title: "Online Registration",
         description:
           "Create your secure candidate profile on the official BIHER online application portal.",
-        tip: "Use a personal email you check regularly — LMS credentials arrive there.",
+        tip: "Use a personal email you check regularly - LMS credentials arrive there.",
       },
       {
         number: "02",
@@ -201,7 +201,7 @@ export const sbiolPageContent = {
         title: "LMS Activation",
         description:
           "Receive your enrollment ID, university email and login credentials to start learning on the live platform.",
-        tip: "Bookmark the LMS — lectures and resources are available 24/7.",
+        tip: "Bookmark the LMS - lectures and resources are available 24/7.",
       },
     ],
   },
@@ -238,11 +238,11 @@ export const sbiolPageContent = {
     eyebrow: "Academic Faculty",
     title: "Learn from mentors who lead in academia and industry",
     description:
-      "BIHER brings premium teaching quality to your screen — senior academicians, research scholars and executive practitioners guiding every online cohort.",
+      "BIHER brings premium teaching quality to your screen - senior academicians, research scholars and executive practitioners guiding every online cohort.",
     synergy: {
       title: "Strategic academic synergy with IIT Madras",
       description:
-        "Curriculum insights integrate quantitative research and analytical frameworks into management education — a structured approach for modern business learning.",
+        "Curriculum insights integrate quantitative research and analytical frameworks into management education - a structured approach for modern business learning.",
     },
     mentors: [
       {
@@ -291,6 +291,6 @@ export const sbiolPageContent = {
     primaryHref: "https://www.biher.online",
     secondaryLabel: "Download Brochure",
     secondaryHref: "/docs/SBIOL%20BROUCHER.pdf",
-    image: "/images/students-library.png",
+    image: "/images/students-library.jpg",
   },
 };

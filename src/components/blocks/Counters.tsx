@@ -6,6 +6,11 @@ import {
   StaggerContainer,
   StaggerItem,
 } from "@/components/motion/ScrollAnimations";
+import {
+  getSocialEntries,
+  SocialIcon,
+  socialLabels,
+} from "@/components/layout/SocialIcons";
 
 export type CounterItem = {
   value?: number;
@@ -148,6 +153,28 @@ export function Counters({
             </StaggerItem>
           ))}
         </StaggerContainer>
+
+        <ScrollReveal delay={0.15}>
+          <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/15 pt-10 lg:mt-14">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+              Follow SBIST
+            </p>
+            <div className="flex items-center gap-3">
+              {getSocialEntries().map(([key, url]) => (
+                <a
+                  key={key}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:border-accent hover:bg-accent hover:text-white"
+                  aria-label={socialLabels[key]}
+                >
+                  <SocialIcon name={key} className="h-5 w-5" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -67,7 +67,7 @@ export function CampusLifeGallerySection() {
     return () => window.removeEventListener("keydown", onKey);
   }, [goPrev, goNext]);
 
-  // Keep active thumb in view horizontally only — never scroll the page
+  // Keep active thumb in view horizontally only - never scroll the page
   useEffect(() => {
     if (!hasMountedRef.current) {
       hasMountedRef.current = true;
@@ -174,7 +174,7 @@ export function CampusLifeGallerySection() {
                   src={active.src}
                   alt={active.alt}
                   fill
-                  quality={100}
+                  quality={90}
                   priority={index === 0}
                   className="object-cover"
                   sizes="(max-width: 1280px) 100vw, 1280px"
@@ -241,9 +241,9 @@ export function CampusLifeGallerySection() {
               >
                 <Image
                   src={item.src}
-                  alt=""
+                  alt={item.alt}
                   fill
-                  quality={100}
+                  quality={90}
                   className="object-cover"
                   sizes="112px"
                 />

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { HashScroll } from "@/components/layout/HashScroll";
 import { Navbar } from "@/components/layout/Navbar";
@@ -7,13 +8,13 @@ import { CTA } from "@/components/sections/CTA";
 import { CampusLifeIntroSection } from "@/components/sections/campus-life/CampusLifePageSections";
 import { CampusFacilitiesSection } from "@/components/sections/campus-life/CampusFacilitiesSection";
 import { CampusLifeGallerySection } from "@/components/sections/campus-life/CampusLifeGallerySection";
-import { campusLifePageContent } from "@/lib/campus-life-content";
-import { siteConfig } from "@/lib/navigation";
+import { campusLifePageContent } from "@/lib/campus-life-content";
 
-export const metadata: Metadata = {
-  title: `Campus Life | ${siteConfig.shortName}`,
+export const metadata: Metadata = createPageMetadata({
+  title: "Campus Life",
   description: campusLifePageContent.header.description,
-};
+  path: "/campus-life",
+});
 
 export default function CampusLifePage() {
   const { header, cta } = campusLifePageContent;
@@ -35,7 +36,7 @@ export default function CampusLifePage() {
         <CampusLifeGallerySection />
         <CTA
           title="Ready to Explore Campus?"
-          description="Discover facilities and community life at SBIST — or explore SBSB clubs and signature campus events."
+          description="Discover facilities and community life at SBIST - or explore SBSB clubs and signature campus events."
           primaryLabel="Explore SBSB"
           primaryHref="/sbsb"
           secondaryLabel="Contact Us"

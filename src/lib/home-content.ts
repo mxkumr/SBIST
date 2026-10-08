@@ -13,15 +13,15 @@ export const heroContent = {
   /** Auto-advance interval for main banner carousel (ms) */
   bannerIntervalMs: 6500,
   /** Tablet & desktop hero (primary slide) */
-  buildingImage: "/images/hero-desktop.png",
+  buildingImage: "/images/hero-desktop.jpg",
   /** Mobile-only hero (primary slide) */
-  heroMobileImage: "/images/hero-campus-mobile.png",
+  heroMobileImage: "/images/hero-campus-mobile.jpg",
   banners: [
     {
       id: "primary",
       alt: "SBIST students looking toward the future",
-      desktopSrc: "/images/hero-desktop.png",
-      mobileSrc: "/images/hero-campus-mobile.png",
+      desktopSrc: "/images/hero-desktop.jpg",
+      mobileSrc: "/images/hero-campus-mobile.jpg",
       desktopObjectPosition: "object-[center_35%]",
       mobileObjectPosition: "object-[50%_30%]",
       /** Soft sky fade so watermark reads in open sky */
@@ -30,12 +30,12 @@ export const heroContent = {
     },
     {
       id: "campus",
-      alt: "SBIST admission open 2025-26 — Sree Balaji Institute of Science and Technology",
-      desktopSrc: "/images/main-academic-block2.png",
-      mobileSrc: "/images/main-academic-block1.png",
+      alt: "SBIST admission open 2025-26 - Sree Balaji Institute of Science and Technology",
+      desktopSrc: "/images/main-academic-block2.jpg",
+      mobileSrc: "/images/main-academic-block1.jpg",
       desktopObjectPosition: "object-center",
       mobileObjectPosition: "object-center",
-      /** Designed poster — skip image optimizer soft-compression */
+      /** Designed poster - skip image optimizer soft-compression */
       graphicBanner: true,
       skyMask: false,
       showWatermark: false,
@@ -46,17 +46,17 @@ export const heroContent = {
 /** Shared local imagery from public/images */
 export const stockImages = {
   campus: "/images/hero-campus.jpg",
-  library: "/images/Library_AI.png",
-  graduation: "/images/slide-2.jpg",
+  library: "/images/Library_AI.jpg",
+  graduation: "/images/Gallery/slide-2.jpg",
   sports: "/images/mechanical.jpg",
-  students: "/images/students-library.png",
+  students: "/images/students-library.jpg",
 };
 
 export const aboutContent = {
   eyebrow: "About Our Institute",
   title: "Empowering Students to Lead the Future",
   paragraphs: [
-    "Sree Balaji Institute of Science and Technology is an AICTE-approved engineering college in Chrompet, Chennai. We offer undergraduate programs in engineering, management and computer applications, with a focus on strong fundamentals and practical, industry-ready skills.",
+    "Sree Balaji Institute of Science and Technology is an AICTE-approved college in Chromepet, Chennai. We offer undergraduate programs in engineering, management and computer applications, with a focus on strong fundamentals and practical, industry-ready skills.",
     "Our campus brings together experienced faculty, modern laboratories and a supportive academic environment. Through structured teaching, hands-on training and career guidance, we help students grow into capable engineers and professionals.",
   ],
   highlights: [
@@ -94,7 +94,7 @@ export const departments = [
       "The School of Computing has experienced faculty members with industry experience and well equipped laboratories.",
     image: "/images/computer-lab.JPG",
     href: "/academics#courses",
-    degree: "B.E. Computer Science Engineering",
+    degree: "B.Tech Computer Science Engineering",
     icon: "cse",
     duration: "4 Years",
     category: "engineering",
@@ -105,18 +105,18 @@ export const departments = [
       "Focused on networks, communication systems and modern IT infrastructure with practical lab-based learning.",
     image: "/images/computer1.JPG",
     href: "/academics#courses",
-    degree: "B.E. Information and Communication Technology",
+    degree: "B.Tech Information and Communication Technology",
     icon: "ict",
     duration: "4 Years",
     category: "engineering",
   },
   {
-    title: "Electrical and Communication Engineering",
+    title: "Electronics and Communication Engineering",
     description:
-      "The electrical engineers prepared to make the world eco friendly through innovation and sustainable design.",
+      "The electronics engineers prepared to make the world eco friendly through innovation and sustainable design.",
     image: "/images/lab2.JPG",
     href: "/academics#courses",
-    degree: "B.E. Electrical and Communication Engineering",
+    degree: "B.Tech Electronics and Communication Engineering",
     icon: "ece",
     duration: "4 Years",
     category: "engineering",
@@ -125,9 +125,9 @@ export const departments = [
     title: "Civil Engineering",
     description:
       "The department of Civil Engineering is committed to the task of providing quality education, which will transform the students into efficient and successful engineers.",
-    image: "/images/civil_eng.png",
+    image: "/images/civil_eng.jpg",
     href: "/academics#courses",
-    degree: "B.E. Civil Engineering",
+    degree: "B.Tech Civil Engineering",
     icon: "civil",
     duration: "4 Years",
     category: "engineering",
@@ -138,7 +138,7 @@ export const departments = [
       "The School of Mechanical Engineering is one of the pioneering departments of our institute.",
     image: "/images/lab4.JPG",
     href: "/academics#courses",
-    degree: "B.E. Mechanical Engineering",
+    degree: "B.Tech Mechanical Engineering",
     icon: "mechanical",
     duration: "4 Years",
     category: "engineering",
@@ -149,7 +149,7 @@ export const departments = [
       "Combining engineering principles with medical sciences to prepare students for healthcare technology and device innovation.",
     image: "/images/lab5.JPG",
     href: "/academics#courses",
-    degree: "B.E. Biomedical Engineering",
+    degree: "B.Tech Biomedical Engineering",
     icon: "biomedical",
     duration: "4 Years",
     category: "engineering",
@@ -158,7 +158,7 @@ export const departments = [
     title: "BBA",
     description:
       "A Bachelor of Business Administration program focused on management fundamentals, entrepreneurship and industry-ready business skills.",
-    image: "/images/students-library.png",
+    image: "/images/students-library.jpg",
     href: "/academics#courses",
     degree: "BBA",
     icon: "bba",
@@ -199,7 +199,7 @@ export const notices = [
     href: "/sbiol",
   },
   {
-    title: "Project Expo — Tech Fusion",
+    title: "Project Expo - Tech Fusion",
     date: "December 2026",
     ref: "SBIST/CSE/TECHFUSION/2026",
     href: "/academics#admissions",
@@ -219,7 +219,7 @@ export const galleryImages: GalleryImage[] = [
     caption: "Academic block",
   },
   {
-    src: "/images/Library_AI.png",
+    src: "/images/Library_AI.jpg",
     alt: "Central Library",
     caption: "Study spaces & resources",
   },
@@ -262,7 +262,7 @@ export const campusLifeContent = {
       id: "campus",
       title: "Main Academic Block",
       description:
-        "Our central campus building houses lecture halls, faculty offices and student services — the heart of daily life at SBIST.",
+        "Our central campus building houses lecture halls, faculty offices and student services - the heart of daily life at SBIST.",
       image: "/images/main-building-side.JPG",
       href: "/campus-life#campus",
     },
@@ -271,7 +271,7 @@ export const campusLifeContent = {
       title: "Central Library",
       description:
         "A quiet, well-stocked library with digital resources, journals and study spaces for focused learning.",
-      image: "/images/Library_AI.png",
+      image: "/images/Library_AI.jpg",
       href: "/campus-life#library",
     },
     {
@@ -302,15 +302,15 @@ export const campusLifeContent = {
       id: "sports",
       title: "Sports, Arts & Culture",
       description:
-        "Outdoor grounds for cricket and volleyball, dance and arts clubs and cultural events — a vibrant campus life beyond the classroom.",
-      image: "/images/campus-sports.png",
+        "Outdoor grounds for cricket and volleyball, dance and arts clubs and cultural events - a vibrant campus life beyond the classroom.",
+      image: "/images/campus-sports.jpg",
       href: "/campus-life#sports",
     },
   ] satisfies CampusLifeTile[],
 };
 
 export const contactContent = {
-  address: "No. 7 Works Road, Chrompet, Chennai - 600 044",
+  address: "No. 7 Works Road, Chromepet, Chennai - 600 044",
   email: "office@sbist.in",
 };
 
@@ -318,7 +318,7 @@ export const foundersNoteContent = {
   quote:
     "SBIST gave me more than classroom learning. The faculty guide you personally, the labs let you practice what you study and the campus environment keeps you motivated to grow every day.",
   name: "Priya Menon",
-  title: "B.E. Information and Communication Technology",
+  title: "B.Tech Information and Communication Technology",
   readMoreHref: "/about",
 };
 
@@ -340,7 +340,7 @@ export const upcomingEventsContent = {
       date: "September 12, 2026",
       time: "08:00 AM - 05:00 PM",
       location: "SBIST Sports Grounds, Chennai",
-      image: "/images/campus-sports.png",
+      image: "/images/campus-sports.jpg",
       href: "/sbsb#events",
     },
     {
@@ -385,12 +385,12 @@ export type HomeGalleryItem = {
   role: "hero" | "side" | "strip";
 };
 
-/** Homepage community gallery — curated mosaic with link to full campus gallery */
+/** Homepage community gallery - curated mosaic with link to full campus gallery */
 export const homeGalleryContent = {
   eyebrow: "Our Community",
   title: "One Campus. One Team.",
   description:
-    "From labs and classrooms to celebrations and achievements — SBIST is built by people who learn, create and grow together.",
+    "From labs and classrooms to celebrations and achievements - SBIST is built by people who learn, create and grow together.",
   viewMoreHref: "/campus-life#gallery",
   viewMoreLabel: "View more",
   items: [
@@ -457,7 +457,7 @@ export type CampusLifeGalleryItem = {
   label: string;
 };
 
-/** Full campus life gallery carousel — all photos from /images/Gallery (excl. *-mobile) */
+/** Full campus life gallery carousel - all photos from /images/Gallery (excl. *-mobile) */
 export const campusLifeGalleryContent = {
   eyebrow: "Campus Gallery",
   title: "Moments Across Campus",
@@ -516,7 +516,7 @@ export const sbiolHomeContent = {
   brand: "SBIOL",
   title: "Earn a UGC-recognized degree without pausing your career",
   description:
-    "Flexible online MBA, B.Com and BBA programmes from BIHER — delivered through SBIST Chromepet with 24/7 LMS access and AI-proctored exams.",
+    "Flexible online MBA, B.Com and BBA programmes from BIHER - delivered through SBIST Chromepet with 24/7 LMS access and AI-proctored exams.",
   image: "/images/workstation-quotes.JPG",
   imageAlt: "Online learning workstation at SBIST",
   motto: "Aim · Aspire · Inspire",
@@ -530,7 +530,7 @@ export const sbiolHomeContent = {
     {
       title: "B.Com",
       detail: "3 Years · Undergraduate",
-      description: "Accounting, taxation and information systems — fully online.",
+      description: "Accounting, taxation and information systems - fully online.",
       href: "/sbiol#courses",
     },
     {

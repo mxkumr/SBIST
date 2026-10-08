@@ -36,9 +36,9 @@ export function PageHeader({
         <>
           <Image
             src={backgroundImage}
-            alt=""
+            alt={`${title} page background`}
             fill
-            quality={100}
+            quality={90}
             className="object-cover object-center"
             sizes="100vw"
             priority

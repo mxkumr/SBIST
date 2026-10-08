@@ -52,7 +52,7 @@ function GalleryFrame({
         src={item.src}
         alt={item.alt}
         fill
-        quality={100}
+        quality={90}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         sizes={sizes}
       />
@@ -136,7 +136,7 @@ function Lightbox({
             src={item.src}
             alt={item.alt}
             fill
-            quality={100}
+            quality={90}
             className="object-contain"
             sizes="90vw"
             priority

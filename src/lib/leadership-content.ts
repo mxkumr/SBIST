@@ -4,7 +4,7 @@ export const leadershipPageContent = {
   header: {
     title: "Our Leader",
     description:
-      "DR. J. Srinisha Elamaran — A Leader with Vision. A Heart with Purpose.",
+      "DR. J. Srinisha Elamaran - A Leader with Vision. A Heart with Purpose.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "About SBIST", href: "/about" },
@@ -35,7 +35,7 @@ export const leadershipPageContent = {
       {
         title: "Healthcare & Medical Education",
         items: [
-          "Sree Balaji Medical College & Hospital, Chrompet",
+          "Sree Balaji Medical College & Hospital, Chromepet",
           "Sree Balaji Dental College, Pallikaranai",
           "Nandivarman Medical College & Hospital, Walajabad",
           "JR Medical College & Hospital, Dindivanam",
@@ -72,7 +72,7 @@ export const leadershipPageContent = {
       "Behind every patient is a family seeking not only treatment, but also hope, confidence and reassurance.",
       "Her philosophy is therefore centred on creating environments where excellence in healthcare is supported by compassion, accessibility, professionalism and responsible administration.",
     ],
-    quote: "She is not just overseeing systems — she is helping create institutions that touch lives.",
+    quote: "She is not just overseeing systems - she is helping create institutions that touch lives.",
     highlights: ["Every patient treated.", "Every family reassured.", "Every life supported."],
   },
   education: {
@@ -81,7 +81,7 @@ export const leadershipPageContent = {
     paragraphs: [
       "Education is another important dimension of her leadership.",
       "Through her association with medical, dental, engineering and other educational institutions, she is part of an ecosystem focused on preparing the next generation of professionals and leaders.",
-      "Her vision goes beyond academic instruction — encouraging institutions to develop students with professional excellence, innovation and creativity, research orientation, ethical values, leadership capabilities and social responsibility.",
+      "Her vision goes beyond academic instruction - encouraging institutions to develop students with professional excellence, innovation and creativity, research orientation, ethical values, leadership capabilities and social responsibility.",
       "The objective is to build institutions where knowledge meets opportunity and education creates meaningful impact.",
     ],
   },
@@ -90,7 +90,7 @@ export const leadershipPageContent = {
     title: "A Multidisciplinary Perspective",
     paragraphs: [
       "Her association with healthcare, education, hospitality, engineering and industry reflects a broad understanding of institutional development.",
-      "This multidisciplinary perspective enables her to approach leadership with a wider vision — combining people, process, innovation, excellence and responsibility.",
+      "This multidisciplinary perspective enables her to approach leadership with a wider vision - combining people, process, innovation, excellence and responsibility.",
       "Her work reflects the belief that successful institutions are not built only through infrastructure or resources, but through strong values, capable people and a clear purpose.",
     ],
   },

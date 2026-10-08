@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -10,13 +11,13 @@ import {
   WhyJoinSection,
 } from "@/components/sections/academics/AcademicsPageSections";
 import { CTA } from "@/components/sections/CTA";
-import { academicsPageContent } from "@/lib/academics-content";
-import { siteConfig } from "@/lib/navigation";
+import { academicsPageContent } from "@/lib/academics-content";
 
-export const metadata: Metadata = {
-  title: `Academics | ${siteConfig.shortName}`,
+export const metadata: Metadata = createPageMetadata({
+  title: "Academics",
   description: academicsPageContent.header.description,
-};
+  path: "/academics",
+});
 
 export default function AcademicsPage() {
   const { header } = academicsPageContent;

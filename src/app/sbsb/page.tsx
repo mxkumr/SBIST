@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
 import { HashScroll } from "@/components/layout/HashScroll";
 import { Navbar } from "@/components/layout/Navbar";
@@ -14,12 +15,12 @@ import {
   SbsbVisionMissionSection,
 } from "@/components/sections/sbsb/SbsbPageSections";
 import { sbsbPageContent } from "@/lib/sbsb-content";
-import { siteConfig } from "@/lib/navigation";
 
-export const metadata: Metadata = {
-  title: `SBSB | ${siteConfig.shortName}`,
+export const metadata: Metadata = createPageMetadata({
+  title: "SBSB",
   description: sbsbPageContent.header.description,
-};
+  path: "/sbsb",
+});
 
 export default function SbsbPage() {
   const { header, cta } = sbsbPageContent;

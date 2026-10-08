@@ -4,11 +4,14 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/navigation";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Site Under Construction | ${siteConfig.shortName}`,
-  description: "This section of the SBIST website is currently under construction. Please check back soon.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Site Under Construction",
+  description: "This section of the SBIST website is currently under construction.",
+  path: "/site-under-construction",
+  noIndex: true,
+});
 
 export default function SiteUnderConstructionPage() {
   return (

@@ -38,18 +38,18 @@ function NavArrowIcon({ direction }: { direction: "prev" | "next" }) {
 
 function Watermark({ y }: { y?: ReturnType<typeof useTransform<number, string>> }) {
   const text = (
-    <span className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 text-center text-primary sm:px-6 lg:px-8">
-      <span className="font-watermark max-w-full text-balance text-xl font-bold uppercase leading-[1.15] tracking-[0.04em] drop-shadow-[0_2px_8px_rgba(15,39,68,0.18)] sm:text-[clamp(1.25rem,2.2vw+0.5rem,2.75rem)]">
+    <div className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 text-center text-primary sm:px-6 lg:px-8">
+      <h1 className="font-watermark max-w-full text-balance text-xl font-bold uppercase leading-[1.15] tracking-[0.04em] drop-shadow-[0_2px_8px_rgba(15,39,68,0.18)] sm:text-[clamp(1.25rem,2.2vw+0.5rem,2.75rem)]">
         {heroContent.watermark}
-      </span>
-      <span className="mt-4 flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-primary/80 sm:mt-5 sm:gap-x-3 sm:text-sm sm:tracking-[0.2em] md:text-base">
-        <span className="hidden h-px w-6 bg-accent sm:block sm:w-10 lg:w-12" />
+      </h1>
+      <p className="mt-4 flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-primary/80 sm:mt-5 sm:gap-x-3 sm:text-sm sm:tracking-[0.2em] md:text-base">
+        <span className="hidden h-px w-6 bg-accent sm:block sm:w-10 lg:w-12" aria-hidden />
         <span className="font-watermark-alt text-balance">
           {heroContent.watermarkSubtitle}
         </span>
-        <span className="hidden h-px w-6 bg-accent sm:block sm:w-10 lg:w-12" />
-      </span>
-    </span>
+        <span className="hidden h-px w-6 bg-accent sm:block sm:w-10 lg:w-12" aria-hidden />
+      </p>
+    </div>
   );
 
   const className =
@@ -57,17 +57,13 @@ function Watermark({ y }: { y?: ReturnType<typeof useTransform<number, string>> 
 
   if (y) {
     return (
-      <motion.div aria-hidden className={className} style={{ y }}>
+      <motion.div className={className} style={{ y }}>
         {text}
       </motion.div>
     );
   }
 
-  return (
-    <div aria-hidden className={className}>
-      {text}
-    </div>
-  );
+  return <div className={className}>{text}</div>;
 }
 
 function BannerSlide({
@@ -117,7 +113,7 @@ function BannerSlide({
         alt={banner.alt}
         fill
         priority
-        quality={100}
+        quality={90}
         unoptimized={false}
         className={[
           "object-cover opacity-100 transition-opacity duration-700 ease-in-out md:pointer-events-none md:opacity-0",
@@ -132,7 +128,7 @@ function BannerSlide({
         alt={banner.alt}
         fill
         priority
-        quality={100}
+        quality={90}
         unoptimized={false}
         className={[
           "object-cover opacity-0 transition-opacity duration-700 ease-in-out md:opacity-100",
@@ -235,6 +231,10 @@ export function Hero() {
     >
       {active.skyMask && (
         <div className="pointer-events-none absolute inset-x-0 top-0 z-1 h-[38%] bg-linear-to-b from-background via-background to-transparent" />
+      )}
+
+      {!active.showWatermark && (
+        <h1 className="sr-only">{heroContent.watermark}</h1>
       )}
 
       <AnimatePresence mode="wait">

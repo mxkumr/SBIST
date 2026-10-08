@@ -275,6 +275,10 @@ export function ContactMainSection() {
 
           <div className="order-1 min-w-0 space-y-8 lg:order-2">
             <ScrollReveal direction="right">
+              <ContactForm />
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.05}>
               <SectionCard>
                 <CardHeaderStrip eyebrow={intro.eyebrow} subtitle={intro.description} align="left" />
                 <div className="px-6 py-8 lg:px-8 lg:py-10">
@@ -311,11 +315,11 @@ export function ContactMainSection() {
               ))}
             </StaggerContainer>
 
-            <ScrollReveal delay={0.05}>
+            <ScrollReveal delay={0.1}>
               <ContactMapCard />
             </ScrollReveal>
 
-            <ScrollReveal delay={0.1}>
+            <ScrollReveal delay={0.12}>
               <SectionCard className="h-full">
                 <div className="px-6 py-8 lg:px-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
@@ -333,7 +337,7 @@ export function ContactMainSection() {
               </SectionCard>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.12}>
+            <ScrollReveal delay={0.15}>
               <SectionCard>
                 <CardHeaderStrip eyebrow={social.eyebrow} subtitle={social.description} align="left" />
                 <div className="px-6 py-8 lg:px-8">
@@ -376,10 +380,6 @@ export function ContactMainSection() {
                   </StaggerContainer>
                 </div>
               </SectionCard>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.15}>
-              <ContactForm />
             </ScrollReveal>
           </div>
         </div>

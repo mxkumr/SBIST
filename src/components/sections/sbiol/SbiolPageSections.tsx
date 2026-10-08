@@ -308,7 +308,7 @@ function CoursesSlider() {
                   src={active.image}
                   alt={active.title}
                   fill
-                  quality={100}
+                  quality={90}
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -668,7 +668,7 @@ function LegacySection() {
               src={legacy.image}
               alt="BIHER and SBIST campus legacy"
               fill
-              quality={100}
+              quality={90}
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
@@ -724,7 +724,7 @@ function FacultySection() {
                 src={faculty.image}
                 alt="Computer lab workstation"
                 fill
-                quality={100}
+                quality={90}
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
