@@ -48,6 +48,20 @@ export {
   AlumniSection,
   AdmissionsSection,
 } from "./sections/academics/AcademicsPageSections";
+export { PlacementCareerSection } from "./sections/academics/PlacementCareerSection";
+export { AcademicResourcesSection } from "./sections/academics/AcademicResourcesSection";
+export { CourseDetailSections } from "./sections/academics/CoursePageSections";
+export {
+  DeanMessageSection,
+  FacultyDirectorySection,
+  StaffDirectorySection,
+} from "./sections/about/FacultyPageSections";
+export {
+  LaboratoriesSection,
+  NccNssSection,
+  StudentActivitiesSection,
+} from "./sections/campus-life/CampusExtrasSection";
+export { EnquiryForm } from "./forms/EnquiryForm";
 export {
   CareersMainSection,
   CareersApplySection,

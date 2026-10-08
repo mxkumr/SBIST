@@ -1,9 +1,11 @@
-/** Routes with implemented pages — update when new pages are added */
+/** Exact routes with implemented pages — update when new pages are added */
 export const BUILT_ROUTES = new Set([
   "/",
   "/about",
   "/about/leadership",
+  "/about/faculty",
   "/academics",
+  "/admissions",
   "/contact",
   "/careers",
   "/campus-life",
@@ -13,6 +15,12 @@ export const BUILT_ROUTES = new Set([
   "/site-under-construction",
 ]);
 
+/** Prefixes for dynamic or nested live routes */
+export const BUILT_ROUTE_PREFIXES = ["/academics/courses/", "/api/"] as const;
+
 export function isBuiltRoute(pathname: string): boolean {
-  return BUILT_ROUTES.has(pathname);
+  if (BUILT_ROUTES.has(pathname)) return true;
+  return BUILT_ROUTE_PREFIXES.some(
+    (prefix) => pathname === prefix.slice(0, -1) || pathname.startsWith(prefix),
+  );
 }

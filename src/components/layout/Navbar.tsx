@@ -452,7 +452,7 @@ export function Navbar({ variant = "default" }: NavbarProps) {
           </button>
 
           <Link
-            href="/contact"
+            href="/admissions"
             className="hidden items-center gap-2 rounded-full bg-[#f5c518] px-4 py-2 text-xs font-bold text-[#1a1a1a] motion-premium hover:bg-[#e8b80f] sm:inline-flex sm:gap-3 sm:px-5 sm:py-2.5 sm:text-sm"
           >
             Apply Now
@@ -484,7 +484,7 @@ export function Navbar({ variant = "default" }: NavbarProps) {
 
             <div className="mt-4 space-y-3 border-t border-border px-1 pt-4">
               <Link
-                href="/contact"
+                href="/admissions"
                 onClick={closeMobileMenu}
                 className="flex w-full items-center justify-center gap-3 rounded-full bg-[#f5c518] px-5 py-3.5 text-sm font-bold text-[#1a1a1a] shadow-sm transition-colors hover:bg-[#e8b80f]"
               >

@@ -41,6 +41,13 @@ body {
   font-family: var(--font-source-sans-3), system-ui, sans-serif;
 }
 
+/* Prevent unwanted horizontal scroll on small screens */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,

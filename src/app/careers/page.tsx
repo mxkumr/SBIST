@@ -30,7 +30,7 @@ export default function CareersPage() {
         <CareersApplySection />
         <CTA
           title="Interested in Teaching at SBIST?"
-          description={`Send your résumé to ${careersPageContent.apply.email} and join a faculty community committed to academic excellence at our Chrompet campus.`}
+          description={`Send your résumé to ${careersPageContent.apply.email} and join a faculty community committed to academic excellence at our Chromepet campus.`}
           primaryLabel="Email Your Application"
           primaryHref={careersPageContent.apply.applicationMailto}
           secondaryLabel="Contact Us"

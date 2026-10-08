@@ -1,0 +1,14 @@
+import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/navigation";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/under-construction", "/site-under-construction", "/api/"],
+    },
+    sitemap: `${siteConfig.url}/sitemap.xml`,
+    host: siteConfig.url,
+  };
+}

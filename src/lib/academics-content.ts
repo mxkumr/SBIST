@@ -1,6 +1,7 @@
 import type { NavIconName } from "@/lib/navigation";
 import { departments, notices, stockImages } from "@/lib/home-content";
 import type { HighlightStatItem, PageStatItem } from "@/lib/about-content";
+import { engineeringCourses } from "@/lib/courses-content";
 
 /** Local image paths for the Academics page */
 export const academicsImages = {
@@ -25,10 +26,12 @@ export const academicsPageContent = {
     title: "Academics",
     links: [
       { label: "Overview", href: "/academics", icon: "programs" as NavIconName },
-      { label: "Program Catalogue", href: "/academics#courses", icon: "cse" as NavIconName },
-      { label: "Why Join SBIST", href: "/academics#why-join", icon: "faculty" as NavIconName },
-      { label: "Alumni Network", href: "/academics#alumni", icon: "alumni" as NavIconName },
-      { label: "Admissions", href: "/academics#admissions", icon: "apply" as NavIconName },
+      { label: "Departments", href: "/academics#departments", icon: "faculty" as NavIconName },
+      { label: "Courses Offered", href: "/academics#courses", icon: "cse" as NavIconName },
+      { label: "Academic Calendar", href: "/academics#academic-resources", icon: "events" as NavIconName },
+      { label: "Regulations & Syllabus", href: "/academics#academic-resources", icon: "requirements" as NavIconName },
+      { label: "Placement & Career", href: "/academics#placement", icon: "apply" as NavIconName },
+      { label: "Admissions", href: "/admissions", icon: "apply" as NavIconName },
     ],
     image: academicsImages.sidebar,
   },
@@ -36,13 +39,51 @@ export const academicsPageContent = {
     eyebrow: "Academic Excellence",
     title: "Academic Programs Built for the Real World",
     paragraphs: [
-      "At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs — Computer Science Engineering, Information and Communication Technology, Electrical and Communication Engineering, Civil Engineering, Mechanical Engineering, Biomedical Engineering, BBA and BCA.",
-      "From modern laboratories and qualified faculty to placement training and research opportunities, SBIST provides a complete academic ecosystem on our Chrompet campus in Chennai.",
+      `At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs — ${engineeringCourses.map((c) => c.title).join(", ")}, BBA and BCA.`,
+      "From modern laboratories and qualified faculty to placement training and research opportunities, SBIST provides a complete academic ecosystem on our Chromepet campus in Chennai.",
     ],
     highlights: [
-      "Anna University–affiliated B.E. engineering programs",
+      "Bharath University–affiliated B.Tech engineering programs",
       "BBA and BCA pathways in management and computer applications",
       "Dedicated placement and career guidance cell",
+    ],
+  },
+  academicResources: {
+    eyebrow: "Academic Resources",
+    title: "Calendar, Schedule, Planner, Regulations & Syllabus",
+    description:
+      "Central access points for academic planning documents. Official PDFs and dates will appear here once published by Academic Affairs.",
+    items: [
+      {
+        label: "Academic Calendar",
+        description: "PENDING_ACADEMIC_CALENDAR — Official calendar to be published by Academic Affairs.",
+        href: "/academics#academic-resources",
+        icon: "events" as NavIconName,
+      },
+      {
+        label: "Academic Schedule",
+        description: "PENDING_ACADEMIC_SCHEDULE — Term / exam schedules to be confirmed.",
+        href: "/academics#academic-resources",
+        icon: "programs" as NavIconName,
+      },
+      {
+        label: "Academic Planner",
+        description: "PENDING_ACADEMIC_PLANNER — Planner document to be published.",
+        href: "/academics#academic-resources",
+        icon: "research" as NavIconName,
+      },
+      {
+        label: "Regulations",
+        description: "PENDING_REGULATIONS — Academic regulations to be published.",
+        href: "/academics#academic-resources",
+        icon: "requirements" as NavIconName,
+      },
+      {
+        label: "Syllabus",
+        description: "Browse each course page for syllabus placeholders pending official PDFs.",
+        href: "/academics#courses",
+        icon: "cse" as NavIconName,
+      },
     ],
   },
   stats: [
@@ -140,8 +181,8 @@ export const academicsPageContent = {
         image: "/images/SREE_Balaji_logo.svg",
       },
     ],
-    ctaHref: "/contact",
-    ctaLabel: "Contact Admissions",
+    ctaHref: "/admissions",
+    ctaLabel: "Admission Enquiry",
   },
   admissions: {
     eyebrow: "Admissions",
@@ -151,8 +192,8 @@ export const academicsPageContent = {
     links: [
       {
         label: "Apply Now",
-        description: "Contact our admissions team to begin your application",
-        href: "/contact",
+        description: "Submit an admission enquiry to begin your application",
+        href: "/admissions",
         icon: "apply" as NavIconName,
       },
       {

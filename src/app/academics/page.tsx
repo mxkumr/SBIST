@@ -9,6 +9,8 @@ import {
   CourseCatalogueSection,
   WhyJoinSection,
 } from "@/components/sections/academics/AcademicsPageSections";
+import { AcademicResourcesSection } from "@/components/sections/academics/AcademicResourcesSection";
+import { PlacementCareerSection } from "@/components/sections/academics/PlacementCareerSection";
 import { CTA } from "@/components/sections/CTA";
 import { academicsPageContent } from "@/lib/academics-content";
 import { siteConfig } from "@/lib/navigation";
@@ -16,6 +18,14 @@ import { siteConfig } from "@/lib/navigation";
 export const metadata: Metadata = {
   title: `Academics | ${siteConfig.shortName}`,
   description: academicsPageContent.header.description,
+  alternates: { canonical: `${siteConfig.url}/academics` },
+  openGraph: {
+    title: `Academics | ${siteConfig.shortName}`,
+    description: academicsPageContent.header.description,
+    url: `${siteConfig.url}/academics`,
+    siteName: siteConfig.name,
+    type: "website",
+  },
 };
 
 export default function AcademicsPage() {
@@ -33,7 +43,9 @@ export default function AcademicsPage() {
 
       <main>
         <AcademicsIntroSection />
+        <AcademicResourcesSection />
         <CourseCatalogueSection />
+        <PlacementCareerSection />
         <WhyJoinSection />
         <AlumniSection />
         <AdmissionsSection />
@@ -41,7 +53,7 @@ export default function AcademicsPage() {
           title="Ready to Begin Your Engineering Career?"
           description="Apply to SBIST and join a community of aspiring engineers backed by qualified faculty, modern laboratories and strong industry connections in Chennai."
           primaryLabel="Apply Now"
-          primaryHref="/contact"
+          primaryHref="/admissions"
           secondaryLabel="Explore Programs"
           secondaryHref="/academics#courses"
           image={academicsPageContent.cta.image}

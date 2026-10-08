@@ -36,9 +36,9 @@ export default function LeadershipPage() {
         <LeadershipNarrativeSection />
         <CTA
           title="Ready to Join SBIST?"
-          description="Take the first step toward an engineering career at our Chrompet campus. Apply now or explore our academic programs."
+          description="Take the first step toward an engineering career at our Chromepet campus. Apply now or explore our academic programs."
           primaryLabel="Apply Now"
-          primaryHref="/contact"
+          primaryHref="/admissions"
           secondaryLabel="Explore Academics"
           secondaryHref="/academics"
           image={stockImages.students}

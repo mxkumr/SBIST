@@ -16,7 +16,7 @@ export const careersPageContent = {
     backgroundImage: stockImages.campus,
   },
   affiliations: {
-    address: "No. 7, Works Road, Chromepet, Chennai - 600 044",
+    address: siteConfig.address,
     approvals: [
       "Approved by AICTE, New Delhi",
       "A Constituent Institution of Bharath Institute of Higher Education and Research (Declared as Deemed to be University u/s 3 of UGC Act, 1956) Chennai",
@@ -25,7 +25,7 @@ export const careersPageContent = {
   announcement: {
     eyebrow: "Now Hiring",
     title: "Applications Invited for Faculty Recruitment",
-    description: `SBIST welcomes qualified academicians to join our Chrompet campus. Applicants may email their résumé directly to ${applicationEmail} to apply for faculty positions.`,
+    description: `SBIST welcomes qualified academicians to join our Chromepet campus. Applicants may email their résumé directly to ${applicationEmail} to apply for faculty positions.`,
   },
   engineeringRoles: {
     eyebrow: "Engineering & Management",

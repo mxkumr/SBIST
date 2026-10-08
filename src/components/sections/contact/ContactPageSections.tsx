@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type FormEvent, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { NavIcon } from "@/components/layout/NavIcons";
 import { Button } from "@/components/ui/Button";
+import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion/ScrollAnimations";
 import {
+  getPendingSocialPlatforms,
   getSocialEntries,
   SocialIcon,
   socialDescriptions,
@@ -133,15 +135,6 @@ function ContactSidebar() {
 
 function ContactForm() {
   const { form } = contactPageContent;
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
-
-  const inputClass =
-    "w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted/70 focus:border-primary/40 focus:ring-2 focus:ring-primary/10";
 
   return (
     <SectionCard className="h-full">
@@ -149,81 +142,14 @@ function ContactForm() {
       <div className="px-6 py-8 lg:px-8 lg:py-10">
         <h2 className="text-2xl text-foreground lg:text-3xl">{form.title}</h2>
         <AccentBar className="group mt-4" />
-
-        {submitted ? (
-          <div
-            className="mt-8 rounded-xl border border-accent/30 bg-accent/5 px-6 py-8 text-center"
-            role="status"
-          >
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent/15 text-accent">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <p className="mt-4 text-sm leading-relaxed text-foreground">{form.successMessage}</p>
-          </div>
-        ) : (
-          <form className="mt-8 space-y-5" onSubmit={handleSubmit} noValidate>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-foreground">
-                  Full Name
-                </label>
-                <input id="contact-name" name="name" type="text" required className={inputClass} placeholder="Your name" />
-              </div>
-              <div>
-                <label htmlFor="contact-email" className="mb-2 block text-sm font-medium text-foreground">
-                  Email Address
-                </label>
-                <input
-                  id="contact-email"
-                  name="email"
-                  type="email"
-                  required
-                  className={inputClass}
-                  placeholder="you@example.com"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="contact-phone" className="mb-2 block text-sm font-medium text-foreground">
-                Phone Number <span className="text-muted">(optional)</span>
-              </label>
-              <input id="contact-phone" name="phone" type="tel" className={inputClass} placeholder="+91" />
-            </div>
-            <div>
-              <label htmlFor="contact-subject" className="mb-2 block text-sm font-medium text-foreground">
-                Subject
-              </label>
-              <select id="contact-subject" name="subject" required className={inputClass} defaultValue="">
-                <option value="" disabled>
-                  Select a subject
-                </option>
-                {form.subjects.map((subject) => (
-                  <option key={subject} value={subject}>
-                    {subject}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="contact-message" className="mb-2 block text-sm font-medium text-foreground">
-                Message
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                required
-                rows={5}
-                className={`${inputClass} resize-y min-h-[120px]`}
-                placeholder="How can we help you?"
-              />
-            </div>
-            <Button type="submit" variant="primary" size="lg">
-              {form.submitLabel}
-            </Button>
-          </form>
-        )}
+        <div className="mt-8">
+          <EnquiryForm
+            variant="contact"
+            submitLabel={form.submitLabel}
+            successMessage={form.successMessage}
+            failureMessage={form.failureMessage}
+          />
+        </div>
       </div>
     </SectionCard>
   );
@@ -348,6 +274,7 @@ export function ContactMainSection() {
                           rel="noopener noreferrer"
                           className="group motion-lift flex h-full flex-col rounded-xl border border-border bg-surface/60 p-5 transition-colors hover:border-primary/25 hover:bg-white"
                           aria-label={`Visit SBIST on ${socialLabels[platform]}`}
+                          title={socialLabels[platform]}
                         >
                           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/5 text-primary ring-1 ring-primary/10 transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:ring-primary/20 group-hover:shadow-md">
                             <SocialIcon name={platform} className="h-5 w-5" />
@@ -374,6 +301,15 @@ export function ContactMainSection() {
                       </StaggerItem>
                     ))}
                   </StaggerContainer>
+                  {getPendingSocialPlatforms().length > 0 && (
+                    <p className="mt-6 text-xs text-muted">
+                      Additional channels awaiting official URLs:{" "}
+                      {getPendingSocialPlatforms()
+                        .map((p) => socialLabels[p])
+                        .join(", ")}
+                      .
+                    </p>
+                  )}
                 </div>
               </SectionCard>
             </ScrollReveal>

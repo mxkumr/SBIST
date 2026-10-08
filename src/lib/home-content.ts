@@ -1,6 +1,7 @@
 import type { CounterItem } from "@/components/blocks/Counters";
 import type { GalleryImage } from "@/components/blocks/Gallery";
 import type { NavIconName } from "@/lib/navigation";
+import { coursesAsDepartments } from "@/lib/courses-content";
 
 export const heroContent = {
   watermark: "sree balaji institute of science and technology",
@@ -9,7 +10,7 @@ export const heroContent = {
   title: "Highly Qualified Faculties Will Guide You for Career Growth",
   campusTourLabel: "About Us",
   campusTourHref: "/about",
-  applyHref: "/contact",
+  applyHref: "/admissions",
   /** Auto-advance interval for main banner carousel (ms) */
   bannerIntervalMs: 6500,
   /** Tablet & desktop hero (primary slide) */
@@ -56,7 +57,7 @@ export const aboutContent = {
   eyebrow: "About Our Institute",
   title: "Empowering Students to Lead the Future",
   paragraphs: [
-    "Sree Balaji Institute of Science and Technology is an AICTE-approved engineering college in Chrompet, Chennai. We offer undergraduate programs in engineering, management and computer applications, with a focus on strong fundamentals and practical, industry-ready skills.",
+    "Sree Balaji Institute of Science and Technology is an AICTE-approved engineering college in Chromepet, Chennai. We offer undergraduate programs in engineering, management and computer applications, with a focus on strong fundamentals and practical, industry-ready skills.",
     "Our campus brings together experienced faculty, modern laboratories and a supportive academic environment. Through structured teaching, hands-on training and career guidance, we help students grow into capable engineers and professionals.",
   ],
   highlights: [
@@ -87,96 +88,7 @@ export type Department = {
   category: "engineering" | "management" | "commerce";
 };
 
-export const departments = [
-  {
-    title: "Computer Science Engineering",
-    description:
-      "The School of Computing has experienced faculty members with industry experience and well equipped laboratories.",
-    image: "/images/computer-lab.JPG",
-    href: "/academics#courses",
-    degree: "B.E. Computer Science Engineering",
-    icon: "cse",
-    duration: "4 Years",
-    category: "engineering",
-  },
-  {
-    title: "Information and Communication Technology",
-    description:
-      "Focused on networks, communication systems and modern IT infrastructure with practical lab-based learning.",
-    image: "/images/computer1.JPG",
-    href: "/academics#courses",
-    degree: "B.E. Information and Communication Technology",
-    icon: "ict",
-    duration: "4 Years",
-    category: "engineering",
-  },
-  {
-    title: "Electrical and Communication Engineering",
-    description:
-      "The electrical engineers prepared to make the world eco friendly through innovation and sustainable design.",
-    image: "/images/lab2.JPG",
-    href: "/academics#courses",
-    degree: "B.E. Electrical and Communication Engineering",
-    icon: "ece",
-    duration: "4 Years",
-    category: "engineering",
-  },
-  {
-    title: "Civil Engineering",
-    description:
-      "The department of Civil Engineering is committed to the task of providing quality education, which will transform the students into efficient and successful engineers.",
-    image: "/images/civil_eng.png",
-    href: "/academics#courses",
-    degree: "B.E. Civil Engineering",
-    icon: "civil",
-    duration: "4 Years",
-    category: "engineering",
-  },
-  {
-    title: "Mechanical Engineering",
-    description:
-      "The School of Mechanical Engineering is one of the pioneering departments of our institute.",
-    image: "/images/lab4.JPG",
-    href: "/academics#courses",
-    degree: "B.E. Mechanical Engineering",
-    icon: "mechanical",
-    duration: "4 Years",
-    category: "engineering",
-  },
-  {
-    title: "Biomedical Engineering",
-    description:
-      "Combining engineering principles with medical sciences to prepare students for healthcare technology and device innovation.",
-    image: "/images/lab5.JPG",
-    href: "/academics#courses",
-    degree: "B.E. Biomedical Engineering",
-    icon: "biomedical",
-    duration: "4 Years",
-    category: "engineering",
-  },
-  {
-    title: "BBA",
-    description:
-      "A Bachelor of Business Administration program focused on management fundamentals, entrepreneurship and industry-ready business skills.",
-    image: "/images/students-library.png",
-    href: "/academics#courses",
-    degree: "BBA",
-    icon: "bba",
-    duration: "3 Years",
-    category: "management",
-  },
-  {
-    title: "BCA",
-    description:
-      "A Bachelor of Computer Applications program covering software development, databases and applied computing for IT careers.",
-    image: "/images/computer2.JPG",
-    href: "/academics#courses",
-    degree: "BCA",
-    icon: "bca",
-    duration: "3 Years",
-    category: "commerce",
-  },
-] satisfies Department[];
+export const departments = coursesAsDepartments() satisfies Department[];
 
 export const counterItems: CounterItem[] = [
   { headline: "Excellence", label: "Quality engineering education" },
@@ -205,7 +117,7 @@ export const notices = [
     href: "/academics#admissions",
   },
   {
-    title: "1st International Conference for Computer Science Engineering",
+    title: "1st International Conference for Computer Science",
     date: "December 2026",
     ref: "SBIST/CSE/ICCSE/2026",
     href: "/academics#admissions",
@@ -310,7 +222,7 @@ export const campusLifeContent = {
 };
 
 export const contactContent = {
-  address: "No. 7 Works Road, Chrompet, Chennai - 600 044",
+  address: "No. 7 Works Road, Chromepet, Chennai - 600 044",
   email: "office@sbist.in",
 };
 
@@ -318,7 +230,7 @@ export const foundersNoteContent = {
   quote:
     "SBIST gave me more than classroom learning. The faculty guide you personally, the labs let you practice what you study and the campus environment keeps you motivated to grow every day.",
   name: "Priya Menon",
-  title: "B.E. Information and Communication Technology",
+  title: "B.Tech Information and Communication Technology",
   readMoreHref: "/about",
 };
 
@@ -331,7 +243,7 @@ export const upcomingEventsContent = {
       title: "SBSB Fest",
       date: "August 22, 2026",
       time: "09:00 AM - 06:00 PM",
-      location: "SBIST Campus, Chromepet",
+      location: "SBIST Campus, Chromepet, Chennai",
       image: "/images/cultural-fest.jpg",
       href: "/sbsb#events",
     },

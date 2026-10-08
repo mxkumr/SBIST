@@ -410,7 +410,7 @@ export function CareersApplySection() {
                   <div className="relative flex h-full flex-col justify-center px-8 py-10 text-white lg:px-10">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Join Our Faculty</p>
                     <p className="mt-4 text-2xl leading-snug lg:text-3xl">
-                      Shape the next generation of engineers at Chrompet, Chennai.
+                      Shape the next generation of engineers at Chromepet, Chennai.
                     </p>
                     <AccentBar className="mt-6 bg-accent/60" />
                   </div>

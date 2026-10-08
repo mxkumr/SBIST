@@ -61,6 +61,7 @@ export const mainNavigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Academics", href: "/academics" },
+  { label: "Admissions", href: "/admissions" },
   { label: "SBIOL", href: "/sbiol" },
   { label: "Campus Life", href: "/campus-life" },
   { label: "SBSB", href: "/sbsb" },
@@ -73,12 +74,37 @@ export const siteConfig = {
   shortName: "SBIST",
   logo: "/images/sbist-logo.jpg",
   email: "office@sbist.in",
-  phone: "",
-  address: "No. 7 Works Road, Chrompet, Chennai - 600 044",
+  /** Official number currently published on the Careers page in this repository */
+  phone: "+91 9941546335",
+  address: "No. 7 Works Road, Chromepet, Chennai - 600 044",
+  /**
+   * Map query uses the official campus address.
+   * PENDING_MAP_COORDINATES — replace with exact lat/lng for the front entrance /
+   * admissions office when the college provides them.
+   */
+  map: {
+    query: "No. 7 Works Road, Chromepet, Chennai 600044",
+    latitude: "" as string,
+    longitude: "" as string,
+  },
+  /**
+   * Office hours currently published on the Contact page.
+   * PENDING_OFFICE_HOURS — confirm Saturday and weekday timings with the college.
+   */
+  officeHours: [
+    { day: "Monday – Friday", time: "9:00 AM – 5:00 PM" },
+    { day: "Saturday", time: "9:00 AM – 1:00 PM" },
+    { day: "Sunday & Public Holidays", time: "Closed" },
+  ],
   social: {
     facebook: "https://www.facebook.com/profile.php?id=61592126405933",
     instagram: "https://www.instagram.com/sbist__",
     linkedin: "https://www.linkedin.com/company/142907523",
     youtube: "https://www.youtube.com/@SreeBalajiInstituteofScience",
+    /** PENDING_SOCIAL — official X/Twitter URL required */
+    twitter: "",
+    /** PENDING_SOCIAL — official WhatsApp Community invite URL required */
+    whatsapp: "",
   },
+  url: "https://www.sbist.in",
 };

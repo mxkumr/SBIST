@@ -11,8 +11,10 @@ const campusLinks = [
 ];
 
 const usefulLinks = [
+  { label: "Admissions", href: "/admissions" },
   { label: "SBIOL Online", href: "/sbiol" },
   { label: "SBSB", href: "/sbsb" },
+  { label: "Faculty & Staff", href: "/about/faculty" },
   { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];

@@ -276,9 +276,11 @@ export function AcademicsIntroSection() {
                 />
                 <div className="px-6 py-8 lg:px-8 lg:py-10">
                   <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{intro.title}</h2>
-                  <div className="mt-6 space-y-4 border-b border-border pb-8 text-[15px] leading-relaxed text-muted">
+                  <div className="mt-6 space-y-5 border-b border-border pb-8 text-[15px] leading-relaxed text-muted sm:leading-[1.75] md:space-y-6 md:leading-[1.8] md:text-justify">
                     {intro.paragraphs.map((paragraph) => (
-                      <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                      <p key={paragraph.slice(0, 48)} className="max-md:text-left">
+                        {paragraph}
+                      </p>
                     ))}
                   </div>
                   <ul className="mt-6 space-y-3">

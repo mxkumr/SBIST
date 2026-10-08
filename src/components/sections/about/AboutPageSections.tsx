@@ -417,7 +417,7 @@ export function AboutMainSection() {
                 <CardHeaderStrip eyebrow={main.eyebrow} subtitle="Our story, mission and community" align="left" />
                 <div className="px-6 py-8 lg:px-8 lg:py-10">
                   <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{main.title}</h2>
-                  <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-muted">
+                  <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-muted sm:leading-[1.75] md:space-y-6 md:text-justify md:leading-[1.8]">
                     {main.paragraphs.map((paragraph) => (
                       <p key={paragraph.slice(0, 48)}>{paragraph}</p>
                     ))}
@@ -498,7 +498,7 @@ export function AboutCampusTourSection() {
         <SectionCard>
           <div className="grid items-stretch lg:grid-cols-2">
             <ScrollReveal direction="left" className="flex flex-col">
-              <CardHeaderStrip eyebrow="Virtual Visit" subtitle="See our Chrompet campus" align="left" />
+              <CardHeaderStrip eyebrow="Virtual Visit" subtitle="See our Chromepet campus" align="left" />
               <div className="flex flex-1 flex-col px-6 py-8 lg:px-10 lg:py-10">
                 <h2 className="text-3xl leading-tight text-foreground lg:text-4xl">{campusTour.title}</h2>
                 <p className="mt-5 text-base leading-relaxed text-muted">{campusTour.description}</p>
@@ -519,7 +519,7 @@ export function AboutCampusTourSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-primary/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-primary/40 px-5 py-4 backdrop-blur-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white">Chrompet, Chennai</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white">Chromepet, Chennai</p>
                 </div>
               </div>
             </ScrollReveal>

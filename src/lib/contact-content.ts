@@ -2,11 +2,13 @@ import type { NavIconName } from "@/lib/navigation";
 import { contactContent, stockImages } from "@/lib/home-content";
 import { siteConfig } from "@/lib/navigation";
 
+const mapQuery = encodeURIComponent(siteConfig.map.query);
+
 export const contactPageContent = {
   header: {
     title: "Contact SBIST",
     description:
-      "Reach our admissions and administration teams for enquiries about programs, campus visits and student services at our Chrompet campus in Chennai.",
+      "Reach our admissions and administration teams for enquiries about programs, campus visits and student services at our Chromepet campus in Chennai.",
     breadcrumbs: [
       { label: "Home", href: "/" },
       { label: "Contact", href: "/contact" },
@@ -17,6 +19,7 @@ export const contactPageContent = {
     title: "Get in Touch",
     links: [
       { label: "Contact Us", href: "/contact", icon: "about" as NavIconName },
+      { label: "Admission Enquiry", href: "/admissions", icon: "apply" as NavIconName },
       { label: "Academics", href: "/academics", icon: "programs" as NavIconName },
       { label: "About SBIST", href: "/about", icon: "mission" as NavIconName },
       { label: "Careers", href: "/careers", icon: "faculty" as NavIconName },
@@ -33,7 +36,7 @@ export const contactPageContent = {
     {
       label: "Location",
       value: contactContent.address,
-      href: "https://maps.google.com/?q=No.+7+Works+Road,+Chrompet,+Chennai+600044",
+      href: `https://maps.google.com/?q=${mapQuery}`,
       icon: "map" as NavIconName,
     },
     {
@@ -42,20 +45,26 @@ export const contactPageContent = {
       href: `mailto:${contactContent.email}`,
       icon: "apply" as NavIconName,
     },
+    ...(siteConfig.phone
+      ? [
+          {
+            label: "Phone",
+            value: siteConfig.phone,
+            href: `tel:${siteConfig.phone.replace(/\s/g, "")}`,
+            icon: "faq" as NavIconName,
+          },
+        ]
+      : []),
   ],
   officeHours: {
     title: "Office Hours",
-    items: [
-      { day: "Monday – Friday", time: "9:00 AM – 5:00 PM" },
-      { day: "Saturday", time: "9:00 AM – 1:00 PM" },
-      { day: "Sunday & Public Holidays", time: "Closed" },
-    ],
+    items: siteConfig.officeHours,
   },
   form: {
-    eyebrow: "Send a Message",
-    title: "Write to Us",
+    eyebrow: "Student Enquiry",
+    title: "Send an Enquiry",
     description:
-      "Fill out the form below and our team will respond to your enquiry as soon as possible during office hours.",
+      "Share your details below. We will use your message to prepare a reply — until server email delivery is configured, you can also send directly via your email app.",
     subjects: [
       "General Enquiry",
       "Admissions",
@@ -63,18 +72,18 @@ export const contactPageContent = {
       "Campus Visit",
       "Other",
     ],
-    submitLabel: "Send Message",
+    submitLabel: "Send Enquiry",
     successMessage:
-      "Thank you for contacting SBIST. We have received your message and will get back to you shortly.",
+      "Thank you. Your enquiry details are ready. If your email app did not open, please write to office@sbist.in and we will respond during office hours.",
+    failureMessage:
+      "We could not complete automatic delivery. Please email office@sbist.in or try again.",
   },
   map: {
     title: "Find Us on the Map",
     description:
-      "SBIST is located on Works Road in Chrompet, Chennai — easily accessible by road and public transport from across the city.",
-    embedUrl:
-      "https://maps.google.com/maps?q=No.+7+Works+Road,+Chrompet,+Chennai+600044&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    directionsHref:
-      "https://maps.google.com/?q=No.+7+Works+Road,+Chrompet,+Chennai+600044",
+      "SBIST is located on Works Road in Chromepet, Chennai — easily accessible by road and public transport from across the city.",
+    embedUrl: `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`,
+    directionsHref: `https://maps.google.com/?q=${mapQuery}`,
   },
   departments: {
     eyebrow: "Department Contacts",
@@ -83,7 +92,7 @@ export const contactPageContent = {
       {
         title: "Admissions Office",
         description: "Applications, eligibility and enrollment support.",
-        href: "/contact",
+        href: "/admissions",
         icon: "apply" as NavIconName,
       },
       {
@@ -115,5 +124,46 @@ export const contactPageContent = {
 export const sbistContact = {
   address: contactContent.address,
   email: contactContent.email,
+  phone: siteConfig.phone,
   instituteName: siteConfig.name,
+};
+
+export const admissionsPageContent = {
+  header: {
+    title: "Admission Enquiry",
+    description:
+      "Start your SBIST application journey. Share your details and course interest — our admissions team will guide you through the next steps.",
+    breadcrumbs: [
+      { label: "Home", href: "/" },
+      { label: "Admissions", href: "/admissions" },
+    ],
+    backgroundImage: "/images/admission-2025-26.jpg",
+  },
+  intro: {
+    eyebrow: "Admissions",
+    title: "Student Admission Enquiry",
+    description:
+      "Use this form for undergraduate admission enquiries at our Chromepet campus. For online BIHER programmes, visit SBIOL.",
+  },
+  form: {
+    eyebrow: "Apply / Enquire",
+    title: "Admission Enquiry Form",
+    description:
+      "Tell us about the student and the programme of interest. Required fields help us route your enquiry correctly.",
+    submitLabel: "Submit Admission Enquiry",
+    successMessage:
+      "Thank you for your admission enquiry. If your email app did not open automatically, please write to office@sbist.in with your details.",
+    failureMessage:
+      "We could not complete automatic delivery. Please email office@sbist.in or call the office during working hours.",
+  },
+  sidebar: {
+    title: "Admissions",
+    links: [
+      { label: "Admission Form", href: "/admissions", icon: "apply" as NavIconName },
+      { label: "Programs", href: "/academics#courses", icon: "programs" as NavIconName },
+      { label: "Contact Office", href: "/contact", icon: "about" as NavIconName },
+      { label: "SBIOL Online", href: "/sbiol", icon: "tuition" as NavIconName },
+    ],
+    image: stockImages.students,
+  },
 };

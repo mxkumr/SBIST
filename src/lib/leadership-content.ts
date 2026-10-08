@@ -35,10 +35,10 @@ export const leadershipPageContent = {
       {
         title: "Healthcare & Medical Education",
         items: [
-          "Sree Balaji Medical College & Hospital, Chrompet",
+          "Sree Balaji Medical College & Hospital, Chromepet",
           "Sree Balaji Dental College, Pallikaranai",
           "Nandivarman Medical College & Hospital, Walajabad",
-          "JR Medical College & Hospital, Dindivanam",
+          "JR Medical College & Hospital, Tindivanam",
         ],
       },
       {

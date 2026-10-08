@@ -7,6 +7,8 @@ export const socialLabels: Record<SocialPlatform, string> = {
   instagram: "Instagram",
   linkedin: "LinkedIn",
   youtube: "YouTube",
+  twitter: "X (Twitter)",
+  whatsapp: "WhatsApp Community",
 };
 
 export const socialDescriptions: Record<SocialPlatform, string> = {
@@ -14,6 +16,8 @@ export const socialDescriptions: Record<SocialPlatform, string> = {
   instagram: "Daily moments from student life and campus culture.",
   linkedin: "News, careers and professional updates from SBIST.",
   youtube: "Campus tours, events and institute highlights.",
+  twitter: "Official updates on X — URL pending confirmation.",
+  whatsapp: "Community announcements — invite link pending confirmation.",
 };
 
 export function SocialIcon({
@@ -48,9 +52,31 @@ export function SocialIcon({
           <path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 5 12 5 12 5s-6 0-7.7.3A2.7 2.7 0 0 0 2.4 7.2 28.4 28.4 0 0 0 2 12a28.4 28.4 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9C6 19 12 19 12 19s6 0 7.7-.3a2.7 2.7 0 0 0 1.9-1.9A28.4 28.4 0 0 0 22 12a28.4 28.4 0 0 0-.4-4.8ZM10 15.2V8.8L15.5 12 10 15.2Z" />
         </svg>
       );
+    case "twitter":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.924L1.254 2.25H8.08l4.253 5.622L18.244 2.25Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+        </svg>
+      );
+    case "whatsapp":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.84c0 1.93.53 3.76 1.47 5.33L2 22l4.98-1.56a9.9 9.9 0 0 0 5.06 1.37h.01c5.46 0 9.89-4.4 9.89-9.84C21.94 6.4 17.5 2 12.04 2Zm5.75 14.06c-.24.68-1.4 1.25-1.93 1.33-.5.08-1.12.11-1.81-.11-.42-.14-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.39-.14-.2-1.16-1.54-1.16-2.94 0-1.4.73-2.09 1-2.37.24-.26.54-.33.72-.33h.52c.17 0 .39-.06.61.46.24.54.81 1.98.88 2.12.07.14.12.3.02.48-.1.2-.14.31-.28.48-.14.17-.3.37-.43.5-.14.14-.29.29-.12.56.17.28.75 1.23 1.61 2 .99.88 1.83 1.16 2.1 1.29.28.14.44.12.6-.07.17-.2.7-.81.89-1.09.19-.28.38-.23.64-.14.26.1 1.66.78 1.95.92.28.14.47.21.54.33.07.12.07.69-.17 1.37Z" />
+        </svg>
+      );
   }
 }
 
+/** Only platforms with a configured (non-empty) official URL */
 export function getSocialEntries() {
-  return Object.entries(siteConfig.social) as [SocialPlatform, string][];
+  return (Object.entries(siteConfig.social) as [SocialPlatform, string][]).filter(
+    ([, url]) => Boolean(url?.trim()),
+  );
+}
+
+/** Placeholder platforms awaiting official URLs — for admin reporting / future UI */
+export function getPendingSocialPlatforms() {
+  return (Object.entries(siteConfig.social) as [SocialPlatform, string][])
+    .filter(([, url]) => !url?.trim())
+    .map(([platform]) => platform);
 }

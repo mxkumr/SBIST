@@ -13,6 +13,14 @@ import { siteConfig } from "@/lib/navigation";
 export const metadata: Metadata = {
   title: `Contact | ${siteConfig.shortName}`,
   description: contactPageContent.header.description,
+  alternates: { canonical: `${siteConfig.url}/contact` },
+  openGraph: {
+    title: `Contact | ${siteConfig.shortName}`,
+    description: contactPageContent.header.description,
+    url: `${siteConfig.url}/contact`,
+    siteName: siteConfig.name,
+    type: "website",
+  },
 };
 
 export default function ContactPage() {
@@ -33,9 +41,9 @@ export default function ContactPage() {
         <ContactDepartmentsSection />
         <CTA
           title="Ready to Join SBIST?"
-          description="Take the first step toward an engineering career at our Chrompet campus. Apply now or reach out to our admissions team for guidance."
-          primaryLabel="Apply Now"
-          primaryHref="/contact"
+          description="Take the first step toward an engineering career at our Chromepet campus. Apply now or reach out to our admissions team for guidance."
+          primaryLabel="Admission Enquiry"
+          primaryHref="/admissions"
           secondaryLabel="Explore Academics"
           secondaryHref="/academics"
           image={cta.image}
