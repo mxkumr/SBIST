@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useOptionalAdmissionEnquiry } from "@/components/admission/AdmissionEnquiryContext";
 import {
   ScrollReveal,
   StaggerContainer,
@@ -120,16 +121,38 @@ function ApplyCard() {
         applications.
       </p>
 
-      <Link
-        href="/contact"
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold uppercase tracking-wide text-primary-dark transition-colors hover:bg-accent-hover"
-      >
-        Apply Now
-        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </Link>
+      <ProgramsApplyButton />
     </div>
+  );
+}
+
+function ProgramsApplyButton() {
+  const admission = useOptionalAdmissionEnquiry();
+
+  const className =
+    "mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold uppercase tracking-wide text-primary-dark transition-colors hover:bg-accent-hover";
+
+  const label = (
+    <>
+      Apply Now
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </>
+  );
+
+  if (admission) {
+    return (
+      <button type="button" onClick={admission.openAdmissionEnquiry} className={className}>
+        {label}
+      </button>
+    );
+  }
+
+  return (
+    <Link href="/contact" className={className}>
+      {label}
+    </Link>
   );
 }
 

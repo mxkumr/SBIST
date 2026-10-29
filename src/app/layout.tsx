@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Source_Sans_3, Source_Serif_4, Cinzel } from "next/font/google";
+import { AdmissionEnquiryLauncher } from "@/components/admission/AdmissionEnquiryLauncher";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/lib/navigation";
 import { defaultOgImage, organizationJsonLd, siteUrl } from "@/lib/seo";
@@ -101,7 +102,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col antialiased">
         <JsonLd data={organizationJsonLd} />
-        {children}
+        <AdmissionEnquiryLauncher>
+          {children}
+        </AdmissionEnquiryLauncher>
       </body>
     </html>
   );

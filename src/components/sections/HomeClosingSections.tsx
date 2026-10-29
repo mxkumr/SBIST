@@ -29,8 +29,21 @@ export function HomeClosingSections() {
                 Get in Touch
               </Button>
             </div>
-            <div className="mx-auto mt-10 flex max-w-lg flex-col gap-2 border-t border-border pt-8 text-sm text-muted sm:flex-row sm:justify-center sm:gap-8">
+            <div className="mx-auto mt-10 flex max-w-2xl flex-col gap-2 border-t border-border pt-8 text-sm text-muted sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-2">
               <p>{contactContent.address}</p>
+              <p className="font-medium text-primary">
+                {contactContent.phones.map((phone, index) => (
+                  <span key={phone}>
+                    {index > 0 ? ", " : ""}
+                    <a
+                      href={`tel:${phone.replace(/\s/g, "")}`}
+                      className="hover:text-accent"
+                    >
+                      {phone}
+                    </a>
+                  </span>
+                ))}
+              </p>
               <a
                 href={`mailto:${contactContent.email}`}
                 className="font-medium text-primary hover:text-accent"

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useOptionalAdmissionEnquiry } from "@/components/admission/AdmissionEnquiryContext";
 import { NavIcon } from "@/components/layout/NavIcons";
 import { DepartmentCard } from "@/components/cards/DepartmentCard";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion/ScrollAnimations";
@@ -105,17 +106,30 @@ function AccentBar({ className = "" }: { className?: string }) {
 }
 
 function ArrowPillLink({ href, children }: { href: string; children: ReactNode }) {
+  const admission = useOptionalAdmissionEnquiry();
+  const className =
+    "group inline-flex items-center gap-3 rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-all hover:border-primary/25 hover:shadow-md";
+  const arrow = (
+    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white transition-transform group-hover:scale-110">
+      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </span>
+  );
+
+  if (href === "#admission-enquiry" && admission) {
+    return (
+      <button type="button" onClick={admission.openAdmissionEnquiry} className={className}>
+        {children}
+        {arrow}
+      </button>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className="group inline-flex items-center gap-3 rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-all hover:border-primary/25 hover:shadow-md"
-    >
+    <Link href={href} className={className}>
       {children}
-      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white transition-transform group-hover:scale-110">
-        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </span>
+      {arrow}
     </Link>
   );
 }
@@ -487,6 +501,48 @@ export function AlumniSection() {
   );
 }
 
+function AdmissionNavLink({
+  link,
+}: {
+  link: (typeof academicsPageContent.admissions.links)[number];
+}) {
+  const admission = useOptionalAdmissionEnquiry();
+  const opensAdmission = link.href === "#admission-enquiry";
+  const className = "group flex w-full items-center gap-4 py-4 text-left transition-colors hover:text-primary";
+  const body = (
+    <>
+      <IconBadge icon={link.icon} size="sm" />
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-semibold text-foreground group-hover:text-primary">{link.label}</p>
+        <p className="text-xs text-muted">{link.description}</p>
+      </div>
+      <svg
+        className="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-primary"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </>
+  );
+
+  if (opensAdmission && admission) {
+    return (
+      <button type="button" onClick={admission.openAdmissionEnquiry} className={className}>
+        {body}
+      </button>
+    );
+  }
+
+  return (
+    <Link href={link.href} className={className}>
+      {body}
+    </Link>
+  );
+}
+
 export function AdmissionsSection() {
   const { admissions, notices } = academicsPageContent;
 
@@ -502,25 +558,7 @@ export function AdmissionsSection() {
                 <ul className="mt-6 divide-y divide-border">
                   {admissions.links.map((link) => (
                     <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="group flex items-center gap-4 py-4 transition-colors hover:text-primary"
-                      >
-                        <IconBadge icon={link.icon} size="sm" />
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-semibold text-foreground group-hover:text-primary">{link.label}</p>
-                          <p className="text-xs text-muted">{link.description}</p>
-                        </div>
-                        <svg
-                          className="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-primary"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </Link>
+                      <AdmissionNavLink link={link} />
                     </li>
                   ))}
                 </ul>

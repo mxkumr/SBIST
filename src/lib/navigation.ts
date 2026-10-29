@@ -73,8 +73,9 @@ export const siteConfig = {
   shortName: "SBIST",
   url: "https://www.sbist.in",
   logo: "/images/sbist-logo.jpg",
-  email: "office@sbist.in",
-  phone: "",
+  email: "officesbist@gmail.com",
+  phone: "+91 9150135754",
+  phones: ["+91 9150135754", "+91 9840055185"] as const,
   address: "No. 7 Works Road, Chromepet, Chennai - 600 044",
   social: {
     facebook: "https://www.facebook.com/profile.php?id=61592126405933",

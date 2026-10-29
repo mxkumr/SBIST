@@ -140,8 +140,8 @@ export const academicsPageContent = {
         image: "/images/SREE_Balaji_logo.svg",
       },
     ],
-    ctaHref: "/contact",
-    ctaLabel: "Contact Admissions",
+    ctaHref: "#admission-enquiry",
+    ctaLabel: "Admission Form",
   },
   admissions: {
     eyebrow: "Admissions",
@@ -151,8 +151,8 @@ export const academicsPageContent = {
     links: [
       {
         label: "Apply Now",
-        description: "Contact our admissions team to begin your application",
-        href: "/contact",
+        description: "Submit the admission form to begin your application",
+        href: "#admission-enquiry",
         icon: "apply" as NavIconName,
       },
       {

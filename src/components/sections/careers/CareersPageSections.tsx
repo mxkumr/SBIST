@@ -353,12 +353,19 @@ export function CareersApplySection() {
                         <IconBadge icon="requirements" size="sm" />
                         <div>
                           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">Phone</p>
-                          <a
-                            href={`tel:${apply.phone.replace(/\s/g, "")}`}
-                            className="mt-1 block text-base font-medium text-primary transition-colors hover:text-accent"
-                          >
-                            {apply.phone}
-                          </a>
+                          <p className="mt-1 text-base font-medium text-primary">
+                            {(apply.phones ?? [apply.phone]).map((phone, index) => (
+                              <span key={phone}>
+                                {index > 0 ? ", " : ""}
+                                <a
+                                  href={`tel:${phone.replace(/\s/g, "")}`}
+                                  className="transition-colors hover:text-accent"
+                                >
+                                  {phone}
+                                </a>
+                              </span>
+                            ))}
+                          </p>
                         </div>
                       </div>
                     </StaggerItem>

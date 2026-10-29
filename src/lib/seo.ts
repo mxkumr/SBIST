@@ -30,7 +30,7 @@ export const organizationJsonLd = {
     longitude: 80.137863,
   },
   sameAs: Object.values(siteConfig.social),
-  telephone: siteConfig.phone || undefined,
+  telephone: [...siteConfig.phones],
 };
 
 type PageMetaInput = {

@@ -54,14 +54,17 @@ export function Footer() {
                   {siteConfig.email}
                 </a>
               </p>
-              {siteConfig.phone && (
-                <p>
-                  <span className="font-medium text-white">Phone:</span>{" "}
-                  <a href={`tel:${siteConfig.phone}`} className="hover:text-accent">
-                    {siteConfig.phone}
-                  </a>
-                </p>
-              )}
+              <p>
+                <span className="font-medium text-white">Phone:</span>{" "}
+                {siteConfig.phones.map((phone, index) => (
+                  <span key={phone}>
+                    {index > 0 ? ", " : ""}
+                    <a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-accent">
+                      {phone}
+                    </a>
+                  </span>
+                ))}
+              </p>
             </div>
           </div>
 

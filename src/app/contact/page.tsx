@@ -36,7 +36,7 @@ export default function ContactPage() {
           title="Ready to Join SBIST?"
           description="Take the first step toward an engineering career at our Chromepet campus. Apply now or reach out to our admissions team for guidance."
           primaryLabel="Apply Now"
-          primaryHref="/contact"
+          openAdmissionOnPrimary
           secondaryLabel="Explore Academics"
           secondaryHref="/academics"
           image={cta.image}

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent, type ReactNode } from "react";
+import { useOptionalAdmissionEnquiry } from "@/components/admission/AdmissionEnquiryContext";
 import { NavIcon } from "@/components/layout/NavIcons";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion/ScrollAnimations";
@@ -133,11 +134,38 @@ function ContactSidebar() {
 
 function ContactForm() {
   const { form } = contactPageContent;
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    if (status === "submitting") return;
+
+    const formEl = event.currentTarget;
+    const data = new FormData(formEl);
+    setStatus("submitting");
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          subject: data.get("subject"),
+          message: data.get("message"),
+        }),
+      });
+      const json = (await res.json()) as { ok?: boolean; error?: string };
+      if (!res.ok || !json.ok) throw new Error(json.error || "Unable to send message.");
+      setStatus("success");
+      formEl.reset();
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Unable to send message.");
+    }
   }
 
   const inputClass =
@@ -150,7 +178,7 @@ function ContactForm() {
         <h2 className="text-2xl text-foreground lg:text-3xl">{form.title}</h2>
         <AccentBar className="group mt-4" />
 
-        {submitted ? (
+        {status === "success" ? (
           <div
             className="mt-8 rounded-xl border border-accent/30 bg-accent/5 px-6 py-8 text-center"
             role="status"
@@ -167,13 +195,13 @@ function ContactForm() {
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-foreground">
-                  Full Name
+                  Full Name <span className="text-accent">*</span>
                 </label>
                 <input id="contact-name" name="name" type="text" required className={inputClass} placeholder="Your name" />
               </div>
               <div>
                 <label htmlFor="contact-email" className="mb-2 block text-sm font-medium text-foreground">
-                  Email Address
+                  Email Address <span className="text-accent">*</span>
                 </label>
                 <input
                   id="contact-email"
@@ -189,11 +217,11 @@ function ContactForm() {
               <label htmlFor="contact-phone" className="mb-2 block text-sm font-medium text-foreground">
                 Phone Number <span className="text-muted">(optional)</span>
               </label>
-              <input id="contact-phone" name="phone" type="tel" className={inputClass} placeholder="+91" />
+              <input id="contact-phone" name="phone" type="tel" className={inputClass} placeholder="+91 XXXXX XXXXX" />
             </div>
             <div>
               <label htmlFor="contact-subject" className="mb-2 block text-sm font-medium text-foreground">
-                Subject
+                Subject <span className="text-accent">*</span>
               </label>
               <select id="contact-subject" name="subject" required className={inputClass} defaultValue="">
                 <option value="" disabled>
@@ -208,7 +236,7 @@ function ContactForm() {
             </div>
             <div>
               <label htmlFor="contact-message" className="mb-2 block text-sm font-medium text-foreground">
-                Message
+                Message <span className="text-accent">*</span>
               </label>
               <textarea
                 id="contact-message"
@@ -219,8 +247,13 @@ function ContactForm() {
                 placeholder="How can we help you?"
               />
             </div>
-            <Button type="submit" variant="primary" size="lg">
-              {form.submitLabel}
+            {status === "error" && (
+              <p className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">
+                {error}
+              </p>
+            )}
+            <Button type="submit" variant="primary" size="lg" disabled={status === "submitting"}>
+              {status === "submitting" ? "Sending..." : form.submitLabel}
             </Button>
           </form>
         )}
@@ -297,7 +330,21 @@ export function ContactMainSection() {
                       <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
                         {detail.label}
                       </p>
-                      {detail.href ? (
+                      {"phones" in detail && detail.phones ? (
+                        <p className="mt-2 text-base leading-relaxed text-foreground">
+                          {detail.phones.map((phone, index) => (
+                            <span key={phone}>
+                              {index > 0 ? ", " : ""}
+                              <a
+                                href={`tel:${phone.replace(/\s/g, "")}`}
+                                className="transition-colors hover:text-primary"
+                              >
+                                {phone}
+                              </a>
+                            </span>
+                          ))}
+                        </p>
+                      ) : detail.href ? (
                         <a
                           href={detail.href}
                           target={detail.label === "Location" ? "_blank" : undefined}
@@ -388,6 +435,55 @@ export function ContactMainSection() {
   );
 }
 
+function DepartmentContactCard({
+  item,
+}: {
+  item: (typeof contactPageContent.departments.items)[number];
+}) {
+  const admission = useOptionalAdmissionEnquiry();
+  const opensAdmission = item.href === "#admission-enquiry";
+
+  const card = (
+    <SectionCard className="h-full transition-colors hover:border-primary/20">
+      <div className="px-6 py-8 lg:px-8 lg:py-10">
+        <IconBadge icon={item.icon} size="md" />
+        <h3 className="mt-5 text-xl text-foreground group-hover:text-primary">{item.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted">{item.description}</p>
+        <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+          {opensAdmission ? "Open admission form" : "Learn more"}
+          <svg
+            className="h-4 w-4 transition-transform group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </span>
+      </div>
+    </SectionCard>
+  );
+
+  if (opensAdmission && admission) {
+    return (
+      <button
+        type="button"
+        onClick={admission.openAdmissionEnquiry}
+        className="group motion-lift block h-full w-full text-left"
+      >
+        {card}
+      </button>
+    );
+  }
+
+  return (
+    <Link href={item.href} className="group motion-lift block h-full">
+      {card}
+    </Link>
+  );
+}
+
 export function ContactDepartmentsSection() {
   const { departments } = contactPageContent;
 
@@ -407,27 +503,7 @@ export function ContactDepartmentsSection() {
         <StaggerContainer className="mt-8 grid gap-6 lg:grid-cols-3 lg:gap-8" stagger={0.08}>
           {departments.items.map((item) => (
             <StaggerItem key={item.title}>
-              <Link href={item.href} className="group motion-lift block h-full">
-                <SectionCard className="h-full transition-colors hover:border-primary/20">
-                  <div className="px-6 py-8 lg:px-8 lg:py-10">
-                    <IconBadge icon={item.icon} size="md" />
-                    <h3 className="mt-5 text-xl text-foreground group-hover:text-primary">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted">{item.description}</p>
-                    <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                      Learn more
-                      <svg
-                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </div>
-                </SectionCard>
-              </Link>
+              <DepartmentContactCard item={item} />
             </StaggerItem>
           ))}
         </StaggerContainer>

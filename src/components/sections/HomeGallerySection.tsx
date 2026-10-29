@@ -2,12 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import {
-  ScrollReveal,
-  StaggerContainer,
-  StaggerItem,
-} from "@/components/motion/ScrollAnimations";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ScrollReveal } from "@/components/motion/ScrollAnimations";
 import { homeGalleryContent, type HomeGalleryItem } from "@/lib/home-content";
 
 function MortarboardIcon() {
@@ -30,36 +26,32 @@ function MortarboardIcon() {
   );
 }
 
-function GalleryFrame({
+function GalleryCard({
   item,
-  className = "",
-  sizes,
   onOpen,
 }: {
   item: HomeGalleryItem;
-  className?: string;
-  sizes: string;
   onOpen: () => void;
 }) {
   return (
     <button
       type="button"
       onClick={onOpen}
-      className={`group relative overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${className}`}
+      className="group relative aspect-[4/5] w-[72vw] max-w-[280px] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-white shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 sm:w-[240px] lg:w-[260px]"
       aria-label={`View ${item.label}`}
     >
       <Image
         src={item.src}
         alt={item.alt}
         fill
-        quality={90}
+        quality={85}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        sizes={sizes}
+        sizes="(max-width: 640px) 72vw, 260px"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-primary-dark/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-primary-dark/15 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
       <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
         <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
-          SBIST Moment
+          Campus Gallery
         </span>
         <p className="mt-1 font-serif text-base font-semibold text-white sm:text-lg">
           {item.label}
@@ -91,7 +83,12 @@ function Lightbox({
       if (e.key === "ArrowRight") onNext();
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
   }, [onClose, onPrev, onNext]);
 
   return (
@@ -170,14 +167,37 @@ function Lightbox({
 export function HomeGallerySection() {
   const { eyebrow, title, description, items, viewMoreHref, viewMoreLabel } =
     homeGalleryContent;
-  const hero = items.find((i) => i.role === "hero")!;
-  const sides = items.filter((i) => i.role === "side");
-  const strip = items.filter((i) => i.role === "strip");
+  const scrollerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
 
-  const openItem = (item: HomeGalleryItem) => {
-    const index = items.findIndex((i) => i.src === item.src);
-    setActiveIndex(index >= 0 ? index : 0);
+  const updateScrollState = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setCanPrev(el.scrollLeft > 8);
+    setCanNext(el.scrollLeft < max - 8);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [updateScrollState]);
+
+  const scrollByCard = (dir: -1 | 1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-gallery-card]");
+    const amount = card ? card.offsetWidth + 16 : el.clientWidth * 0.7;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
   };
 
   return (
@@ -206,59 +226,58 @@ export function HomeGallerySection() {
               <div className="mt-4 h-0.5 w-10 rounded-full bg-accent/50" aria-hidden />
             </div>
 
-            <Link
-              href={viewMoreHref}
-              className="inline-flex shrink-0 items-center gap-2 self-start border-b border-primary pb-1 text-sm font-semibold text-primary transition-colors hover:border-accent hover:text-accent sm:self-auto"
-            >
-              {viewMoreLabel}
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+            <div className="flex items-center gap-3 self-start sm:self-auto">
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => scrollByCard(-1)}
+                  disabled={!canPrev}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-primary transition-colors hover:border-primary/30 hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border disabled:hover:bg-white disabled:hover:text-primary"
+                  aria-label="Scroll gallery left"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollByCard(1)}
+                  disabled={!canNext}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-primary transition-colors hover:border-primary/30 hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-border disabled:hover:bg-white disabled:hover:text-primary"
+                  aria-label="Scroll gallery right"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              <Link
+                href={viewMoreHref}
+                className="inline-flex shrink-0 items-center gap-2 border-b border-primary pb-1 text-sm font-semibold text-primary transition-colors hover:border-accent hover:text-accent"
+              >
+                {viewMoreLabel}
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
+      </div>
 
-        <div className="mt-12 grid gap-3 sm:gap-4 lg:grid-cols-12 lg:grid-rows-[minmax(280px,1fr)_minmax(200px,0.75fr)]">
-          <ScrollReveal className="lg:col-span-7 lg:row-span-2">
-            <GalleryFrame
-              item={hero}
-              className="h-full min-h-[280px] w-full sm:min-h-[360px] lg:min-h-[520px]"
-              sizes="(max-width: 1024px) 100vw, 60vw"
-              onOpen={() => openItem(hero)}
-            />
-          </ScrollReveal>
-
-          {sides.map((item, index) => (
-            <ScrollReveal
-              key={item.src}
-              delay={0.08 + index * 0.06}
-              className="lg:col-span-5"
-            >
-              <GalleryFrame
-                item={item}
-                className="h-full min-h-[200px] w-full sm:min-h-[220px]"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                onOpen={() => openItem(item)}
-              />
-            </ScrollReveal>
+      <div className="relative mt-12">
+        <div
+          ref={scrollerRef}
+          className="flex gap-4 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory lg:px-[max(1rem,calc((100vw-80rem)/2+2rem))] [&::-webkit-scrollbar]:hidden"
+          aria-label="Campus gallery photos"
+        >
+          {items.map((item, index) => (
+            <div key={item.src} data-gallery-card>
+              <GalleryCard item={item} onOpen={() => setActiveIndex(index)} />
+            </div>
           ))}
         </div>
-
-        <StaggerContainer
-          className="mt-3 grid grid-cols-2 gap-3 sm:mt-4 sm:gap-4 md:grid-cols-3 lg:grid-cols-6"
-          stagger={0.05}
-        >
-          {strip.map((item) => (
-            <StaggerItem key={item.src}>
-              <GalleryFrame
-                item={item}
-                className="aspect-[3/4] w-full sm:aspect-[4/5]"
-                sizes="(max-width: 768px) 50vw, 16vw"
-                onOpen={() => openItem(item)}
-              />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
       </div>
 
       {activeIndex !== null && (

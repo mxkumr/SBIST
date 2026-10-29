@@ -95,10 +95,14 @@ Troubleshooting
 - Build fails on server → Confirm Node 20+ and run npm install again.
 - Missing images → Ensure public/images/ was uploaded (hero-campus.jpg, sbist-logo.jpg).
 - Old content after update → Re-upload zip, npm run build, restart app.
-- Contact form → Uses mailto:office@sbist.in (no server-side email in this build).
+- Admission / contact forms → POST /api/admission-enquiry and email the office.
+  Configure either Resend (RESEND_API_KEY + MAIL_FROM) or SMTP
+  (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS) in the Node.js app environment.
+  Optional: ADMISSION_TO_EMAIL (defaults to officesbist@gmail.com).
 
 
 Support contacts (site content)
 -------------------------------
-Email:   office@sbist.in
+Email:   officesbist@gmail.com
+Phone:   +91 9150135754, +91 9840055185
 Address: No. 7 Works Road, Chromepet, Chennai - 600 044

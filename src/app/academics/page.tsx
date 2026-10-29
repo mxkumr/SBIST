@@ -11,7 +11,7 @@ import {
   WhyJoinSection,
 } from "@/components/sections/academics/AcademicsPageSections";
 import { CTA } from "@/components/sections/CTA";
-import { academicsPageContent } from "@/lib/academics-content";
+import { academicsPageContent } from "@/lib/academics-content";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Academics",
@@ -42,7 +42,7 @@ export default function AcademicsPage() {
           title="Ready to Begin Your Engineering Career?"
           description="Apply to SBIST and join a community of aspiring engineers backed by qualified faculty, modern laboratories and strong industry connections in Chennai."
           primaryLabel="Apply Now"
-          primaryHref="/contact"
+          openAdmissionOnPrimary
           secondaryLabel="Explore Programs"
           secondaryHref="/academics#courses"
           image={academicsPageContent.cta.image}

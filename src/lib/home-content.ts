@@ -311,7 +311,8 @@ export const campusLifeContent = {
 
 export const contactContent = {
   address: "No. 7 Works Road, Chromepet, Chennai - 600 044",
-  email: "office@sbist.in",
+  email: "officesbist@gmail.com",
+  phones: ["+91 9150135754", "+91 9840055185"] as const,
 };
 
 export const foundersNoteContent = {
@@ -382,71 +383,71 @@ export type HomeGalleryItem = {
   src: string;
   alt: string;
   label: string;
-  role: "hero" | "side" | "strip";
 };
 
-/** Homepage community gallery - curated mosaic with link to full campus gallery */
+/** Homepage gallery scroll - curated photos from the campus gallery */
 export const homeGalleryContent = {
-  eyebrow: "Our Community",
-  title: "One Campus. One Team.",
+  eyebrow: "Campus Gallery",
+  title: "A Look Inside SBIST",
   description:
-    "From labs and classrooms to celebrations and achievements - SBIST is built by people who learn, create and grow together.",
+    "Scroll through labs, classrooms and campus life - then explore the full gallery for more.",
   viewMoreHref: "/campus-life#gallery",
-  viewMoreLabel: "View more",
+  viewMoreLabel: "View full gallery",
   items: [
     {
-      src: "/images/freshers-day.jpg",
-      alt: "Students celebrating together at Freshers Day",
-      label: "Celebrate Together",
-      role: "hero",
-    },
-    {
       src: "/images/Gallery/auditorium.JPG",
-      alt: "Modern SBIST seminar hall and auditorium",
-      label: "Spaces to Gather",
-      role: "side",
+      alt: "SBIST auditorium",
+      label: "Auditorium",
     },
     {
-      src: "/images/community-programs.jpg",
-      alt: "Students volunteering in a community outreach program",
-      label: "Serve Together",
-      role: "side",
+      src: "/images/Gallery/civil.jpg",
+      alt: "Civil engineering laboratory",
+      label: "Civil Lab",
     },
     {
-      src: "/images/Gallery/lab3.JPG",
-      alt: "Students collaborating in the engineering laboratory",
-      label: "Build Side by Side",
-      role: "strip",
+      src: "/images/Gallery/Classroom.JPG",
+      alt: "Modern lecture classroom",
+      label: "Lecture Hall",
     },
     {
-      src: "/images/Gallery/Classroom3.JPG",
-      alt: "Students learning together in a modern classroom",
-      label: "Learn Together",
-      role: "strip",
+      src: "/images/Gallery/computer.jpg",
+      alt: "Computing facilities",
+      label: "Computing",
     },
     {
       src: "/images/Gallery/computer-lab.JPG",
-      alt: "Peers working together in the computer lab",
-      label: "Create Together",
-      role: "strip",
+      alt: "Modern computer laboratory",
+      label: "IT Laboratory",
     },
     {
-      src: "/images/Gallery/main-building-front.JPG",
-      alt: "Front entrance of Sree Balaji Institute of Science and Technology",
-      label: "Our Campus",
-      role: "strip",
+      src: "/images/Gallery/electrical.jpg",
+      alt: "Electrical engineering facilities",
+      label: "Electrical",
     },
     {
-      src: "/images/Gallery/interior2.JPG",
-      alt: "Bright campus interiors and common spaces",
-      label: "Belong Here",
-      role: "strip",
+      src: "/images/Gallery/interior3.JPG",
+      alt: "Campus hallway and spaces",
+      label: "Walkways",
     },
     {
-      src: "/images/Gallery/computer1.JPG",
-      alt: "Modern computing facilities for hands-on learning",
-      label: "Proud Moments",
-      role: "strip",
+      src: "/images/Gallery/main-building-side.JPG",
+      alt: "Main academic block side view",
+      label: "Academic Block",
+    },
+    {
+      src: "/images/Gallery/mechanical.jpg",
+      alt: "Mechanical engineering workshop",
+      label: "Mechanical",
+    },
+    {
+      src: "/images/Gallery/slide-1.jpg",
+      alt: "Campus highlight view",
+      label: "Campus Life",
+    },
+    {
+      src: "/images/freshers-day.jpg",
+      alt: "Students at Freshers Day celebration",
+      label: "Freshers Day",
     },
   ] satisfies HomeGalleryItem[],
 };

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { useOptionalAdmissionEnquiry } from "@/components/admission/AdmissionEnquiryContext";
 import { NavIcon } from "@/components/layout/NavIcons";
 import { MegaMenu } from "@/components/layout/MegaMenu";
 import { mainNavigation, siteConfig } from "@/lib/navigation";
@@ -312,12 +313,21 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
 
 export function Navbar({ variant = "default" }: NavbarProps) {
   const isHero = variant === "hero";
+  const admission = useOptionalAdmissionEnquiry();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const closeMegaMenu = useCallback(() => setActiveMenu(null), []);
   const closeMobileMenu = useCallback(() => setMobileOpen(false), []);
+  const openApply = useCallback(() => {
+    closeMobileMenu();
+    if (admission) {
+      admission.openAdmissionEnquiry();
+      return;
+    }
+    window.location.href = "/contact";
+  }, [admission, closeMobileMenu]);
   const toggleMenu = useCallback((label: string) => {
     setActiveMenu((prev) => (prev === label ? null : label));
   }, []);
@@ -373,11 +383,17 @@ export function Navbar({ variant = "default" }: NavbarProps) {
         <div className="hidden border-b border-border bg-primary lg:block">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs text-white/90 lg:px-8">
             <div className="flex items-center gap-6">
-              {siteConfig.phone && (
-                <a href={`tel:${siteConfig.phone}`} className="hover:text-white">
-                  {siteConfig.phone}
-                </a>
-              )}
+              <span className="flex items-center gap-3">
+                {siteConfig.phones.map((phone) => (
+                  <a
+                    key={phone}
+                    href={`tel:${phone.replace(/\s/g, "")}`}
+                    className="hover:text-white"
+                  >
+                    {phone}
+                  </a>
+                ))}
+              </span>
               <a href={`mailto:${siteConfig.email}`} className="hover:text-white">
                 {siteConfig.email}
               </a>
@@ -451,13 +467,14 @@ export function Navbar({ variant = "default" }: NavbarProps) {
             {mobileOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
 
-          <Link
-            href="/contact"
+          <button
+            type="button"
+            onClick={openApply}
             className="hidden items-center gap-2 rounded-full bg-[#f5c518] px-4 py-2 text-xs font-bold text-[#1a1a1a] motion-premium hover:bg-[#e8b80f] sm:inline-flex sm:gap-3 sm:px-5 sm:py-2.5 sm:text-sm"
           >
             Apply Now
             <ApplyArrowIcon />
-          </Link>
+          </button>
         </div>
       </nav>
 
@@ -483,25 +500,29 @@ export function Navbar({ variant = "default" }: NavbarProps) {
             </div>
 
             <div className="mt-4 space-y-3 border-t border-border px-1 pt-4">
-              <Link
-                href="/contact"
-                onClick={closeMobileMenu}
+              <button
+                type="button"
+                onClick={openApply}
                 className="flex w-full items-center justify-center gap-3 rounded-full bg-[#f5c518] px-5 py-3.5 text-sm font-bold text-[#1a1a1a] shadow-sm transition-colors hover:bg-[#e8b80f]"
               >
                 Apply Now
                 <ApplyArrowIcon />
-              </Link>
+              </button>
 
               <div className="rounded-2xl bg-primary px-4 py-3.5 text-white">
                 <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-accent-bright">
                   Contact
                 </p>
                 <div className="mt-2.5 flex flex-col gap-1.5 text-sm text-white/90">
-                  {siteConfig.phone && (
-                    <a href={`tel:${siteConfig.phone}`} className="hover:text-accent-bright">
-                      {siteConfig.phone}
+                  {siteConfig.phones.map((phone) => (
+                    <a
+                      key={phone}
+                      href={`tel:${phone.replace(/\s/g, "")}`}
+                      className="hover:text-accent-bright"
+                    >
+                      {phone}
                     </a>
-                  )}
+                  ))}
                   <a href={`mailto:${siteConfig.email}`} className="hover:text-accent-bright">
                     {siteConfig.email}
                   </a>

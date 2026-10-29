@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { useOptionalAdmissionEnquiry } from "@/components/admission/AdmissionEnquiryContext";
 import { ScrollReveal, ScaleReveal } from "@/components/motion/ScrollAnimations";
 
 export type CTAProps = {
@@ -8,6 +9,8 @@ export type CTAProps = {
   description?: string;
   primaryLabel?: string;
   primaryHref?: string;
+  /** When true, primary button opens the admission enquiry popup */
+  openAdmissionOnPrimary?: boolean;
   secondaryLabel?: string;
   secondaryHref?: string;
   /** @deprecated Image panel removed from CTA */
@@ -20,10 +23,24 @@ export function CTA({
   description = "Start your academic journey with an institute committed to excellence, innovation and student success.",
   primaryLabel = "Apply Now",
   primaryHref = "/contact",
+  openAdmissionOnPrimary = false,
   secondaryLabel = "Learn More",
   secondaryHref = "/about",
   variant = "split",
 }: CTAProps) {
+  const admission = useOptionalAdmissionEnquiry();
+
+  const primaryButton =
+    openAdmissionOnPrimary && admission ? (
+      <Button type="button" variant="accent" size="lg" onClick={admission.openAdmissionEnquiry}>
+        {primaryLabel}
+      </Button>
+    ) : (
+      <Button href={primaryHref} variant="accent" size="lg">
+        {primaryLabel}
+      </Button>
+    );
+
   if (variant === "default") {
     return (
       <section className="bg-primary py-16 lg:py-20">
@@ -34,9 +51,7 @@ export function CTA({
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-white/80">{description}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button href={primaryHref} variant="accent" size="lg">
-                {primaryLabel}
-              </Button>
+              {primaryButton}
               {secondaryHref && secondaryLabel && (
                 <Button
                   href={secondaryHref}
@@ -67,9 +82,7 @@ export function CTA({
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80">{description}</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href={primaryHref} variant="accent" size="lg">
-                {primaryLabel}
-              </Button>
+              {primaryButton}
               {secondaryHref && secondaryLabel && (
                 <Button href={secondaryHref} variant="white" size="lg">
                   {secondaryLabel}

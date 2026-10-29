@@ -37,6 +37,13 @@ export const contactPageContent = {
       icon: "map" as NavIconName,
     },
     {
+      label: "Phone",
+      value: contactContent.phones.join(", "),
+      href: `tel:${contactContent.phones[0].replace(/\s/g, "")}`,
+      phones: contactContent.phones,
+      icon: "apply" as NavIconName,
+    },
+    {
       label: "Email",
       value: contactContent.email,
       href: `mailto:${contactContent.email}`,
@@ -52,20 +59,20 @@ export const contactPageContent = {
     ],
   },
   form: {
-    eyebrow: "Admission Enquiry",
-    title: "Admission Enquiry",
+    eyebrow: "Get in Touch",
+    title: "Get in Touch",
     description:
-      "Fill out the form below and our admissions team will respond to your enquiry as soon as possible during office hours.",
+      "Have a general question or need help from our office? Send us a message and we will respond during office hours.",
     subjects: [
       "General Enquiry",
-      "Admissions",
-      "Academic Programs",
       "Campus Visit",
+      "Academic Programs",
+      "Partnership",
       "Other",
     ],
-    submitLabel: "Submit Enquiry",
+    submitLabel: "Send Message",
     successMessage:
-      "Thank you for your admission enquiry. We have received your message and will get back to you shortly.",
+      "Thank you for contacting SBIST. We have received your message and will get back to you shortly.",
   },
   map: {
     title: "Find Us on the Map",
@@ -83,7 +90,7 @@ export const contactPageContent = {
       {
         title: "Admissions Office",
         description: "Applications, eligibility and enrollment support.",
-        href: "/contact",
+        href: "#admission-enquiry",
         icon: "apply" as NavIconName,
       },
       {
