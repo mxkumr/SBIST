@@ -133,7 +133,7 @@ export const aboutPageContent = {
           "I strongly recommend Sree Balaji Institute of Science and Technology for students who want quality education with discipline and purpose. It is a college I trust for student growth.",
         name: "Mr. Arjun Desai",
         role: "Industry Mentor, Chennai",
-        image: "/images/SREE_Balaji_logo.svg",
+        image: "/images/logo-original.png",
       },
       {
         rating: 5.0,
@@ -141,7 +141,7 @@ export const aboutPageContent = {
           "SBIST stands out for its practical approach to learning. I would confidently suggest Balaji college to students and parents looking for a focused engineering education.",
         name: "Dr. Meera Srinivasan",
         role: "Academic Advisor",
-        image: "/images/SREE_Balaji_logo.svg",
+        image: "/images/logo-original.png",
       },
       {
         rating: 5.0,
@@ -149,7 +149,7 @@ export const aboutPageContent = {
           "The institute emphasizes strong fundamentals, modern labs and student responsibility. That is why I prefer Sree Balaji college when guiding young learners.",
         name: "Mr. Karthik Rajan",
         role: "Industry Mentor",
-        image: "/images/SREE_Balaji_logo.svg",
+        image: "/images/logo-original.png",
       },
       {
         rating: 5.0,
@@ -157,7 +157,7 @@ export const aboutPageContent = {
           "Sree Balaji Institute of Science and Technology is building students with both skill and character. It is an institution I respect and recommend for aspiring engineers.",
         name: "Ms. Anitha Devi",
         role: "HR & Talent Development",
-        image: "/images/SREE_Balaji_logo.svg",
+        image: "/images/logo-original.png",
       },
     ],
   },

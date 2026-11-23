@@ -93,7 +93,7 @@ Troubleshooting
 ---------------
 - 503 / app not running → Restart the Node.js app in cPanel.
 - Build fails on server → Confirm Node 20+ and run npm install again.
-- Missing images → Ensure public/images/ was uploaded (hero-campus.jpg, sbist-logo.jpg).
+- Missing images → Ensure public/images/ was uploaded (hero-campus.jpg, logo-original.png).
 - Old content after update → Re-upload zip, npm run build, restart app.
 - Admission / contact forms → POST /api/admission-enquiry and email the office.
   Configure either Resend (RESEND_API_KEY + MAIL_FROM) or SMTP

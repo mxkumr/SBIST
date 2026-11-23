@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     "B.Tech Chennai",
   ],
   icons: {
-    icon: [{ url: "/images/SREE_Balaji_logo.svg", type: "image/svg+xml" }],
-    shortcut: "/images/SREE_Balaji_logo.svg",
-    apple: "/images/SREE_Balaji_logo.svg",
+    icon: [{ url: "/images/logo-original.png", type: "image/png" }],
+    shortcut: "/images/logo-original.png",
+    apple: "/images/logo-original.png",
   },
   alternates: {
     canonical: siteUrl,

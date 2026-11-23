@@ -22,7 +22,7 @@ type SbiolCourse = (typeof sbiolPageContent.courses.items)[number];
 const tabs: { id: TabId; label: string; icon: ReactNode }[] = [
   {
     id: "faculty",
-    label: "Academic Programs",
+    label: "Departments",
     icon: (
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path strokeLinecap="round" d="M12 3L2 8l10 5 10-5-10-5z" />
@@ -72,7 +72,7 @@ function categoryLabel(category: Department["category"]) {
   return "Computer Applications";
 }
 
-/* ─── Academic Programs tab ─── */
+/* ─── Departments tab ─── */
 
 function DepartmentCard({
   title,
@@ -114,7 +114,7 @@ function ApplyCard() {
         </svg>
       </div>
 
-      <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">Our Programs</p>
+      <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">Our Courses</p>
       <h3 className="mt-2 text-xl font-semibold leading-snug">Courses designed for real careers</h3>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-white/75">
         Industry-aligned curriculum, experienced faculty and hands-on labs across engineering, management and computer

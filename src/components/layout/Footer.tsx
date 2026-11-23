@@ -29,7 +29,7 @@ export function Footer() {
           <div>
             <Link
               href="/"
-              className="inline-flex overflow-hidden rounded-lg bg-[#f5f3ec] px-1 py-0.5"
+              className="inline-flex items-center"
               aria-label={siteConfig.name}
             >
               <Image
@@ -37,7 +37,7 @@ export function Footer() {
                 alt={siteConfig.name}
                 width={320}
                 height={88}
-                className="h-11 w-auto max-w-[240px] object-contain object-left sm:h-12 sm:max-w-[280px]"
+                className="h-11 w-auto max-w-[220px] object-contain object-left sm:h-12 sm:max-w-[260px]"
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/70">
@@ -137,19 +137,28 @@ export function Footer() {
           <p className="text-sm text-white/60">
             © {year} {siteConfig.name}. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-3">
-            {socialEntries.map(([key, url]) => (
-              <a
-                key={key}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-accent hover:text-accent"
-                aria-label={socialLabels[key]}
-              >
-                <SocialIcon name={key} />
-              </a>
-            ))}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              {socialEntries.map(([key, url]) => (
+                <a
+                  key={key}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-accent hover:text-accent"
+                  aria-label={socialLabels[key]}
+                >
+                  <SocialIcon name={key} />
+                </a>
+              ))}
+            </div>
+            <Image
+              src={siteConfig.biherLogo}
+              alt={siteConfig.biherName}
+              width={88}
+              height={88}
+              className="h-12 w-12 object-contain sm:h-14 sm:w-14"
+            />
           </div>
         </div>
       </div>

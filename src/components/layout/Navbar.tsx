@@ -407,12 +407,7 @@ export function Navbar({ variant = "default" }: NavbarProps) {
         <Link
           href="/"
           onClick={closeMobileMenu}
-          className={[
-            "inline-flex shrink-0 items-center overflow-hidden rounded-lg px-1 py-0.5 transition-shadow",
-            useLightNav
-              ? "bg-[#f5f3ec] shadow-sm ring-1 ring-white/25 backdrop-blur-sm hover:shadow-md"
-              : "bg-[#f5f3ec] shadow-sm ring-1 ring-black/5 hover:shadow-md",
-          ].join(" ")}
+          className="inline-flex shrink-0 items-center"
           aria-label={siteConfig.name}
         >
           <Image
@@ -420,7 +415,7 @@ export function Navbar({ variant = "default" }: NavbarProps) {
             alt={siteConfig.name}
             width={360}
             height={96}
-            className="h-14 w-auto max-w-[260px] object-contain object-left sm:h-16 sm:max-w-[360px] lg:h-[4.5rem] lg:max-w-[440px]"
+            className="h-12 w-auto max-w-[180px] object-contain object-left sm:h-14 sm:max-w-[240px] lg:h-16 lg:max-w-[300px]"
             priority
           />
         </Link>
@@ -475,6 +470,15 @@ export function Navbar({ variant = "default" }: NavbarProps) {
             Apply Now
             <ApplyArrowIcon />
           </button>
+
+          <Image
+            src={siteConfig.biherLogo}
+            alt={siteConfig.biherName}
+            width={96}
+            height={96}
+            className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12 lg:h-14 lg:w-14"
+            priority
+          />
         </div>
       </nav>
 
