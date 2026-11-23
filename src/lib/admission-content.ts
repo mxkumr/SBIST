@@ -1,4 +1,4 @@
-import { departments } from "@/lib/home-content";
+import { degreePrograms } from "@/lib/home-content";
 
 export const admissionEnquiryContent = {
   title: "Admission Form",
@@ -18,7 +18,7 @@ export const admissionEnquiryContent = {
   submitLabel: "Submit Admission Enquiry",
   successMessage:
     "Thank you for your admission enquiry. Our team will contact you shortly.",
-  courses: departments.map((d) => d.degree),
+  courses: degreePrograms.map((d) => d.degree),
   states: [
     "Andhra Pradesh",
     "Arunachal Pradesh",

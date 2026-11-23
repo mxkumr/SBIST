@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useOptionalAdmissionEnquiry } from "@/components/admission/AdmissionEnquiryContext";
 import {
@@ -11,7 +11,7 @@ import {
   StaggerItem,
   premiumTransitionFast,
 } from "@/components/motion/ScrollAnimations";
-import { departments, notices } from "@/lib/home-content";
+import { degreePrograms, departments, notices } from "@/lib/home-content";
 import { sbiolPageContent } from "@/lib/sbiol-content";
 
 type TabId = "faculty" | "programs" | "sbiol";
@@ -69,7 +69,9 @@ function MortarboardIcon() {
 function categoryLabel(category: Department["category"]) {
   if (category === "engineering") return "Engineering";
   if (category === "management") return "Management";
-  return "Computer Applications";
+  if (category === "applications") return "Computer Applications";
+  if (category === "science") return "Science";
+  return "Humanities";
 }
 
 /* ─── Departments tab ─── */
@@ -190,49 +192,110 @@ function NoticeCard() {
 }
 
 function FacultyGrid() {
-  const [first, second, third, fourth] = departments;
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+
+  const updateScrollState = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    setCanPrev(el.scrollLeft > 4);
+    setCanNext(el.scrollLeft < maxScroll - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [updateScrollState]);
+
+  const scrollByCard = (dir: -1 | 1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-dept-card]");
+    const amount = (card?.offsetWidth ?? 260) + 20;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
 
   return (
-    <StaggerContainer
-      className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 lg:items-stretch"
-      stagger={0.06}
-    >
-      <StaggerItem className="order-1 h-full lg:order-none lg:col-start-1 lg:row-start-1">
-        <ApplyCard />
-      </StaggerItem>
+    <div>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+          {departments.length} departments
+        </p>
+        <div className="flex items-center gap-3">
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => scrollByCard(-1)}
+              disabled={!canPrev}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-colors hover:border-accent/50 hover:text-accent disabled:cursor-not-allowed disabled:opacity-35"
+              aria-label="Scroll departments left"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollByCard(1)}
+              disabled={!canNext}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-colors hover:border-accent/50 hover:text-accent disabled:cursor-not-allowed disabled:opacity-35"
+              aria-label="Scroll departments right"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          <Link
+            href="/departments"
+            className="hidden items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-accent sm:inline-flex"
+          >
+            View all
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+      </div>
 
-      {first && (
-        <StaggerItem className="order-2 h-full lg:order-none lg:col-start-2 lg:row-start-1">
-          <DepartmentCard title={first.title} image={first.image} href={first.href} />
-        </StaggerItem>
-      )}
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3 lg:items-stretch">
+        <div className="flex flex-col gap-5">
+          <div className="min-h-[220px] flex-1">
+            <ApplyCard />
+          </div>
+          <div className="min-h-[220px] flex-1">
+            <NoticeCard />
+          </div>
+        </div>
 
-      {second && (
-        <StaggerItem className="order-3 h-full lg:order-none lg:col-start-3 lg:row-start-1">
-          <DepartmentCard title={second.title} image={second.image} href={second.href} />
-        </StaggerItem>
-      )}
-
-      {third && (
-        <StaggerItem className="order-4 h-full lg:order-none lg:col-start-2 lg:row-start-2">
-          <DepartmentCard title={third.title} image={third.image} href={third.href} />
-        </StaggerItem>
-      )}
-
-      {fourth && (
-        <StaggerItem className="order-5 h-full lg:order-none lg:col-start-3 lg:row-start-2">
-          <DepartmentCard title={fourth.title} image={fourth.image} href={fourth.href} />
-        </StaggerItem>
-      )}
-
-      <StaggerItem className="order-6 h-full sm:col-span-2 lg:order-none lg:col-span-1 lg:col-start-1 lg:row-start-2">
-        <NoticeCard />
-      </StaggerItem>
-    </StaggerContainer>
+        <div className="relative min-h-[460px] lg:col-span-2">
+          <div
+            ref={scrollerRef}
+            className="grid h-full grid-flow-col grid-rows-2 auto-cols-[minmax(240px,280px)] gap-5 overflow-x-auto scroll-smooth pb-1 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            aria-label="Department cards"
+          >
+            {departments.map((dept) => (
+              <div key={dept.href} data-dept-card className="h-full min-h-[220px] snap-start">
+                <DepartmentCard title={dept.title} image={dept.image} href={dept.href} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
-/* ─── All Programs tab - all 8 programs ─── */
+/* ─── All Programs tab - degree-granting programmes ─── */
 
 function ProgramCatalogCard({ dept }: { dept: Department }) {
   return (
@@ -288,11 +351,11 @@ function ProgramsCatalog() {
     <div>
       <div className="mb-6 flex flex-col gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
         <p className="max-w-xl text-sm leading-relaxed text-white/70">
-          Eight programs across engineering, management and computer applications - built for careers that start on
-          campus.
+          Eight undergraduate programmes across engineering, management and computer applications - built for careers
+          that start on campus.
         </p>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-          {departments.length} programs
+          {degreePrograms.length} programs
         </p>
       </div>
 
@@ -300,8 +363,8 @@ function ProgramsCatalog() {
         className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4"
         stagger={0.045}
       >
-        {departments.map((dept) => (
-          <StaggerItem key={dept.title} className="h-full">
+        {degreePrograms.map((dept) => (
+          <StaggerItem key={dept.href} className="h-full">
             <ProgramCatalogCard dept={dept} />
           </StaggerItem>
         ))}

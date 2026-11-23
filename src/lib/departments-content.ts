@@ -405,7 +405,7 @@ export const departmentPages: DepartmentPageContent[] = [
     degree: "Department of Languages",
     category: "humanities",
     icon: "library",
-    image: "/images/students-library.jpg",
+    image: "/images/Classroom4.JPG",
     overview: [
       "The Department of Languages builds communication competence that supports academic writing, presentations and professional interaction.",
       "Students strengthen English and communication skills essential for placements, teamwork and lifelong learning.",
@@ -453,7 +453,7 @@ export const departmentPages: DepartmentPageContent[] = [
     degree: "BBA",
     category: "management",
     icon: "bba",
-    image: "/images/students-library.jpg",
+    image: "/images/entrepreneur-summit.jpg",
     overview: [
       "The Management department offers business fundamentals, entrepreneurship exposure and industry-ready managerial skills through the BBA pathway.",
       "Students learn organisational behaviour, marketing, finance basics and leadership practices suited to modern workplaces.",

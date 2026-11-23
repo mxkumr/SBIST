@@ -1,5 +1,5 @@
 import type { NavIconName } from "@/lib/navigation";
-import { departments, notices, stockImages } from "@/lib/home-content";
+import { degreePrograms, notices, stockImages } from "@/lib/home-content";
 import type { HighlightStatItem, PageStatItem } from "@/lib/about-content";
 
 /** Local image paths for the Academics page */
@@ -56,7 +56,7 @@ export const academicsPageContent = {
     title: "Browse Our Programs",
     description:
       "Choose from eight undergraduate programs across engineering, management and computer applications. Each pathway combines core fundamentals with practical labs and project-based learning.",
-    programs: departments.map((dept) => ({
+    programs: degreePrograms.map((dept) => ({
       ...dept,
       programs: [dept.degree],
     })),

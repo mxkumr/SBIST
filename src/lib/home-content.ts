@@ -184,9 +184,10 @@ export type Department = {
   degree: string;
   icon: NavIconName;
   duration: string;
-  category: "engineering" | "management" | "commerce";
+  category: "engineering" | "management" | "applications" | "science" | "humanities";
 };
 
+/** All academic departments shown on home /departments navigation. */
 export const departments = [
   {
     title: "Computer Science",
@@ -196,17 +197,6 @@ export const departments = [
     href: "/departments/computer-science",
     degree: "B.Tech Computer Science",
     icon: "cse",
-    duration: "4 Years",
-    category: "engineering",
-  },
-  {
-    title: "Information and Communication Technology",
-    description:
-      "Focused on networks, communication systems and modern IT infrastructure with practical lab-based learning.",
-    image: "/images/computer1.JPG",
-    href: "/departments/information-and-communication-technology",
-    degree: "B.Tech Information and Communication Technology",
-    icon: "ict",
     duration: "4 Years",
     category: "engineering",
   },
@@ -222,13 +212,13 @@ export const departments = [
     category: "engineering",
   },
   {
-    title: "Civil Engineering",
+    title: "Information and Communication Technology",
     description:
-      "The department of Civil Engineering is committed to the task of providing quality education, which will transform the students into efficient and successful engineers.",
-    image: "/images/civil_eng.jpg",
-    href: "/departments/civil-engineering",
-    degree: "B.Tech Civil Engineering",
-    icon: "civil",
+      "Focused on networks, communication systems and modern IT infrastructure with practical lab-based learning.",
+    image: "/images/computer1.JPG",
+    href: "/departments/information-and-communication-technology",
+    degree: "B.Tech Information and Communication Technology",
+    icon: "ict",
     duration: "4 Years",
     category: "engineering",
   },
@@ -244,6 +234,17 @@ export const departments = [
     category: "engineering",
   },
   {
+    title: "Civil Engineering",
+    description:
+      "The department of Civil Engineering is committed to the task of providing quality education, which will transform the students into efficient and successful engineers.",
+    image: "/images/civil_eng.jpg",
+    href: "/departments/civil-engineering",
+    degree: "B.Tech Civil Engineering",
+    icon: "civil",
+    duration: "4 Years",
+    category: "engineering",
+  },
+  {
     title: "Biomedical Engineering",
     description:
       "Combining engineering principles with medical sciences to prepare students for healthcare technology and device innovation.",
@@ -255,28 +256,80 @@ export const departments = [
     category: "engineering",
   },
   {
-    title: "BBA",
+    title: "Physics",
     description:
-      "A Bachelor of Business Administration program focused on management fundamentals, entrepreneurship and industry-ready business skills.",
-    image: "/images/students-library.jpg",
+      "Strengthens scientific foundations for engineering programmes through conceptual clarity and laboratory practice.",
+    image: "/images/lab.JPG",
+    href: "/departments/physics",
+    degree: "Department of Physics",
+    icon: "research",
+    duration: "Core",
+    category: "science",
+  },
+  {
+    title: "Chemistry",
+    description:
+      "Supports engineering education with applied chemistry concepts, materials awareness and laboratory skills.",
+    image: "/images/lab3.JPG",
+    href: "/departments/chemistry",
+    degree: "Department of Chemistry",
+    icon: "research",
+    duration: "Core",
+    category: "science",
+  },
+  {
+    title: "Maths",
+    description:
+      "Provides the analytical backbone for engineering and technology programmes through rigorous mathematical foundations.",
+    image: "/images/Classroom.JPG",
+    href: "/departments/maths",
+    degree: "Department of Mathematics",
+    icon: "programs",
+    duration: "Core",
+    category: "science",
+  },
+  {
+    title: "Languages",
+    description:
+      "Builds communication competence for academic writing, presentations and professional interaction.",
+    image: "/images/Classroom4.JPG",
+    href: "/departments/languages",
+    degree: "Department of Languages",
+    icon: "library",
+    duration: "Core",
+    category: "humanities",
+  },
+  {
+    title: "Computer Applications",
+    description:
+      "A Bachelor of Computer Applications pathway covering software development, databases and applied computing for IT careers.",
+    image: "/images/computer2.JPG",
+    href: "/departments/computer-applications",
+    degree: "BCA",
+    icon: "bca",
+    duration: "3 Years",
+    category: "applications",
+  },
+  {
+    title: "Management",
+    description:
+      "A Bachelor of Business Administration pathway focused on management fundamentals, entrepreneurship and industry-ready business skills.",
+    image: "/images/entrepreneur-summit.jpg",
     href: "/departments/management",
     degree: "BBA",
     icon: "bba",
     duration: "3 Years",
     category: "management",
   },
-  {
-    title: "BCA",
-    description:
-      "A Bachelor of Computer Applications program covering software development, databases and applied computing for IT careers.",
-    image: "/images/computer2.JPG",
-    href: "/departments/computer-applications",
-    degree: "BCA",
-    icon: "bca",
-    duration: "3 Years",
-    category: "commerce",
-  },
 ] satisfies Department[];
+
+/** Degree-granting programmes used by All Programs, academics and admission forms. */
+export const degreePrograms = departments.filter(
+  (dept) =>
+    dept.category === "engineering" ||
+    dept.category === "management" ||
+    dept.category === "applications",
+);
 
 export const counterItems: CounterItem[] = [
   { headline: "Excellence", label: "Quality engineering education" },
