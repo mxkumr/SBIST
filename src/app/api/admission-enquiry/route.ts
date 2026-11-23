@@ -55,6 +55,7 @@ export async function POST(request: Request) {
     );
 
     await sendSiteEmail({
+      to: process.env.ADMISSION_TO_EMAIL || "admission@sbist.edu.in",
       subject: `Admission Enquiry - ${parsed.name} - ${parsed.course}`,
       html,
       text,

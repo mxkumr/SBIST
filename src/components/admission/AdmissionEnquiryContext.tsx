@@ -56,6 +56,26 @@ export function AdmissionEnquiryProvider({ children }: { children: ReactNode }) 
       return;
     }
     setEnabled(true);
+
+    let alreadySeen = false;
+    try {
+      alreadySeen = sessionStorage.getItem(STORAGE_KEY) === "1";
+    } catch {
+      alreadySeen = false;
+    }
+
+    if (alreadySeen) return;
+
+    const timer = window.setTimeout(() => {
+      try {
+        if (sessionStorage.getItem(STORAGE_KEY) === "1") return;
+      } catch {
+        /* ignore */
+      }
+      setOpen(true);
+    }, 350);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   const value = useMemo(

@@ -6,8 +6,8 @@ export const admissionEnquiryContent = {
   description:
     "Share your details and our admissions team will get back to you shortly.",
   promo: {
-    eyebrow: "SBIST",
-    headline: "Begin Your Engineering Journey",
+    eyebrow: "Admissions Open",
+    headline: "Apply Now for 2026-27",
     points: [
       "AICTE-approved programmes",
       "BIHER-affiliated B.Tech courses",

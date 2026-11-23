@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     );
 
     await sendSiteEmail({
-      to: process.env.CONTACT_TO_EMAIL || process.env.ADMISSION_TO_EMAIL,
+      to: process.env.CONTACT_TO_EMAIL || "officesbist@gmail.com",
       subject: `Get in Touch - ${parsed.subject} - ${parsed.name}`,
       html,
       text,

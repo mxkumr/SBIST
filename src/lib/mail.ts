@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-import { siteConfig } from "@/lib/navigation";
 
 export function escapeHtml(value: string): string {
   return value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -38,7 +37,8 @@ export async function sendSiteEmail(options: {
   text: string;
   replyTo?: string;
 }): Promise<"resend" | "smtp"> {
-  const to = options.to || process.env.ADMISSION_TO_EMAIL || siteConfig.email;
+  const to =
+    options.to || process.env.ADMISSION_TO_EMAIL || "admission@sbist.edu.in";
 
   const resendKey = process.env.RESEND_API_KEY;
   if (resendKey) {

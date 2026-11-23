@@ -85,7 +85,7 @@ export function AdmissionEnquiryModal({ open, onClose }: AdmissionEnquiryModalPr
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-primary-dark/70 p-4 backdrop-blur-[2px]"
+      className="fixed inset-0 z-[120] flex items-center justify-center bg-primary-dark/70 p-4 backdrop-blur-[2px]"
       role="presentation"
       onClick={onClose}
     >
@@ -146,10 +146,13 @@ export function AdmissionEnquiryModal({ open, onClose }: AdmissionEnquiryModalPr
 
         {/* Form panel */}
         <div className="overflow-y-auto px-5 py-7 sm:px-8 sm:py-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Admissions</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            Admissions Open
+          </p>
           <h2 id={titleId} className="mt-2 text-2xl font-semibold text-primary lg:text-[1.75rem]">
             Admission Form
           </h2>
+          <p className="mt-2 text-sm text-muted">{subtitle}</p>
           <div className="mt-3 h-1 w-12 rounded-full bg-accent" aria-hidden />
 
           {status === "success" ? (
