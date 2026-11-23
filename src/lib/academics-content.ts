@@ -24,7 +24,7 @@ export const academicsPageContent = {
   sidebar: {
     title: "Academics",
     links: [
-      { label: "Overview", href: "/academics", icon: "programs" as NavIconName },
+      { label: "Overview", href: "/academics#overview", icon: "programs" as NavIconName },
       { label: "Program Catalogue", href: "/academics#courses", icon: "cse" as NavIconName },
       { label: "Why Join SBIST", href: "/academics#why-join", icon: "faculty" as NavIconName },
       { label: "Alumni Network", href: "/academics#alumni", icon: "alumni" as NavIconName },
@@ -36,7 +36,7 @@ export const academicsPageContent = {
     eyebrow: "Academic Excellence",
     title: "Academic Programs Built for the Real World",
     paragraphs: [
-      "At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs - Computer Science Engineering, Information and Communication Technology, Electronics and Communication Engineering, Civil Engineering, Mechanical Engineering, Biomedical Engineering, BBA and BCA.",
+      "At Sree Balaji Institute of Science and Technology, academics are designed to bridge classroom theory with hands-on practice. We offer eight programs - Computer Science, Information and Communication Technology, Electronics and Communication Engineering, Civil Engineering, Mechanical Engineering, Biomedical Engineering, BBA and BCA.",
       "From modern laboratories and qualified faculty to placement training and research opportunities, SBIST provides a complete academic ecosystem on our Chromepet campus in Chennai.",
     ],
     highlights: [
@@ -47,7 +47,7 @@ export const academicsPageContent = {
   },
   stats: [
     { value: 8, suffix: "", label: "Programs Offered", icon: "programs" as NavIconName },
-    { value: 5, suffix: "+", label: "Specialized Labs", icon: "research" as NavIconName },
+    { value: 5, suffix: "+", label: "Specialised Labs", icon: "research" as NavIconName },
     { headline: "Excellence", label: "Academic quality", icon: "faculty" as NavIconName },
     { headline: "Growth", label: "Career development", icon: "apply" as NavIconName },
   ] as PageStatItem[],

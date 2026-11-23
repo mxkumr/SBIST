@@ -68,10 +68,11 @@ type NavLinkItemProps = {
   item: NavItem;
   activeMenu: string | null;
   onToggle: (label: string) => void;
+  onClose: () => void;
   useLightNav: boolean;
 };
 
-function DesktopNavItem({ item, activeMenu, onToggle, useLightNav }: NavLinkItemProps) {
+function DesktopNavItem({ item, activeMenu, onToggle, onClose, useLightNav }: NavLinkItemProps) {
   const hasMega = Boolean(item.megaMenu);
   const hasDropdown = Boolean(item.dropdown?.length);
   const isOpen = activeMenu === item.label;
@@ -117,7 +118,7 @@ function DesktopNavItem({ item, activeMenu, onToggle, useLightNav }: NavLinkItem
 
         {isOpen && (
           <div
-            className="absolute left-0 top-full z-50 mt-2 w-72 overflow-hidden rounded-xl border border-border bg-white shadow-xl animate-fade-in-up"
+            className="absolute left-0 top-full z-50 mt-2 max-h-[min(70vh,560px)] w-80 overflow-y-auto overflow-x-hidden rounded-xl border border-border bg-white shadow-xl animate-fade-in-up"
             role="menu"
             aria-label={`${item.label} submenu`}
           >
@@ -127,7 +128,7 @@ function DesktopNavItem({ item, activeMenu, onToggle, useLightNav }: NavLinkItem
                   <Link
                     href={link.href}
                     role="menuitem"
-                    onClick={() => onToggle(item.label)}
+                    onClick={onClose}
                     className="group flex items-start gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-surface"
                   >
                     <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
@@ -142,6 +143,22 @@ function DesktopNavItem({ item, activeMenu, onToggle, useLightNav }: NavLinkItem
                       )}
                     </span>
                   </Link>
+                  {link.children && link.children.length > 0 && (
+                    <ul className="mb-1 ml-12 space-y-0.5 border-l border-border pb-2 pl-3">
+                      {link.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            role="menuitem"
+                            onClick={onClose}
+                            className="block rounded-md px-2 py-1.5 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-primary"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>
@@ -259,14 +276,28 @@ function MobileNavItem({ item, onClose }: { item: NavItem; onClose: () => void }
         <div className="mt-1 space-y-1 border-l-2 border-accent/40 py-1 pl-2 ml-4 animate-fade-in-up">
           {item.dropdown
             ? item.dropdown.map((link) => (
-                <MobileSubLink
-                  key={link.href}
-                  href={link.href}
-                  label={link.label}
-                  description={link.description}
-                  icon={link.icon}
-                  onClose={onClose}
-                />
+                <div key={link.href}>
+                  <MobileSubLink
+                    href={link.href}
+                    label={link.label}
+                    description={link.description}
+                    icon={link.icon}
+                    onClose={onClose}
+                  />
+                  {link.children && link.children.length > 0 && (
+                    <div className="ml-8 space-y-0.5 border-l border-accent/30 pb-1 pl-2">
+                      {link.children.map((child) => (
+                        <MobileSubLink
+                          key={child.href}
+                          href={child.href}
+                          label={child.label}
+                          description={child.description}
+                          onClose={onClose}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))
             : item.megaMenu?.map((column) => (
                 <div key={column.title} className="space-y-1 pt-1">
@@ -427,6 +458,7 @@ export function Navbar({ variant = "default" }: NavbarProps) {
               item={item}
               activeMenu={activeMenu}
               onToggle={toggleMenu}
+              onClose={closeMegaMenu}
               useLightNav={useLightNav}
             />
           ))}

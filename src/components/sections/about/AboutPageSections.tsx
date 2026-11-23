@@ -225,25 +225,31 @@ function AboutSidebar() {
         <CardHeaderStrip eyebrow={sidebar.title} subtitle="Explore SBIST" align="left" />
         <nav aria-label="About navigation">
           <ul className="divide-y divide-border">
-            {sidebar.links.map((link) => {
-              const isActive = link.href === "/about";
-              return (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`group flex items-center gap-3 px-5 py-3.5 text-sm font-medium transition-colors ${
-                      isActive
-                        ? "bg-primary/5 text-primary"
-                        : "text-foreground hover:bg-surface hover:text-primary"
-                    }`}
-                  >
-                    <IconBadge icon={link.icon} size="sm" />
-                    <span className="flex-1">{link.label}</span>
-                    {isActive && <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />}
-                  </Link>
-                </li>
-              );
-            })}
+            {sidebar.links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="group flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-surface hover:text-primary"
+                >
+                  <IconBadge icon={link.icon} size="sm" />
+                  <span className="flex-1">{link.label}</span>
+                </Link>
+                {link.children && link.children.length > 0 && (
+                  <ul className="space-y-0.5 border-t border-border/70 bg-surface/40 pb-2 pl-12 pr-4 pt-1">
+                    {link.children.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          href={child.href}
+                          className="block rounded-md px-2 py-1.5 text-sm text-muted transition-colors hover:bg-white hover:text-primary"
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
       </SectionCard>
@@ -368,6 +374,54 @@ function LeaderPreviewCard() {
   );
 }
 
+function DeanMessageCard() {
+  const { deanMessage } = aboutPageContent;
+
+  return (
+    <SectionCard id="dean-message">
+      <CardHeaderStrip eyebrow={deanMessage.eyebrow} subtitle={deanMessage.role} align="left" />
+      <div className="px-6 py-8 lg:px-8 lg:py-10">
+        <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{deanMessage.title}</h2>
+        <div className="mt-6 space-y-4 text-justify text-[15px] leading-relaxed text-muted">
+          {deanMessage.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+          ))}
+        </div>
+        <AccentBar className="group mt-6" />
+      </div>
+    </SectionCard>
+  );
+}
+
+function ApprovalsSection() {
+  const { approvals } = aboutPageContent;
+
+  return (
+    <div id="approvals" className="scroll-mt-28 space-y-6">
+      <SectionCard>
+        <CardHeaderStrip eyebrow={approvals.eyebrow} subtitle={approvals.description} align="left" />
+        <div className="px-6 py-8 lg:px-8 lg:py-10">
+          <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{approvals.title}</h2>
+          <AccentBar className="group mt-6" />
+        </div>
+      </SectionCard>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        {approvals.items.map((item) => (
+          <SectionCard key={item.id} id={item.id}>
+            <div className="px-6 py-8 lg:px-8 lg:py-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">{item.subtitle}</p>
+              <h3 className="mt-3 text-2xl leading-tight text-foreground">{item.title}</h3>
+              <p className="mt-4 text-[15px] leading-relaxed text-muted">{item.body}</p>
+              <AccentBar className="group mt-6" />
+            </div>
+          </SectionCard>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function AboutMainSection() {
   const { main, stats } = aboutPageContent;
   const statsRef = useRef<HTMLDivElement>(null);
@@ -392,7 +446,7 @@ export function AboutMainSection() {
   }, []);
 
   return (
-    <section className="bg-background py-20 lg:py-28">
+    <section className="scroll-mt-28 bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:gap-14 xl:gap-16">
           <ScrollReveal direction="left" className="hidden lg:block">
@@ -400,20 +454,9 @@ export function AboutMainSection() {
           </ScrollReveal>
 
           <div className="min-w-0 space-y-8">
+            {/* a. About SBIST */}
             <ScrollReveal direction="right">
-              <LeaderPreviewCard />
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.04}>
-              <PillarsGrid pillars={aboutPageContent.vision.pillars} />
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.05}>
-              <VisionMissionCard />
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.08} direction="right">
-              <SectionCard>
+              <SectionCard id="about-sbist">
                 <CardHeaderStrip eyebrow={main.eyebrow} subtitle="Our story, mission and community" align="left" />
                 <div className="px-6 py-8 lg:px-8 lg:py-10">
                   <h2 className="text-3xl leading-tight text-foreground lg:text-[2.25rem]">{main.title}</h2>
@@ -459,6 +502,34 @@ export function AboutMainSection() {
               </SectionCard>
             </ScrollReveal>
 
+            <ScrollReveal delay={0.04}>
+              <PillarsGrid pillars={aboutPageContent.vision.pillars} />
+            </ScrollReveal>
+
+            {/* b. Vision & Mission */}
+            <ScrollReveal delay={0.05}>
+              <div id="vision-mission" className="scroll-mt-28">
+                <VisionMissionCard />
+              </div>
+            </ScrollReveal>
+
+            {/* c. Chairman’s Message */}
+            <ScrollReveal delay={0.06} direction="right">
+              <div id="chairman-message" className="scroll-mt-28">
+                <LeaderPreviewCard />
+              </div>
+            </ScrollReveal>
+
+            {/* d. Dean’s Message */}
+            <ScrollReveal delay={0.07}>
+              <DeanMessageCard />
+            </ScrollReveal>
+
+            {/* e. Approvals — AICTE & BIHER */}
+            <ScrollReveal delay={0.08}>
+              <ApprovalsSection />
+            </ScrollReveal>
+
             <div ref={statsRef}>
               <SectionCard>
                 <CardHeaderStrip eyebrow="SBIST at a Glance" subtitle="What defines our approach to education" />
@@ -493,7 +564,7 @@ export function AboutCampusTourSection() {
   const { campusTour } = aboutPageContent;
 
   return (
-    <section className="bg-background py-20 lg:py-28">
+    <section id="campus-tour" className="scroll-mt-28 bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <SectionCard>
           <div className="grid items-stretch lg:grid-cols-2">
@@ -534,7 +605,7 @@ export function AboutTestimonialsSection() {
   const { testimonials } = aboutPageContent;
 
   return (
-    <section className="bg-surface py-20 lg:py-28">
+    <section id="testimonials" className="scroll-mt-28 bg-surface py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal>
           <SectionCard>
@@ -578,13 +649,13 @@ export function AboutGallerySection() {
   const { gallery } = aboutPageContent;
 
   return (
-    <>
+    <div id="gallery" className="scroll-mt-28">
       <Gallery images={gallery.images} title={gallery.title} subtitle={gallery.subtitle} columns={3} />
       <div className="bg-surface pb-16 lg:pb-24">
         <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
           <ArrowPillLink href={gallery.ctaHref}>Explore Campus Life</ArrowPillLink>
         </div>
       </div>
-    </>
+    </div>
   );
 }

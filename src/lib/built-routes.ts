@@ -4,6 +4,7 @@ export const BUILT_ROUTES = new Set([
   "/about",
   "/about/leadership",
   "/academics",
+  "/departments",
   "/contact",
   "/careers",
   "/campus-life",
@@ -14,5 +15,7 @@ export const BUILT_ROUTES = new Set([
 ]);
 
 export function isBuiltRoute(pathname: string): boolean {
-  return BUILT_ROUTES.has(pathname);
+  if (BUILT_ROUTES.has(pathname)) return true;
+  if (pathname.startsWith("/departments/")) return true;
+  return false;
 }

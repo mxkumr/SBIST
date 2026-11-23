@@ -12,38 +12,34 @@ export function HashScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const hash = window.location.hash.replace(/^#/, "");
+    const getHash = () => window.location.hash.replace(/^#/, "");
 
-    const run = () => {
-      if (!hash) {
+    const scrollToHash = (behavior: ScrollBehavior = "smooth") => {
+      const id = getHash();
+      if (!id) {
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-        return;
+        return true;
       }
-
-      const el = document.getElementById(hash);
-      if (!el) return;
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      const el = document.getElementById(id);
+      if (!el) return false;
+      el.scrollIntoView({ behavior, block: "start" });
+      return true;
     };
 
-    const t1 = window.setTimeout(run, 50);
-    const t2 = window.setTimeout(run, hash ? 350 : 0);
-
-    const onHashChange = () => {
-      const next = window.location.hash.replace(/^#/, "");
-      if (!next) {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        return;
-      }
-      document.getElementById(next)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+    const runWithRetry = () => {
+      if (scrollToHash(getHash() ? "smooth" : "auto")) return;
+      const delays = [120, 350, 700, 1200];
+      delays.forEach((ms) => {
+        window.setTimeout(() => scrollToHash("smooth"), ms);
       });
     };
 
+    runWithRetry();
+
+    const onHashChange = () => runWithRetry();
     window.addEventListener("hashchange", onHashChange);
+
     return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
       window.removeEventListener("hashchange", onHashChange);
     };
   }, [pathname]);

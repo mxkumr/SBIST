@@ -113,9 +113,9 @@ export const leadershipPageContent = {
   },
 };
 
-/** Compact preview used on the About page */
+/** Compact preview used on the About page — Chairman’s Message */
 export const aboutLeaderPreview = {
-  eyebrow: "Our Leader",
+  eyebrow: "Chairman’s Message",
   title: "DR. J. Srinisha Elamaran",
   tagline: "A Leader with Vision. A Heart with Purpose.",
   role: "Founder & Chairman",
@@ -123,5 +123,5 @@ export const aboutLeaderPreview = {
   imageAlt: "DR. J. Srinisha Elamaran, Founder & Chairman of SBIST",
   paragraphs: leadershipPageContent.intro.paragraphs,
   readMoreHref: "/about/leadership",
-  readMoreLabel: "Read More",
+  readMoreLabel: "Read Full Message",
 };

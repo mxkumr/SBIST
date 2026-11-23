@@ -69,7 +69,7 @@ export const sbiolPageContent = {
         ],
         eligibility:
           "Bachelor’s degree (minimum 3 years) from a UGC-recognized university with at least 50% aggregate marks.",
-        image: "/images/students-library.jpg",
+        image: "/images/Library_AI.jpg",
       },
       {
         id: "bcom",
@@ -291,6 +291,6 @@ export const sbiolPageContent = {
     primaryHref: "https://www.biher.online",
     secondaryLabel: "Download Brochure",
     secondaryHref: "/docs/SBIOL%20BROUCHER.pdf",
-    image: "/images/students-library.jpg",
+    image: "/images/Library_AI.jpg",
   },
 };

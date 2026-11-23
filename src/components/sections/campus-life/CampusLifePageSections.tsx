@@ -17,7 +17,7 @@ export function CampusLifeIntroSection() {
   const { intro } = campusLifePageContent;
 
   return (
-    <section className="bg-background py-16 lg:py-24">
+    <section id="intro" className="scroll-mt-28 bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
           <div className="flex flex-col justify-center">

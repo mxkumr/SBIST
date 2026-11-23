@@ -29,15 +29,52 @@ export const aboutPageContent = {
     backgroundImage: stockImages.campus,
   },
   sidebar: {
-    title: "SBIST Inside",
+    title: "About SBIST",
     links: [
-      { label: "Who We Are", href: "/about", icon: "about" as NavIconName },
-      { label: "Our Leader", href: "/about/leadership", icon: "founder" as NavIconName },
-      { label: "Academics", href: "/academics", icon: "programs" as NavIconName },
-      { label: "Careers", href: "/careers", icon: "faculty" as NavIconName },
-      { label: "Contact", href: "/contact", icon: "apply" as NavIconName },
+      { label: "About SBIST", href: "/about#about-sbist", icon: "about" as NavIconName },
+      { label: "Vision & Mission", href: "/about#vision-mission", icon: "mission" as NavIconName },
+      { label: "Chairman’s Message", href: "/about#chairman-message", icon: "founder" as NavIconName },
+      { label: "Dean’s Message", href: "/about#dean-message", icon: "faculty" as NavIconName },
+      {
+        label: "Approval",
+        href: "/about#approvals",
+        icon: "requirements" as NavIconName,
+        children: [
+          { label: "AICTE", href: "/about#approval-aicte", icon: "requirements" as NavIconName },
+          { label: "BIHER", href: "/about#approval-biher", icon: "programs" as NavIconName },
+        ],
+      },
     ],
     image: stockImages.students,
+  },
+  deanMessage: {
+    eyebrow: "Dean’s Message",
+    title: "Message from the Dean",
+    role: "Dean, Sree Balaji Institute of Science and Technology",
+    paragraphs: [
+      "Welcome to Sree Balaji Institute of Science and Technology. Our academic community is committed to rigorous teaching, modern laboratories and mentoring that helps every student grow in skill and character.",
+      "We prepare engineers and professionals who can think clearly, work with integrity and contribute meaningfully to industry and society. I invite you to explore our programmes and join a campus where learning is purposeful and futures are built with care.",
+    ],
+  },
+  approvals: {
+    eyebrow: "Approvals & Affiliation",
+    title: "Recognised for Quality Education",
+    description:
+      "SBIST operates with the statutory approvals and university affiliation that safeguard academic standards for our students.",
+    items: [
+      {
+        id: "approval-aicte",
+        title: "AICTE Approval",
+        subtitle: "All India Council for Technical Education",
+        body: "Sree Balaji Institute of Science and Technology is approved by the All India Council for Technical Education (AICTE), New Delhi, for its technical and professional programmes.",
+      },
+      {
+        id: "approval-biher",
+        title: "BIHER Affiliation",
+        subtitle: "Bharath Institute of Higher Education and Research",
+        body: "SBIST is a constituent institution of Bharath Institute of Higher Education and Research (BIHER), declared as a Deemed to be University under Section 3 of the UGC Act, 1956, Chennai.",
+      },
+    ],
   },
   main: {
     eyebrow: "About SBIST",

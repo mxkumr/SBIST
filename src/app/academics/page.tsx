@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { createPageMetadata } from "@/lib/seo";
 import { Footer } from "@/components/layout/Footer";
+import { HashScroll } from "@/components/layout/HashScroll";
 import { Navbar } from "@/components/layout/Navbar";
 import { PageHeader } from "@/components/layout/PageHeader";
 import {
@@ -24,6 +25,7 @@ export default function AcademicsPage() {
 
   return (
     <>
+      <HashScroll />
       <Navbar variant="default" />
       <PageHeader
         title={header.title}

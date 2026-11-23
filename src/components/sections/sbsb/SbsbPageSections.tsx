@@ -19,7 +19,7 @@ export function SbsbIntroSection() {
   const content = sbsbPageContent;
 
   return (
-    <section className="bg-primary py-16 text-white lg:py-24">
+    <section id="overview" className="scroll-mt-28 bg-primary py-16 text-white lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           <ScrollReveal>
@@ -80,7 +80,7 @@ export function SbsbVisionMissionSection() {
   const { vision, mission, tagline } = sbsbPageContent;
 
   return (
-    <section className="bg-surface py-16 lg:py-24">
+    <section id="vision-mission" className="scroll-mt-28 bg-surface py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal>
           <div className="flex items-center gap-2.5">
@@ -138,7 +138,7 @@ export function SbsbPillarsSection() {
   const { pillars } = sbsbPageContent;
 
   return (
-    <section className="bg-surface py-16 lg:py-24">
+    <section id="pillars" className="scroll-mt-28 bg-surface py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -224,7 +224,7 @@ export function SbsbLeadershipSection() {
   const { leadership } = sbsbPageContent;
 
   return (
-    <section className="bg-background py-16 lg:py-20">
+    <section id="leadership" className="scroll-mt-28 bg-background py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal>
           <div className="max-w-3xl">
@@ -266,7 +266,7 @@ export function SbsbClubGroupsSection() {
   const { clubGroups } = sbsbPageContent;
 
   return (
-    <section className="bg-surface py-16 lg:py-20">
+    <section id="club-groups" className="scroll-mt-28 bg-surface py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
